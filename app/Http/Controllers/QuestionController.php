@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\paket_soal;
 use Illuminate\Http\Request;
 
-class PaketSoalController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,8 @@ class PaketSoalController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('question.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class PaketSoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\paket_soal  $paket_soal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(paket_soal $paket_soal)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class PaketSoalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\paket_soal  $paket_soal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(paket_soal $paket_soal)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class PaketSoalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\paket_soal  $paket_soal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, paket_soal $paket_soal)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class PaketSoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\paket_soal  $paket_soal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(paket_soal $paket_soal)
+    public function destroy($id)
     {
         //
     }

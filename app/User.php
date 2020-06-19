@@ -9,6 +9,10 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    public function profil()
+    {
+    	return $this->hasOne(Profil::class,'user_id');
+    }
 
     /**
      * The attributes that are mass assignable.

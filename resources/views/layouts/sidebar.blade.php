@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar 01</title>
+  	<title>LiveEx</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -18,43 +18,43 @@
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.png);"></a>
-	        <ul class="list-unstyled components mb-5">
-              <li class="active">
-	              <a href="#">Dashboard</a>
-	          </li>
-              <li>
-	              <a href="#">Profile</a>
-	          </li>
-              <li>
-	              <a href="#">Join Exam</a>
-	          </li>
-              <li>
-	            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Question</a>
-	            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Make Question</a>
-                </li>
-                <li>
-                    <a href="#">History</a>
-                </li>
-	            </ul>
-	          </li>
-	          
-	          <li>
-              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exam</a>
-              <ul class="collapse list-unstyled" id="pageSubmenu">
-                <li>
-                    <a href="#">Make Exam</a>
-                </li>
-                <li>
-                    <a href="#">History</a>
-                </li>
-              </ul>
-	          </li>
-	          <li>
-              <a href="#">Schedule</a>
-	          </li>
-	        </ul>
+                <ul class="list-unstyled components mb-5 ">
+                    <li class="nav-item ">
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#">Join Exam</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Question</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a class="nav-link {{(request()->is('question/create')) ? 'active' : ''}} " href="/question/create">Buat Soal Baru</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{(request()->is('question/history')) ? 'active' : ''}} " href="/question/history">Riwayat Soal</a>
+                        </li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item ">
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exam</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Make Exam</a>
+                            </li>
+                            <li>
+                                <a href="#">History</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#">Schedule</a>
+                    </li>
+                </ul>
 
 	        <div class="footer">
 	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
