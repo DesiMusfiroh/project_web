@@ -102,6 +102,8 @@
                     <h4>Apa Itu LiveEx ? <br> LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </h4>
                     <h3>Ini tulisan tambahan krisman</h3>
                     <button class" btn btn-primary"> Buatan Krisman </button>
+                    <a href="#">HAAAAAI</a>
+
                 </div>
                 <div class="row text-center" id="aksi">
                 @if (Route::has('login'))
