@@ -26,3 +26,4 @@ Route::post('/profil/store','ProfilController@store');
 Route::get('/profil/edit/{id}', 'ProfilController@edit');
 
 Route::get('/question/create','QuestionController@create');
+Route::post('/question/create/post','QuestionController@store')->name('postQuestionPackage');

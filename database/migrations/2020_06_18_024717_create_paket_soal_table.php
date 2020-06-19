@@ -17,7 +17,7 @@ class CreatePaketSoalTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('judul');
-            $table->datetime('durasi');
+            $table->integer('durasi');
             $table->timestamps();
         });
     }
