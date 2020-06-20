@@ -30,3 +30,4 @@ Route::patch('/profil/update/{id}', 'ProfilController@update');
 Route::get('/question','QuestionController@index')->name('question');
 Route::get('/question_create','QuestionController@create');
 Route::post('/question_store','QuestionController@store')->name('paketSoalStore');
+

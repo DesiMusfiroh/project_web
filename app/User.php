@@ -43,4 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function paket_soal(){
+      return $this->hasMany(PaketSoal::class);
+    }
 }

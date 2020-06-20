@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
+
 <div class="col-md-12">
     <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
@@ -108,8 +109,5 @@
         </div>
     </div>
 <!-- Penutup Create Modal -->
-
-
-
 
 @endsection
