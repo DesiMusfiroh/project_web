@@ -20,7 +20,7 @@
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.png);"></a>
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
-                        <a href="#">Dashboard</a>
+                        <a href="/home">Dashboard</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
@@ -29,6 +29,15 @@
                         <a href="#">Join Exam</a>
                     </li>
                     <li class="nav-item ">
+                        <a href="question">Question</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#">Create Exam</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="#">Schedule</a>
+                    </li>
+                    <!-- <li class="nav-item ">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Question</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -38,9 +47,9 @@
                             <a class="nav-link {{(request()->is('question/history')) ? 'active' : ''}} " href="/question/history">Riwayat Soal</a>
                         </li>
                         </ul>
-                    </li>
+                    </li> -->
                     
-                    <li class="nav-item ">
+                    <!-- <li class="nav-item ">
                         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exam</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li>
@@ -50,10 +59,9 @@
                                 <a href="#">History</a>
                             </li>
                         </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="#">Schedule</a>
-                    </li>
+                    </li> -->
+
+                   
                 </ul>
 
 	        <div class="footer">
