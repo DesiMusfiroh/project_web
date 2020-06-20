@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use App\PaketSoal;
 use App\User;
 use Illuminate\Http\Request;
-use App\PaketSoal;
-use App\User;
 
 class QuestionController extends Controller
 {
@@ -43,11 +41,7 @@ class QuestionController extends Controller
         $paketsoal->judul = $request->judul;
         $paketsoal->durasi = $request->durasi;
         $paketsoal->save();
-<<<<<<< HEAD
         return redirect()->route('question');
-=======
-        return redirect()->route('home');
->>>>>>> c54a3e37a14b446164c8116f21e94334f1198a77
     }
 
     /**
