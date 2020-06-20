@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\PaketSoal;
+use App\User;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -13,7 +14,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return view('question.index');
     }
 
     /**
@@ -23,8 +24,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-
-        return view('question.create');
+        $paket_soal_id_terakhir = PaketSoal::max('id');
+        return view('question.create',compact('paket_soal_id_terakhir'));
     }
 
     /**
@@ -35,7 +36,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paketsoal = new PaketSoal;
+        $paketsoal->user_id = auth()->user()->id;
+        $paketsoal->judul = $request->judul;
+        $paketsoal->durasi = $request->durasi;
+        $paketsoal->save();
+        return redirect()->route('question');
     }
 
     /**

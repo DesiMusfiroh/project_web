@@ -113,7 +113,7 @@ class ProfilController extends Controller
             'foto' => $nama_file,
         ];
 
-        Customer::whereId($id)->update($update);
+        Profil::whereId($id)->update($update);
    
         return redirect('/profil')
        ->with('success','Great! Biodata berhasil di update');

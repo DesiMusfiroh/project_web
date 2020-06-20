@@ -6,8 +6,18 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Question
-                    <a href="" class="ml-auto"> <button class="btn btn sm"> + Buat Soal Baru  </button></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Paket Soal
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
+                                <a href="/question_create"> <button type="button" class="btn" style="background-color:#7BEDC4;">
+                                    [ <i class="fa fa-plus"></i> ]  Buat Paket Soal Baru </button> 
+                                </a> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">

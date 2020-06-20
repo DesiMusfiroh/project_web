@@ -28,27 +28,25 @@
 
                             <div class="container">
                              
-                                    <div class="form-row">
+                                    <div class="form-row ">
                                         <div class="form-group col-md-6">
-                                            <label for="disabledTextInput"> <b> User Name : </b> </label>
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                                    <span class="input-group-text" id="basic-addon1"> <span class="fa fa-user"></span> </span>
-                                                </div>
-                                                <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ Auth::user()->name }}" readonly>
+                                            <label for="disabledTextInput"><b> User Name </b> </label>
+                                            <div class="input-group mb-0">
+                                            <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                                <span class="input-group-text" id="basic-addon1"> <span class="fa fa-user"></span> </span>
                                             </div>
-                                            
+                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{auth()->user()->name}}" readonly="">
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="disabledTextInput"> <b> Email : </b></label>
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                                    <span class="input-group-text" id="basic-addon1"> <span class="fa fa-envelope"></span> </span>
-                                                </div>
-                                                <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ Auth::user()->email }}" readonly >
+                                            <label for="disabledTextInput"><b> Email </b></label>
+                                            <div class="input-group mb-0">
+                                            <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                                <span class="input-group-text" id="basic-addon1"> <span class="fa fa-envelope"></span> </span>
                                             </div>
-                                            
-                                        </div>  
+                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{auth()->user()->email}}" readonly="">
+                                            </div>
+                                        </div> 
                                     </div>                    
                              
                                     <table class="table table-hover table-sm">

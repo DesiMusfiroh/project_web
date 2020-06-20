@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Profil;
+use App\PaketSoal;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -13,6 +15,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
     	return $this->hasOne(Profil::class,'user_id');
     }
+    public function paket_soal(){
+        return $this->hasMany(PaketSoal::class);
+      }
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +45,5 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

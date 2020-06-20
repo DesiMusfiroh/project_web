@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaketSoalTable extends Migration
+class CreateEssayTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePaketSoalTable extends Migration
      */
     public function up()
     {
-        Schema::create('paket_soal', function (Blueprint $table) {
+        Schema::create('essay', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('judul');
-            $table->integer('durasi');
+            $table->integer('soal_satuan_id');
+            $table->text('pertanyaan');
+            $table->text('jawaban');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePaketSoalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paket_soal');
+        Schema::dropIfExists('essay');
     }
 }
