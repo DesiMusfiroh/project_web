@@ -29,7 +29,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md shadow-sm" style="background: #EDE5E5; box-shadow: 4px 15px 15px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px; ">
+        <nav class="navbar navbar-expand-md " style="background: #EDE5E5; box-shadow: 4px 15px 15px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px; ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="images/LiveEx.png" alt="" width="80px">
