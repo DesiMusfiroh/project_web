@@ -13,21 +13,21 @@
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
                                 <a href="/question_create"> <button type="button" class="btn" style="background-color:#7BEDC4;">
-                                    [ <i class="fa fa-plus"></i> ]  Buat Paket Soal Baru </button> 
-                                </a> 
+                                    [ <i class="fa fa-plus"></i> ]  Buat Paket Soal Baru </button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    Buat Paket Soal Baru
+                    <table class="table">
+                      @foreach($paketsoal as $item)
+                      <tr>
+                        <td><a href="{{route('getSingleQuestion',$item->id)}}">{{$item->judul}}</a></td>
+                      </tr>
+                      @endforeach
+                    </table>
                 </div>
             </div>
         </div>

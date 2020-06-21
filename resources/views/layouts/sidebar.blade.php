@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -22,7 +22,7 @@
   </head>
 
   <body>
-		
+
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
@@ -38,7 +38,7 @@
                         <a href="#">Join Exam</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{ route('question') }}">Question</a>
+                        <a href="{{route('question')}}">Question</a>
                     </li>
                     <li class="nav-item ">
                         <a href="#">Create Exam</a>
@@ -57,7 +57,7 @@
                         </li>
                         </ul>
                     </li> -->
-                    
+
                     <!-- <li class="nav-item ">
                         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Exam</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
@@ -70,12 +70,12 @@
                         </ul>
                     </li> -->
 
-                   
+
                 </ul>
 
 	        <div class="footer">
 	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 	        </div>
 
@@ -138,7 +138,7 @@
         </main>
     </div>
 
-        
+
 
     </div>
 
