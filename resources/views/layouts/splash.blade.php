@@ -15,8 +15,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Bowlby+One+SC&family=Bungee&family=Chelsea+Market&family=Lilita+One&family=Pangolin&family=Rambla&family=Tenali+Ramakrishna&display=swap');
@@ -25,10 +29,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md shadow-sm" style="background: #EDE5E5; box-shadow: 4px 15px 15px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px;">
+        <nav class="navbar navbar-expand-md " style="background: #EDE5E5; box-shadow: 4px 15px 15px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px; ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="images/LiveEx.png" alt="" width="80px">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
