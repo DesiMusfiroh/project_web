@@ -56,7 +56,7 @@
                         <div class="container">  
 
                             <input type="hidden" name="paket_soal_id" id="paket_soal_id" value="">
-                            <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="1">
+                            <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="">
                            
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-2 col-form-label">No. 1</label>

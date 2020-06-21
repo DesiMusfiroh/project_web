@@ -64,15 +64,15 @@ class QuestionController extends Controller
             'pertanyaan' => 'required',
             'jawaban' => 'required',
         ]);
-
-        SoalSatuan::create([
+         $soal_satuan = new SoalSatuan;
+         $soal_satuan = SoalSatuan::create([
             'paket_soal_id'  => $request->paket_soal_id,
             'poin'           => $request->poin,
             'jenis'          => $request->jenis,    
         ]);   
-       
-        Essay::create([
-            'soal_satuan_id' => $request->soal_satuan_id,
+        
+        $essay = $soal_satuan->Essay()->create([
+            'soal_satuan_id' => $soal_satuan->soal_satuan_id,
             'pertanyaan'     => $request->pertanyaan,
             'jawaban'        => $request->jawaban,      
         ]);
