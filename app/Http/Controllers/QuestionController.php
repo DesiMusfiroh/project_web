@@ -12,13 +12,21 @@ class QuestionController extends Controller
 
     public function index()
     {
-        return view('question.index');
+        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
+        return view('question.index',compact(['paketsoal']));
     }
 
     public function create()
     {
-        
+
         return view('question.create');
+    }
+
+    //untuk masuk ke view tambah soal satuan
+    public function getSingleQuestion($id){
+      $paket_soal_id = PaketSoal::find($id);
+      $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','desc')->get();
+      return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
     }
 
     public function store(Request $request)
@@ -28,10 +36,11 @@ class QuestionController extends Controller
         $paketsoal->judul = $request->judul;
         $paketsoal->durasi = $request->durasi;
         $paketsoal->save();
+        $paket_soal_id = $paketsoal->id;
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
+        // $paket_soal_id = PaketSoal::max('id'); // mengambil data paket_soal_id untuk dipakai pada data soal satuan yang dibuat nanti
+        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
 
-        $paket_soal_id = PaketSoal::max('id'); // mengambil data paket_soal_id untuk dipakai pada data soal satuan yang dibuat nanti
-        return view('question.create_soal_satuan',compact('paket_soal_id'));
-       
     }
 
     public function show($id)
@@ -59,7 +68,7 @@ class QuestionController extends Controller
     {
         $this->validate($request,[
             'paket_soal_id'  => 'required',
-            'poin'   => 'required',         
+            'poin'   => 'required',
             'jenis' => 'required',
             'pertanyaan' => 'required',
             'jawaban' => 'required',
@@ -68,16 +77,17 @@ class QuestionController extends Controller
          $soal_satuan = SoalSatuan::create([
             'paket_soal_id'  => $request->paket_soal_id,
             'poin'           => $request->poin,
-            'jenis'          => $request->jenis,    
-        ]);   
-        
+            'jenis'          => $request->jenis,
+        ]);
+
         $essay = $soal_satuan->Essay()->create([
             'soal_satuan_id' => $soal_satuan->soal_satuan_id,
             'pertanyaan'     => $request->pertanyaan,
-            'jawaban'        => $request->jawaban,      
+            'jawaban'        => $request->jawaban,
         ]);
         $paket_soal_id = $request->paket_soal_id;
-        return view('question.create_soal_satuan',compact('paket_soal_id'))
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
+        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'))
         ->with('success','Great! Soal baru berhasil ditambahkan');
     }
 }

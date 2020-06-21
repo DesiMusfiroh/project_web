@@ -5,12 +5,12 @@
 <div class="col-md-12">
     <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-            <h4 class="card-title"> Soal  </h4>
+            <h4 class="card-title"> TambaSoal  </h4>
         </div>
         <div class="card-body">
 
             <div class="container">
-            
+
                     <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id }}">
                     <div class="row">
                         <div class="col-md-1">No. 1</div>
@@ -25,10 +25,10 @@
                         <div class="col-md-2">
                             <input type="number" name="poin" class="poin form-control" placeholder="Poin" >
                         </div>
-                        <div class="col-md-3">   
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal" 
-                                    id="create" 
-                                    data-paket_soal_id = "{{ $paket_soal_id }}" 
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal"
+                                    id="create"
+                                    data-paket_soal_id = "{{ $paket_soal_id }}"
                                     style="box-shadow: 3px 2px 5px grey;"> <i class="fa fa-plus"></i> Tambah Soal</button>
                         </div>
                     </div>
@@ -36,6 +36,27 @@
 
         </div>
     </div>
+    @if($soal_satuan->count() != 0)
+    <div class="card mt-5" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
+        <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
+            <h4 class="card-title"> Soal  </h4>
+        </div>
+        <div class="card-body">
+
+            <div class="container">
+
+                    <table>
+                      @foreach($soal_satuan as $item)
+                      <tr>
+                        <td>{{$item->essay->pertanyaan}}</td>
+                      </tr>
+                      @endforeach
+                    </table>
+            </div>
+
+        </div>
+    </div>
+    @endif
 </div>
 
 
@@ -50,14 +71,14 @@
                     </button>
                 </div>
 
-                <form action="question_store/essay_store" enctype="multipart/form-data" method="post">
+                <form action="{{route('storeSingleQuestion',$paket_soal_id)}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="modal-body">
-                        <div class="container">  
+                        <div class="container">
 
                             <input type="hidden" name="paket_soal_id" id="paket_soal_id" value="">
                             <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="">
-                           
+
                             <div class="form-group row">
                                 <label for="nama" class="col-sm-2 col-form-label">No. 1</label>
                                 <div class="col-sm-6">
@@ -71,17 +92,17 @@
                                         <input type="text" name="poin" id="poin" value=""  class="form-control text-right" readonly>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
 
                             <div class="form-group">
                                 <label for="alamat"> Pertanyaan </label>
                                 <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
-                            </div> 
+                            </div>
                             <div class="form-group">
                                 <label for="alamat"> Jawaban Benar</label>
                                 <textarea class="form-control" id="jawaban" rows="2" name="jawaban" placeholder="opsional"> </textarea>
-                            </div> 
-                        </div>    
+                            </div>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -103,12 +124,12 @@ $(document).ready(function(){
         var paket_soal_id   = $(this).data('paket_soal_id');
         var poin            = $(".poin").val();
         var jenis           = $('select').val();
-           
-        $('#id').val(id); 
-        $('#paket_soal_id').val(paket_soal_id); 
-        $('#poin').val(poin); 
-        $('#jenis').val(jenis); 
-    });    
+
+        $('#id').val(id);
+        $('#paket_soal_id').val(paket_soal_id);
+        $('#poin').val(poin);
+        $('#jenis').val(jenis);
+    });
 });
 </script>
 
