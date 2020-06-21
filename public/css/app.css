@@ -241,7 +241,16 @@ label {
 }
 
 button {
-  border-radius: 0;
+  width: 120px;
+                height: 45px;
+                font-size: 20px;
+                font-family: "Chelsea Market";
+                padding: 5px;
+                margin:10px;
+                background: #35de9d;
+                border-radius: 18px;
+                border: none;
+                box-shadow: 6px 6px 6px rgba(119, 52, 171, 0.46);
 }
 
 button:focus {

@@ -4,6 +4,9 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -8215,7 +8218,7 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 300px;
   max-width: 300px;
-  box-shadow: 8px 0px 15px #6BCB9D;
+  box-shadow: 8px 0px 15px #r6BCB9D;
   background: linear-gradient(180deg, rgba(17, 0, 23, 0.96) 0%, rgba(44, 5, 60, 0.96) 30.21%, #5E2575 70.83%, #BEA2CF 100%);  /* background sidebar */
   color: #fff;
   -webkit-transition: all 0.3s;
