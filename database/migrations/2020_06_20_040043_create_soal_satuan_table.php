@@ -16,7 +16,6 @@ class CreateSoalSatuanTable extends Migration
         Schema::create('soal_satuan', function (Blueprint $table) {
             $table->id();
             $table->integer('paket_soal_id');
-            $table->integer('no_soal');
             $table->integer('poin');
             $table->string('jenis');
             $table->timestamps();

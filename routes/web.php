@@ -31,3 +31,4 @@ Route::get('/question','QuestionController@index')->name('question');
 Route::get('/question_create','QuestionController@create');
 Route::post('/question_store','QuestionController@store')->name('paketSoalStore');
 
+Route::post('question_store/essay_store','QuestionController@essay_store');
