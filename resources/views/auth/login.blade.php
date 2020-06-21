@@ -1,4 +1,3 @@
-
 @extends('layouts.splash')
 <style>
  html, body {
@@ -26,7 +25,7 @@
 
                         <div class="form-group row ">
                         <div class="col-md-8 offset-md-2">
-                            <label for="disabledTextInput"><b> Email </b> </label>
+                            <label for="disabledTextInput"><strong>   {{ __('Email') }}</strong></label>
                         </div>
                             <div class="col-md-8 offset-md-2">
                                 <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -42,7 +41,7 @@
 
                         <div class="form-group row">
                         <div class="col-md-8 offset-md-2">
-                            <label for="disabledTextInput"><b> Password </b> </label>
+                            <label for="disabledTextInput"><strong>   {{ __('Password') }}</strong> </label>
                         </div>
                             <div class="col-md-8 offset-md-2">
                                 <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
