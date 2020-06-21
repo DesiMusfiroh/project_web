@@ -19,16 +19,16 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
 
-Route::get('/profil','ProfilController@index');
-Route::post('/profil/store','ProfilController@store');
-Route::get('/profil/edit/{id}', 'ProfilController@edit');
-Route::patch('/profil/update/{id}', 'ProfilController@update');
+Route::get('profil','ProfilController@index');
+Route::post('profil/store','ProfilController@store');
+Route::get('profil/edit/{id}', 'ProfilController@edit');
+Route::patch('profil/update/{id}', 'ProfilController@update');
 
 
-Route::get('/question','QuestionController@index')->name('question');
-Route::get('/question_create','QuestionController@create');
-Route::post('/question_store','QuestionController@store')->name('paketSoalStore');
+Route::get('question','QuestionController@index')->name('question');
+Route::get('question_create','QuestionController@create');
+Route::post('question_store','QuestionController@store')->name('paketSoalStore');
 
 Route::post('question_store/essay_store','QuestionController@essay_store');

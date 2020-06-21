@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,7 +29,7 @@
 		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.png);"></a>
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
-                        <a href="/home">Dashboard</a>
+                        <a href="{{ route('home') }}">Dashboard</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
@@ -39,7 +38,7 @@
                         <a href="#">Join Exam</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="question">Question</a>
+                        <a href="{{ route('question') }}">Question</a>
                     </li>
                     <li class="nav-item ">
                         <a href="#">Create Exam</a>
