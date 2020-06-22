@@ -33,3 +33,8 @@ Route::post('question_store','QuestionController@store')->name('paketSoalStore')
 
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestion');
 Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
+
+
+Route::get('/exam','ExamController@index')->name('getExam');
+Route::get('/exam/create','ExamController@create')->name('createExam');
+Route::post('/exam/create/store','ExamController@store')->name('storeExam');
