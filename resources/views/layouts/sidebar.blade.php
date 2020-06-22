@@ -9,6 +9,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -41,7 +42,7 @@
                         <a href="{{route('question')}}">Question</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="#">Create Exam</a>
+                        <a href="{{route('getExam')}}">Create Exam</a>
                     </li>
                     <li class="nav-item ">
                         <a href="#">Schedule</a>
@@ -142,9 +143,10 @@
 
     </div>
 
-    <script src="js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
   </body>
 </html>
