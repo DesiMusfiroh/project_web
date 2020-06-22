@@ -26,11 +26,11 @@ class QuestionController extends Controller
     }
 
     //untuk masuk ke view tambah soal satuan
-    public function getSingleQuestion($id){
-      $paket_soal_id = PaketSoal::find($id);
-     $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','desc')->get();
-     return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
-    }
+    // public function getSingleQuestion($id){
+    //   $paket_soal_id = PaketSoal::find($id);
+    //  $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->get();
+    //  return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
+    // }
 
     public function store(Request $request)
     {
@@ -40,9 +40,7 @@ class QuestionController extends Controller
         $paketsoal->durasi = $request->durasi;
         $paketsoal->save();
         $paket_soal_id = $paketsoal->id;
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
-        // $paket_soal_id = PaketSoal::max('id'); // mengambil data paket_soal_id untuk dipakai pada data soal satuan yang dibuat nanti
-        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
 
     }
 
@@ -67,6 +65,13 @@ class QuestionController extends Controller
     }
 
     // SOAL SATUAN CRUD CONTROLLER
+    public function create_soal_satuan($paket_soal_id){
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+        $paket_soal = PaketSoal::find($paket_soal_id);
+        $paket_soal_id = $paket_soal->id;
+        return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan], compact('paket_soal_id'));
+    }
+
     public function essay_store(Request $request)
     {
         $this->validate($request,[
@@ -89,9 +94,8 @@ class QuestionController extends Controller
             'jawaban'        => $request->jawaban,
         ]);
         $paket_soal_id = $request->paket_soal_id;
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
-        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'))
-        ->with('success','Great! Soal baru berhasil ditambahkan');
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
     }
 
     public function pilgan_store(Request $request)
@@ -127,8 +131,7 @@ class QuestionController extends Controller
         ]);
         $paket_soal_id = $request->paket_soal_id;
         $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
-        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'))
-        ->with('success','Great! Soal baru berhasil ditambahkan');
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
     }
 
 

@@ -1,0 +1,28 @@
+* [33mf2c91a9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m menambah fungsi create soal essay, tapi masih ada masalah di route
+[31m|[m * [33m5eb55cf[m[33m ([m[1;31morigin/master[m[33m)[m Desain Form Register
+[31m|[m * [33mceac732[m Desain Form Login
+[31m|[m * [33ma1e974c[m test
+[31m|[m [32m|[m * [33md10e47f[m[33m ([m[1;31morigin/Repaldi[m[33m)[m Perubahan Login
+[31m|[m [32m|[m[32m/[m  
+[31m|[m *   [33m30bad89[m Merge branch 'master' of https://github.com/DesiMusfiroh/project_web
+[31m|[m [34m|[m[31m\[m  
+[31m|[m [34m|[m[31m/[m  
+[31m|[m[31m/[m[34m|[m   
+* [34m|[m [33m36d94e9[m menyelesaikan kode yg bentrok
+* [34m|[m   [33m6c59da4[m membuat tabel soal satuan dan soal essay, membuat tampilan dasar untuk menambah soal satuan
+[36m|[m[1;31m\[m [34m\[m  
+[36m|[m * [34m|[m [33mc54a3e3[m membuat fungsi tambah paket soal, membuat relasi antara user dan paket_soal di model
+* [1;31m|[m [34m|[m [33m602dd88[m membuat tabel soal satuan, membuat dasar tampilan untuk menambahkan soal satuan
+[1;31m|[m[1;31m/[m [34m/[m  
+* [34m|[m [33m813f94b[m coba mengedit
+* [34m|[m [33m5dd871c[m mengubah sedikit di halama buat paket soal
+* [34m|[m [33mf66f48f[m menghapus tambahan krisman tadi
+* [34m|[m [33m7902df6[m[33m ([m[1;31morigin/tambah_tombol[m[33m)[m menambah h2
+* [34m|[m [33m1a9d323[m menambah tombol dan link
+* [34m|[m [33m1d6c203[m menambah tombol by krisman
+[1;31m|[m * [33m88599fc[m Test ah
+[1;31m|[m[1;31m/[m  
+* [33mb489c3f[m[33m ([m[1;32mcabang_desi[m[33m)[m menambah tulisan by krisman
+* [33m8a01227[m membuat create profil user
+* [33md5bccbb[m first commit
+* [33m641aa8b[m project_web
