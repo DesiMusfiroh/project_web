@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\PaketSoal;
 use App\User;
 use App\SoalSatuan;
 use App\Essay;
+use App\Pilgan;
 use Illuminate\Http\Request;
+
 
 class QuestionController extends Controller
 {
@@ -25,8 +28,8 @@ class QuestionController extends Controller
     //untuk masuk ke view tambah soal satuan
     public function getSingleQuestion($id){
       $paket_soal_id = PaketSoal::find($id);
-      $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','desc')->get();
-      return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
+     $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','desc')->get();
+     return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'));
     }
 
     public function store(Request $request)
@@ -90,4 +93,43 @@ class QuestionController extends Controller
         return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'))
         ->with('success','Great! Soal baru berhasil ditambahkan');
     }
+
+    public function pilgan_store(Request $request)
+    {
+        $this->validate($request,[
+            'paket_soal_id'  => 'required',
+            'poin'   => 'required',
+            'jenis' => 'required',
+            'pertanyaan' => 'required',
+            'pil_a' => 'required',
+            'pil_b' => 'required',
+            'pil_c' => 'required',
+            'pil_d' => 'required',
+            'pil_e' => 'required',
+            'kunci' => 'required',
+        ]);
+         $soal_satuan = new SoalSatuan;
+         $soal_satuan = SoalSatuan::create([
+            'paket_soal_id'  => $request->paket_soal_id,
+            'poin'           => $request->poin,
+            'jenis'          => $request->jenis,
+        ]);
+
+        $pilgan= $soal_satuan->Pilgan()->create([
+            'soal_satuan_id' => $soal_satuan->soal_satuan_id,
+            'pertanyaan'     => $request->pertanyaan,
+            'pil_a'         => $request->pil_a,
+            'pil_b'         => $request->pil_b,
+            'pil_c'         => $request->pil_c,
+            'pil_d'         => $request->pil_d,
+            'pil_e'         => $request->pil_e,
+            'kunci'          => $request->kunci,
+        ]);
+        $paket_soal_id = $request->paket_soal_id;
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
+        return view('question.create_soal_satuan',compact('paket_soal_id','soal_satuan'))
+        ->with('success','Great! Soal baru berhasil ditambahkan');
+    }
+
+
 }

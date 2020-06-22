@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\PaketSoal;
 use App\Essay;
+use App\Pilgan;
 
 class SoalSatuan extends Model
 {
@@ -16,5 +17,9 @@ class SoalSatuan extends Model
     public function essay()
     {
     	return $this->hasOne(Essay::class,'soal_satuan_id');
+    }
+    public function pilgan()
+    {
+    	return $this->hasOne(Pilgan::class,'soal_satuan_id');
     }
 }

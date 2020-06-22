@@ -20,15 +20,16 @@
                     </div>
                 </div>
 
-                <div class="card-body">
+               <!-- <div class="card-body">
                     <table class="table">
                       @foreach($paketsoal as $item)
                       <tr>
-                        <td><a href="{{route('getSingleQuestion',$item->id)}}">{{$item->judul}}</a></td>
+                        
                       </tr>
                       @endforeach
                     </table>
                 </div>
+                -->
             </div>
         </div>
     </div>

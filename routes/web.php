@@ -30,6 +30,9 @@ Route::patch('profil/update/{id}', 'ProfilController@update');
 Route::get('question','QuestionController@index')->name('question');
 Route::get('question_create','QuestionController@create');
 Route::post('question_store','QuestionController@store')->name('paketSoalStore');
+//essay
+Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
+//pilgan
+Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->name('storeSingleQuestionPilgan');
 
-Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestion');
 Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
