@@ -6,7 +6,7 @@
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
             <h4 class="card-title"> Tambah Soal  </h4>
         </div>
-      <!-- Kodingan Lama 
+      <!-- Kodingan Lama
             <div class="card-body">
 
             <div class="container">
@@ -36,8 +36,8 @@
 
         </div>
     </div>
-  
-        
+
+
 
  -->
 
@@ -102,20 +102,20 @@
                                  B . {{$item->pilgan->pil_b}}  <br>
                                  C . {{$item->pilgan->pil_c}}  <br>
                                  D . {{$item->pilgan->pil_d}}  <br>
-                                 E . {{$item->pilgan->pil_e}} 
+                                 E . {{$item->pilgan->pil_e}}
                         </td>
                     </tr>
                     <tr>
                         <td><b> Kunci Jawaban </b></td> <td> : </td>
                         <td> {{$item->pilgan->kunci}} </td>
                     </tr>
-                                    
+
                 @endif
                 </table>
-                        
+
                 <hr>
             @endforeach
-        </div>                  
+        </div>
     </div>
 </div>
 @endif
@@ -133,7 +133,7 @@
                 </div>
 
                 <form action="{{route('storeSingleQuestionEssay')}}" enctype="multipart/form-data" method="post">
-                   @csrf 
+                   @csrf
                     <div class="modal-body">
                         <div class="container">
 
@@ -316,9 +316,9 @@
                                 </div>
                                 <div class="form-group">
 
-                                
+
     <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label"> 
+        <label for="staticEmail" class="col-sm-2 col-form-label">
             <input type="checkbox"/>
                 <div class="control__indicator"></div>
         </label>
@@ -327,7 +327,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label"> 
+        <label for="staticEmail" class="col-sm-2 col-form-label">
             <input type="checkbox"/>
                 <div class="control__indicator"></div>
         </label>
@@ -336,7 +336,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label"> 
+        <label for="staticEmail" class="col-sm-2 col-form-label">
             <input type="checkbox"/>
                 <div class="control__indicator"></div>
         </label>
@@ -345,7 +345,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label"> 
+        <label for="staticEmail" class="col-sm-2 col-form-label">
             <input type="checkbox"/>
                 <div class="control__indicator"></div>
         </label>
@@ -354,7 +354,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label"> 
+        <label for="staticEmail" class="col-sm-2 col-form-label">
             <input type="checkbox"/>
                 <div class="control__indicator"></div>
         </label>
@@ -363,8 +363,8 @@
         </div>
     </div>
 
-                                
-                                
+
+
 
                                 </div>
                             </div>
@@ -388,7 +388,7 @@ $(document).ready(function(){
 
         $('#id').val(id);
         $('.paket_soal_id').val(paket_soal_id);
-    
+
     });
 });
 

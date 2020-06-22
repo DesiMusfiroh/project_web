@@ -13,12 +13,12 @@ class ExamController extends Controller
     //$ujian = Ujian::where('paket_soal_id');
     //$paket_soal_id = Auth::user()->paket_soal->id;
 
-      $ujian = Ujian::where('paket_soal_id',paket_soal()->id)->get();
+      $ujian = Ujian::where('user_id',auth()->user()->id)->get();
       // $ujian = Ujian::join('paket_soal',function ($join){
       //   $join->on('users.id','=','paket_soal.user_id')
       //        ->where('paket_soal.user','=',Auth::user()->id);
       // })->get();
-      return view('exams.index',compact(['ujian','paket_soal']));
+      return view('exams.index',compact(['ujian']));
     }
 
     public function create(){
@@ -29,6 +29,7 @@ class ExamController extends Controller
     public function store(Request $request){
       $ujian = new Ujian;
       $ujian->paket_soal_id = $request->paket_soal_id;
+      $ujian->user_id = auth()->user()->id;
       $ujian->nama_ujian = $request->nama_ujian;
       $ujian->kode_ujian = Str::random(6);
       $ujian->waktu_mulai = $request->waktu_mulai;

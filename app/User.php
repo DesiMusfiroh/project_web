@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Profil;
+use App\Ujian;
 use App\PaketSoal;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -18,6 +19,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function paket_soal(){
         return $this->hasMany(PaketSoal::class,'user_id');
       }
+
+    public function ujian(){
+      return $this->hasMany(Ujian::class,'user_id');
+    }
 
     /**
      * The attributes that are mass assignable.
