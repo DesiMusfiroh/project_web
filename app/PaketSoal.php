@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\Ujian;
 use App\SoalSatuan;
 
 class PaketSoal extends Model
-{  
+{
     protected $table ='paket_soal';
     protected $fillable = ['user_id','judul','durasi'];
     public function user(){
@@ -15,6 +16,11 @@ class PaketSoal extends Model
     }
     public function soal_satuan()
     {
-    	return $this->hasOne(SoalSatuan::class,'paket_soal_id');
+    	return $this->hasMany(SoalSatuan::class,'paket_soal_id');
     }
+
+    public function ujian(){
+      return $this->hasMany(Ujian::class,'paket_soal_id');
+    }
+
 }

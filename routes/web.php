@@ -38,4 +38,9 @@ Route::post('question_store/essay_store','QuestionController@essay_store')->name
 //pilgan
 Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->name('storeSingleQuestionPilgan');
 
-// Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
+//Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
+
+
+Route::get('/exam','ExamController@index')->name('getExam');
+Route::get('/exam/create','ExamController@create')->name('createExam');
+Route::post('/exam/create/store','ExamController@store')->name('storeExam');

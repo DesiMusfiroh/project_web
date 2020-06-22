@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
     	return $this->hasOne(Profil::class,'user_id');
     }
     public function paket_soal(){
-        return $this->hasMany(PaketSoal::class);
+        return $this->hasMany(PaketSoal::class,'user_id');
       }
 
     /**
