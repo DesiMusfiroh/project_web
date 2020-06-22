@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Profil;
 use App\Ujian;
+use App\Peserta;
 use App\PaketSoal;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -22,6 +23,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ujian(){
       return $this->hasMany(Ujian::class,'user_id');
+    }
+
+    public function peserta(){
+      return $this->hasMany(Peserta::class,'user_id');
     }
 
     /**

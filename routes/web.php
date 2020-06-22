@@ -44,3 +44,6 @@ Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->na
 Route::get('/exam','ExamController@index')->name('getExam');
 Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
+
+
+Route::post('/joinexam','ExamController@joinExam')->name('joinExam');

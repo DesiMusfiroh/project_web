@@ -6,9 +6,28 @@
   <p>LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </p>
   <hr>
     <p>
-    Sudah punya kode akses untuk ujian? 
+    Sudah punya kode akses untuk ujian?
     <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal"> Klik disini</a>
     <p>
+  </div>
+  <h2>Ujian yang anda ikuti</h2>
+@if($peserta->count() != 0)
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+              <table class="table table-striped table-bordered table-sm">
+                @foreach($peserta as $item)
+                <tr>
+                  <td>{{$item->ujian->nama_ujian}}</td>
+                </tr>
+                @endforeach
+              </table>
+          </div>
+        </div>
+    </div>
+</div>
+@endif
 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
     <div class="modal-content">
@@ -24,16 +43,11 @@
                      {{ session('status') }}
                 </div>
             @endif
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('joinExam') }}">
             @csrf
                 <div class="form-row align-items-center">
                     <div class="col-auto  offset-md-1">
                          <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="kode_akses" type="kode_akses" class="form-control @error('kode_akses') is-invalid @enderror" name="kode_akses" required placeholder="Masukkan Kode Akses">
-                     @error('email')
-                         <span class="invalid-feedback" role="alert">
-                             <strong>{{ $message }}</strong>
-                         </span>
-                     @enderror
                     </div>
                     <div class="col-auto ">
                         <button type="submit" style="border-radius:10px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:18px; box-shadow: 3px 3px 5px grey;">
@@ -48,7 +62,7 @@
     </div>
   </div>
 </div>
- 
-  
+
+
 
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App;
 use App\PaketSoal;
+use App\Peserta;
 use Illuminate\Database\Eloquent\Model;
 
 class Ujian extends Model
@@ -13,4 +14,7 @@ class Ujian extends Model
       return $this->belongsTo(PaketSoal::class);
     }
 
+    public function peserta(){
+      return $this->hasMany(Peserta::class,'ujian_id');
+    }
 }
