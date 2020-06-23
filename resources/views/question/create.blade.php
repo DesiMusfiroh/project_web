@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="durasi"> <b> Durasi </b> </label>
-                        <input type="text" class="form-control" id="durasi" name="durasi" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
+                        <input type="time" class="form-control" id="durasi" name="durasi" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
                     </div>
                 </div>
                 <hr>

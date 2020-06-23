@@ -47,3 +47,5 @@ Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 
 
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
+Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
+Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\PaketSoal;
+use App\SoalSatuan;
 use App\Ujian;
 use App\Peserta;
 use Str;
@@ -55,4 +56,40 @@ class ExamController extends Controller
 
       return redirect()->route('home');
     }
+
+    public function waitExam($id) {
+        $ujian = Ujian::find($id);
+        $paket_soal_id = $ujian->paket_soal_id;
+        $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+
+        date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
+        $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
+     
+        return view('exams.wait',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai'));
+    }
+
+
+    public function runExam($id) {
+      $ujian = Ujian::find($id);
+      $paket_soal_id = $ujian->paket_soal_id;
+      $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
+      $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+
+      date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
+      $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
+   
+      $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
+      $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
+      $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
+      
+      // waktu selesai = waktu mulai + durasi
+      $selesai = date_create($ujian->waktu_mulai);
+      date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds")); 
+      $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
+  
+      return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
+  }
+
+    
 }

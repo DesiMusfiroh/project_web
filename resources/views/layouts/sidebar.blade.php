@@ -36,7 +36,7 @@
                         <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="#">Join Exam</a>
+                        <a href="{{route('joinExam')}}">Join Exam</a>
                     </li>
                     <li class="nav-item ">
                         <a href="{{route('question')}}">Question</a>
