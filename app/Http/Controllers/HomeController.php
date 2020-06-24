@@ -27,4 +27,9 @@ class HomeController extends Controller
         //dd($peserta);
         return view('home',compact(['peserta']));
     }
+
+    public function logout(){
+      auth()->logout();
+      return view('welcome');
+    }
 }

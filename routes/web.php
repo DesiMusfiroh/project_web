@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('home', 'HomeController@index')->name('home');
-
+Route::get('/logout','HomeController@logout')->name('logout');
 // route profil
 Route::get('profil','ProfilController@index');
 Route::post('profil/store','ProfilController@store');

@@ -19,7 +19,7 @@
               <table class="table table-striped table-bordered table-sm">
                 @foreach($peserta as $item)
                 <tr>
-                  <td>{{$item->ujian->nama_ujian}}</td>
+                  <td><a href="">{{$item->ujian->nama_ujian}}</a></td>
                 </tr>
                 @endforeach
               </table>
