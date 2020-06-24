@@ -36,7 +36,7 @@
                             <tr>
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{ $item->judul }}</td>
-                                <td class="text-center">{{ $item->durasi }} menit</td>    
+                                <td class="text-center">{{ $item->durasi }} </td>    
                                 <td class="text-center"> xxxx </td>                             
                                 <td class="text-center">
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">

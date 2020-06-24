@@ -11,19 +11,22 @@
     <p>
   </div>
   <h2>Ujian yang anda ikuti</h2>
+
 @if($peserta->count() != 0)
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-          <div class="card-body">
-              <table class="table table-striped table-bordered table-sm">
-                @foreach($peserta as $item)
-                <tr>
-                  <td><a href="">{{$item->ujian->nama_ujian}}</a></td>
-                </tr>
-                @endforeach
-              </table>
-          </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered table-sm">
+                  
+                  @foreach($peserta as $item)
+                  <tr>
+                    <td>{{$item->ujian->nama_ujian}}</td>
+                    <td><a href="{{route('waitExam',$item->ujian->id)}}"> Masuk </a></td>
+                  </tr>
+                  @endforeach
+                </table>
+            </div>
         </div>
     </div>
 </div>
