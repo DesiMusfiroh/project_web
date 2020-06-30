@@ -13,12 +13,13 @@
   <h2>Ujian yang anda ikuti</h2>
 
 @if($peserta->count() != 0)
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <table class="table table-striped table-bordered table-sm">
-                  
+
                   @foreach($peserta as $item)
                   <tr>
                     <td>{{$item->ujian->nama_ujian}}</td>
@@ -30,6 +31,7 @@
         </div>
     </div>
 </div>
+
 @endif
 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
