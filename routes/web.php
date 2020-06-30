@@ -44,8 +44,12 @@ Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->na
 Route::get('/exam','ExamController@index')->name('getExam');
 Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
-
+Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
+Route::get('/exam/update','ExamController@update')->name('updateExam');
+Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
+
+
