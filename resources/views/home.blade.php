@@ -18,15 +18,40 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <table class="table table-striped table-bordered table-sm">
 
-                  @foreach($peserta as $item)
-                  <tr>
-                    <td>{{$item->ujian->nama_ujian}}</td>
-                    <td><a href="{{route('waitExam',$item->ujian->id)}}"> Masuk </a></td>
-                  </tr>
-                  @endforeach
-                </table>
+
+                    <table class="table table-striped table-bordered table-sm">
+                        <thead class="thead-light text-center">
+                            <tr>
+                                <th scope="col" style="width:50px">No</th>
+                                <th scope="col" >Nama Ujian </th>
+                                <th scope="col" >Waktu Mulai </th>
+                                <th scope="col" >Durasi </th>
+                                <th scope="col" style="width:100px">Keterangan </th>
+                                <th scope="col" style="width:100px">Detail </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=0; ?>
+                            @foreach ($peserta as $item)
+                            <tr>
+                                <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
+                                <td >{{$item->ujian->nama_ujian}}</td>
+                                <td class="text-center">{{$item->ujian->waktu_mulai}} </td>
+                                <td class="text-center">{{$item->ujian->paket_soal->durasi}} </td>
+                                <td class="text-center">--- </td>
+                                <td class="text-center"><a href="{{route('waitExam',$item->ujian->id)}}">
+                                      <button type="button" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit fa-sm"></i> Masuk
+                                        </button> </a>
+                                </td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+
             </div>
         </div>
     </div>

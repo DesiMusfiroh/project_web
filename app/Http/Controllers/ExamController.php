@@ -39,6 +39,14 @@ class ExamController extends Controller
       return redirect()->route('getExam');
     }
 
+    public function edit($id){
+      
+      $ujian = Ujian::where('id',$id)->get();
+      $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
+      $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
+      return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian'));
+    }
+
     public function joinExam(Request $request){
       //Ujian::attempt(['kode_ujian' => $request->kode_akses])
       if (Ujian::where('kode_ujian',$request->kode_akses)) {
@@ -61,12 +69,21 @@ class ExamController extends Controller
         $ujian = Ujian::find($id);
         $paket_soal_id = $ujian->paket_soal_id;
         $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->paginate(1);
 
         date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
         $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
-     
-        return view('exams.wait',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai'));
+       
+        $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
+        $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
+        $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
+        
+        // waktu selesai = waktu mulai + durasi
+        $selesai = date_create($ujian->waktu_mulai);
+        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds")); 
+        $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
+        
+        return view('exams.wait',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
     }
 
 
