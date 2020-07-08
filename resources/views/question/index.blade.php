@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
-                                <a href="/question_create"> <button type="button" class="btn" style="background-color:#7BEDC4;">
+                                <a href="/question_create"> <button type="button" class="btn" style="border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46); background-color:#7BEDC4;">
                                     [ <i class="fa fa-plus"></i> ]  Buat Paket Soal Baru </button>
                                 </a>
                             </div>
@@ -25,7 +25,7 @@
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Judul Paket Soal </th>
-                                <th scope="col" style="width:100px">Durasi </th>
+                                <th scope="col" style="width:150px">Durasi </th>
                                 <th scope="col" style="width:100px">Jumlah Soal </th>
                                 <th scope="col" style="width:100px">Opsi</th>        
                             </tr>
@@ -36,8 +36,14 @@
                             <tr>
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{ $item->judul }}</td>
-                                <td class="text-center">{{ $item->durasi }} </td>    
-                                <td class="text-center"> xxxx </td>                             
+                                <td class="text-center">
+                                    <?php 
+                                    $durasi_jam   =  date('H', strtotime($item->durasi));
+                                    $durasi_menit =  date('i', strtotime($item->durasi)); 
+                                    ?>
+                                    {{ $durasi_jam }} jam {{ $durasi_menit }} menit
+                                 </td>    
+                                <td class="text-center"> 10 soal </td>                             
                                 <td class="text-center">
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">
                                         <button type="button" class="btn btn-warning btn-sm">  

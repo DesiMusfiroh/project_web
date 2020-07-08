@@ -47,7 +47,7 @@
                     <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id }}">
                     <div class="row">
                         <div class="col-md-12">Pilih Jenis Soal :</div>
-                        <div class="col-md-6 offset-md-2">
+                        <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal_essay"
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
@@ -62,14 +62,10 @@
                                     style="box-shadow: 3px 2px 5px grey;"> Pilihan  Banyak</button>
                         </div>
                     </div>
-            </div>
-        </div>
-    </div>
+<hr>
 
 @if($soal_satuan->count() != 0)
-<div class="card mt-4" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
-    <h5 class="card-header text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">Daftar Soal</h5>
-    <div class="card-body">
+
         <div class="container">
             <?php $i=0; ?>   
             @foreach($soal_satuan as $item)

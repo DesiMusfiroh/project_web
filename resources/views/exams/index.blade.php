@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
-                                <a href="{{route('createExam')}}"> <button type="button" class="btn" style="background-color:#7BEDC4;">
+                                <a href="{{route('createExam')}}"> <button type="button" class="btn" style="background-color:#7BEDC4; border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46);">
                                     [ <i class="fa fa-plus"></i> ]  Buat Ujian </button>
                                 </a>
                             </div>
