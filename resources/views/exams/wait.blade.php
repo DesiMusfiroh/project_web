@@ -14,8 +14,8 @@
     <div class="card-body">
         <p>Durasi : {{ $ujian->paket_soal->durasi}}</p>
         <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
-            
-        <div id="teks"></div>     
+
+        <div id="teks"></div>
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
@@ -43,7 +43,7 @@
         <div class="card">
           <div class="card-header">Soal Ujian</div>
           <div class="card-body">
-            <?php $i=0; ?>   
+            <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class="row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
@@ -58,7 +58,7 @@
                     <div>
                       <textarea class="form-control" name="" id="" cols="30" rows="3">Jawaban Anda ...</textarea>
                     </div>
-                  
+
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
@@ -92,7 +92,7 @@
         <div class="card">
           <div class="card-header">Navigasi</div>
           <div class="card-body">
-          
+
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
         <h4> {{ $ujian->paket_soal->judul }} </h4>
         </div>
         <div class="card-body">
-            <?php $i=0; ?>   
+            <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class="row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
@@ -122,7 +122,7 @@
                         <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
                         <td> {{$item->essay->pertanyaan}} </td>
                     </tr>
-                  
+
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
@@ -144,8 +144,8 @@
             @endforeach
         </div>
         <div class="card-footer">
-           
-            
+
+
         </div>
     </div> -->
 
@@ -165,8 +165,8 @@ function openFullscreen() {
     $("#fullscreenExam").show();
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
-    }  
-    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
+    }
+    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime();
 
     const hitung_durasi = setInterval(function() {
         const sekarang = new Date().getTime();
@@ -197,7 +197,7 @@ function closeFullscreen() {
 
 
 // pengaturan JS untuk hitung waktu mulai ujian
-const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime(); 
+const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
 
 const hitung_mundur = setInterval(function() {
     const waktu_sekarang = new Date().getTime();
@@ -220,7 +220,7 @@ const hitung_mundur = setInterval(function() {
 }, 1000);
 // --------------------------------------------------------------------------
 
-   
+
 </script>
 
 

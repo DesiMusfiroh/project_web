@@ -9,15 +9,15 @@
     <div class="card-body">
         <p>Durasi : {{ $ujian->paket_soal->durasi}}</p>
         <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
-            
+
         <div id="teks">Waktu </div>
-    
+
         <hr>
-    
-        <div id="soal">
+
+        <div id="soal"> 
             judul {{ $ujian->paket_soal->judul }}
             <div class="container">
-            <?php $i=0; ?>   
+            <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class="row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
@@ -29,7 +29,7 @@
                         <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
                         <td> {{$item->essay->pertanyaan}} </td>
                     </tr>
-                  
+
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
@@ -50,7 +50,7 @@
                 <hr>
             @endforeach
         </div>
-           
+
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
 
 <script>
 
-const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
+const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime();
 
 const hitung_mundur = setInterval(function() {
     const waktu_sekarang = new Date().getTime();
@@ -81,7 +81,7 @@ const hitung_mundur = setInterval(function() {
     }
 }, 1000);
 
-   
+
 </script>
 
 
