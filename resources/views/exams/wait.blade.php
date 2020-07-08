@@ -12,7 +12,11 @@
         <h4>{{ $ujian->nama_ujian}} </h4>
     </div>
     <div class="card-body">
-        <p>Durasi : {{ $ujian->paket_soal->durasi}}</p>
+        <?php 
+          $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
+          $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi)); 
+        ?>
+        <p>Durasi : {{ $durasi_jam }} jam {{ $durasi_menit }} menit</p>
         <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
             
         <div id="teks"></div>     
@@ -32,7 +36,7 @@
       <div class="col-md-12">
         <div class="card pt-3 pl-5 pr-5 pb-3">
           <h4>{{ $ujian->paket_soal->judul }}</h4>
-          <h6>Durasi Pengerjaan : {{ $ujian->paket_soal->durasi }}</h6>
+          <h6>Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </h6>
           <div id="teks_durasi"></div>
         </div>
       </div>
@@ -42,19 +46,18 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Soal Ujian</div>
-          <div class="card-body">
+          <div class="card-body " >
             <?php $i=0; ?>   
             @foreach($soal_satuan as $item)
-                <div class="row">
+                <div class=" container row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
                     <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                 </div>
-                <table>
+                <div class="container">
+                <table >
                 @if($item->jenis == "Essay")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {{$item->essay->pertanyaan}} </td>
-                    </tr>
+                    <b> Pertanyaan </b> :
+                        {{$item->essay->pertanyaan}} 
                     <div>
                       <textarea class="form-control" name="" id="" cols="30" rows="3">Jawaban Anda ...</textarea>
                     </div>
@@ -75,15 +78,12 @@
                     </tr>
                     @endif
                 </table>
+                </div>
 
                 <hr>
             @endforeach
 
-            <div class="row ">
-              <div class="col-12 text-center ">
-                {{ $soal_satuan->links() }}
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -92,7 +92,11 @@
         <div class="card">
           <div class="card-header">Navigasi</div>
           <div class="card-body">
-          
+            <div class="row ">
+              <div class="col-12 text-center ">
+                {{ $soal_satuan->links() }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,54 +105,9 @@
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
-        <button class="btn btn-danger" onclick="closeFullscreen();"> Selesai </button>
+        <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button>
       </div>
     </div>
-
-    <!-- <div class="card">
-        <div class="card-header">
-        <h4> {{ $ujian->paket_soal->judul }} </h4>
-        </div>
-        <div class="card-body">
-            <?php $i=0; ?>   
-            @foreach($soal_satuan as $item)
-                <div class="row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
-                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
-                </div>
-                <table>
-                @if($item->jenis == "Essay")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {{$item->essay->pertanyaan}} </td>
-                    </tr>
-                  
-                @elseif($item->jenis == "Pilihan Ganda")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {{$item->pilgan->pertanyaan}} </td>
-                    </tr>
-                    <tr>
-                        <td> <b> Pilihan </b> </td> <td> : </td>
-                        <td>  A . {{$item->pilgan->pil_a}}  <br>
-                                 B . {{$item->pilgan->pil_b}}  <br>
-                                 C . {{$item->pilgan->pil_c}}  <br>
-                                 D . {{$item->pilgan->pil_d}}  <br>
-                                 E . {{$item->pilgan->pil_e}}
-                        </td>
-                    </tr>
-                @endif
-                </table>
-
-                <hr>
-            @endforeach
-        </div>
-        <div class="card-footer">
-           
-            
-        </div>
-    </div> -->
-
 
   </div>
 </div>
