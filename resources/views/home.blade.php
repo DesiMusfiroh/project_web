@@ -7,7 +7,7 @@
   <hr>
     <p>
     Sudah punya kode akses untuk ujian?
-    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal">  Klik disini</a>
+    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
     <p>
   </div>
   <h2>Ujian yang anda ikuti</h2>
@@ -27,13 +27,10 @@
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Waktu Mulai </th>
                                 <th scope="col" >Durasi </th>
-<<<<<<< HEAD
                                 <th scope="col" style="width:100px">Keterangan </th>
                                 <th scope="col" style="width:100px">Detail </th>
-=======
                                 <th scope="col" >Keterangan </th>
                                 <th scope="col" style="width:100px">Detail </th>
->>>>>>> df38db235fb1bb1065fd4d50ba88c59bf7ab76cf
                             </tr>
                         </thead>
                         <tbody>
