@@ -32,6 +32,7 @@ Route::get('question','QuestionController@index')->name('question'); //route unt
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
+Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 
 //essay
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
@@ -51,5 +52,3 @@ Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
-
-

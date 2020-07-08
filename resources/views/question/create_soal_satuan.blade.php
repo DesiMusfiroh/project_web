@@ -1,7 +1,11 @@
 @extends('layouts.sidebar')
 
 @section('content')
-
+    @if(session('sukses'))
+      <div class="alert alert-success" role="alert">
+        {{session('sukses')}}
+      </div>
+    @endif
     <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
             <h4 class="card-title"> Tambah Soal  </h4>
@@ -67,14 +71,14 @@
 @if($soal_satuan->count() != 0)
 
         <div class="container">
-            <?php $i=0; ?>   
+            <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class="row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
                     <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                     <div class="col-md-2">
                         <button class="btn btn-sm btn-primary">Edit</button>
-                        <button class="btn btn-sm btn-danger">Hapus</button>
+                        <a href="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus"><button class="btn btn-sm btn-danger">Hapus</button> </a>
                     </div>
                 </div>
                 <table>
