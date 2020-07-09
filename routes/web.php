@@ -53,3 +53,9 @@ Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('wait
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
 
 
+
+Route::get('/tesCamera', function () {
+    return view('tesCamera');
+});
+
+
