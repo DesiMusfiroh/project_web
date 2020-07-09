@@ -28,6 +28,7 @@
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Judul Paket Soal </th>
+                                <th scope="col" >Kode Akses </th>
                                 <th scope="col" >Jadwal Ujian </th>
                                 <th scope="col" style="width:100px">Opsi</th>        
                             </tr>
@@ -39,6 +40,7 @@
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{$item->nama_ujian}}</td>
                                 <td class="text-center">{{ $item->paket_soal->judul }} </td>    
+                                <td class="text-center">{{ $item->kode_ujian }} </td>    
                                 <td class="text-center"> {{$item->waktu_mulai}} </td>                             
                                 <td class="text-center">
                                     <a href="{{route('editExam',$item->id)}}">

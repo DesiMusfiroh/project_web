@@ -29,8 +29,7 @@
                                 <th scope="col" >Durasi </th>
                                 <th scope="col" style="width:100px">Keterangan </th>
                                 <th scope="col" style="width:100px">Detail </th>
-                                <th scope="col" >Keterangan </th>
-                                <th scope="col" style="width:100px">Detail </th>
+                                
                             </tr>
                         </thead>
                         <tbody>

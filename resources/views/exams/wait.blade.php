@@ -5,6 +5,12 @@
 :fullscreen {
   background-color: #7BEDC4;
 }
+video{
+    background: #ccc;
+    border: 5px solid grey;
+    margin-right: 0%;
+    margin-left: 85%
+}
 </style>
 
 <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);" >
@@ -92,24 +98,28 @@
         <div class="card">
           <div class="card-header">Navigasi</div>
           <div class="card-body">
-<<<<<<< HEAD
-
-=======
             <div class="row ">
               <div class="col-12 text-center ">
                 {{ $soal_satuan->links() }}
               </div>
             </div>
->>>>>>> df38db235fb1bb1065fd4d50ba88c59bf7ab76cf
           </div>
         </div>
       </div>
     </div>
 
+
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
         <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button>
+      </div>
+    </div>
+
+    
+    <div class="container">     
+      <div  class="row">
+        <video autoplay="true" id="video-webcam" width="160px" height="122px"> </video>
       </div>
     </div>
 
@@ -157,7 +167,7 @@ function closeFullscreen() {
         $("#fullscreenExam").hide();
     }
 }
-
+// --------------------------------------------------------------------------
 
 // pengaturan JS untuk hitung waktu mulai ujian
 const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
@@ -184,7 +194,28 @@ const hitung_mundur = setInterval(function() {
 // --------------------------------------------------------------------------
 
 
+//Pengaturan JS untuk akses kamera user
+    // seleksi elemen video
+    var video = document.querySelector("#video-webcam");
+
+    // minta izin user
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+    // jika user memberikan izin
+    if (navigator.getUserMedia) {
+        // jalankan fungsi handleVideo, dan videoError jika izin ditolak
+        navigator.getUserMedia({ video: true }, handleVideo, videoError);
+    }
+
+    // fungsi ini akan dieksekusi jika  izin telah diberikan
+    function handleVideo(stream) {
+        video.srcObject = stream;
+    }
+
+    // fungsi ini akan dieksekusi kalau user menolak izin
+    function videoError(e) {
+        // do something
+        alert("Izinkan menggunakan webcam untuk demo!")
+    }
 </script>
-
-
 @endsection
