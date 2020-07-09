@@ -12,14 +12,14 @@
         <h4>{{ $ujian->nama_ujian}} </h4>
     </div>
     <div class="card-body">
-        <?php 
+        <?php
           $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
-          $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi)); 
+          $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
         ?>
         <p>Durasi : {{ $durasi_jam }} jam {{ $durasi_menit }} menit</p>
         <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
-            
-        <div id="teks"></div>     
+
+        <div id="teks"></div>
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-header">Soal Ujian</div>
           <div class="card-body " >
-            <?php $i=0; ?>   
+            <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class=" container row">
                     <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
@@ -57,11 +57,11 @@
                 <table >
                 @if($item->jenis == "Essay")
                     <b> Pertanyaan </b> :
-                        {{$item->essay->pertanyaan}} 
+                        {{$item->essay->pertanyaan}}
                     <div>
                       <textarea class="form-control" name="" id="" cols="30" rows="3">Jawaban Anda ...</textarea>
                     </div>
-                  
+
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
@@ -83,7 +83,7 @@
                 <hr>
             @endforeach
 
-            
+
           </div>
         </div>
       </div>
@@ -92,11 +92,15 @@
         <div class="card">
           <div class="card-header">Navigasi</div>
           <div class="card-body">
+<<<<<<< HEAD
+
+=======
             <div class="row ">
               <div class="col-12 text-center ">
                 {{ $soal_satuan->links() }}
               </div>
             </div>
+>>>>>>> df38db235fb1bb1065fd4d50ba88c59bf7ab76cf
           </div>
         </div>
       </div>
@@ -124,8 +128,8 @@ function openFullscreen() {
     $("#fullscreenExam").show();
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
-    }  
-    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
+    }
+    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime();
 
     const hitung_durasi = setInterval(function() {
         const sekarang = new Date().getTime();
@@ -156,7 +160,7 @@ function closeFullscreen() {
 
 
 // pengaturan JS untuk hitung waktu mulai ujian
-const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime(); 
+const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
 
 const hitung_mundur = setInterval(function() {
     const waktu_sekarang = new Date().getTime();
@@ -179,7 +183,7 @@ const hitung_mundur = setInterval(function() {
 }, 1000);
 // --------------------------------------------------------------------------
 
-   
+
 </script>
 
 

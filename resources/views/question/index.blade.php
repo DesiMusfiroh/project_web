@@ -27,37 +27,38 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
                                 <th scope="col" style="width:100px">Jumlah Soal </th>
-                                <th scope="col" style="width:100px">Opsi</th>        
+                                <th scope="col" style="width:100px">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0; ?>                                                 
-                            @foreach ($paketsoal as $item) 
+                            <?php $i=0; ?>
+                            @foreach ($paketsoal as $item)
                             <tr>
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{ $item->judul }}</td>
                                 <td class="text-center">
-                                    <?php 
+                                    <?php
                                     $durasi_jam   =  date('H', strtotime($item->durasi));
-                                    $durasi_menit =  date('i', strtotime($item->durasi)); 
+                                    $durasi_menit =  date('i', strtotime($item->durasi));
                                     ?>
                                     {{ $durasi_jam }} jam {{ $durasi_menit }} menit
-                                 </td>    
-                                <td class="text-center"> 10 soal </td>                             
+                                 </td>
+
+                                <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">
-                                        <button type="button" class="btn btn-warning btn-sm">  
-                                            <i class="fa fa-edit fa-sm"></i>           
+                                        <button type="button" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
                                     <a href="">
-                                        <button type="button" class="btn btn-danger btn-sm">  
-                                            <i class="fa fa-trash fa-sm"></i>        
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash fa-sm"></i>
                                         </button>
                                     </a>
-                                </td>                          
+                                </td>
                             </tr>
-                            @endforeach 
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
