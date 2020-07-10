@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +46,7 @@ class ProfilController extends Controller
             'alamat' => 'required',
             'foto' => 'required|file|image|mimes:png,jpg,jpeg|max:2048',
         ]);
-        
+
         $file = $request->file('foto');
         $nama_file = time()."_".$file->getClientOriginalName();
         $tujuan_upload = 'images';
@@ -55,7 +59,7 @@ class ProfilController extends Controller
             'alamat' => $request->alamat,
             'foto' => $nama_file,
         ]);
-        
+
         return redirect()->back()
         ->with('success','Great! Biodata berhasil di simpan');
     }
@@ -80,7 +84,7 @@ class ProfilController extends Controller
     public function edit($id)
     {
         $profil = Profil::find($id);
-        return view('profil.edit', ['profil' => $profil]);  
+        return view('profil.edit', ['profil' => $profil]);
     }
 
     /**
@@ -114,7 +118,7 @@ class ProfilController extends Controller
         ];
 
         Profil::whereId($id)->update($update);
-   
+
         return redirect('/profil')
        ->with('success','Great! Biodata berhasil di update');
     }

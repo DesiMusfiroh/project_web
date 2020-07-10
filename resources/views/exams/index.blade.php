@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
-                                <a href="{{route('createExam')}}"> <button type="button" class="btn" style="background-color:#7BEDC4;">
+                                <a href="{{route('createExam')}}"> <button type="button" class="btn" style="background-color:#7BEDC4; border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46);">
                                     [ <i class="fa fa-plus"></i> ]  Buat Ujian </button>
                                 </a>
                             </div>
@@ -28,6 +28,7 @@
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Judul Paket Soal </th>
+                                <th scope="col" >Kode Akses </th>
                                 <th scope="col" >Jadwal Ujian </th>
                                 <th scope="col" style="width:100px">Opsi</th>        
                             </tr>
@@ -39,6 +40,7 @@
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{$item->nama_ujian}}</td>
                                 <td class="text-center">{{ $item->paket_soal->judul }} </td>    
+                                <td class="text-center">{{ $item->kode_ujian }} </td>    
                                 <td class="text-center"> {{$item->waktu_mulai}} </td>                             
                                 <td class="text-center">
                                     <a href="{{route('editExam',$item->id)}}">

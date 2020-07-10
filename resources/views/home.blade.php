@@ -7,12 +7,13 @@
   <hr>
     <p>
     Sudah punya kode akses untuk ujian?
-    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal"> Klik disini</a>
+    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
     <p>
   </div>
   <h2>Ujian yang anda ikuti</h2>
 
 @if($peserta->count() != 0)
+
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -20,41 +21,67 @@
 
 
                     <table class="table table-striped table-bordered table-sm">
-                        <thead class="thead-light text-center">
+                        <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Waktu Mulai </th>
                                 <th scope="col" >Durasi </th>
                                 <th scope="col" style="width:100px">Keterangan </th>
-                                <th scope="col" style="width:100px">Detail </th>       
+                                <th scope="col" style="width:100px">Detail </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0; ?>                                                 
-                            @foreach ($peserta as $item) 
+                            <?php $i=0; ?>
+                            @foreach ($peserta as $item)
                             <tr>
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{$item->ujian->nama_ujian}}</td>
-                                <td class="text-center">{{$item->ujian->waktu_mulai}} </td>    
-                                <td class="text-center">{{$item->ujian->paket_soal->durasi}} </td>    
-                                <td class="text-center">--- </td>    
+                                <td class="text-center">{{$item->ujian->waktu_mulai}} </td>
+                                <td class="text-center">{{$item->ujian->paket_soal->durasi}} </td>
+                                <td class="text-center">
+                                    <?php
+                                        $waktu_sekarang = date('Y-m-d H:i:s');
+                                        $waktu_mulai    =$item->ujian->waktu_mulai;
+                                        $durasi = $item->ujian->paket_soal->durasi;
+
+                                        $durasi_jam   =  date('H', strtotime($durasi));
+                                        $durasi_menit =  date('i', strtotime($durasi));
+                                        $durasi_detik =  date('s', strtotime($durasi));
+
+                                        $selesai = date_create($waktu_mulai);
+                                        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
+                                        $waktu_selesai  = date_format($selesai, 'Y-m-d H:i:s');
+
+                                        if (strtotime($waktu_sekarang) < strtotime($waktu_mulai)) {
+                                            echo "segera dimulai";
+                                        }
+                                        elseif (strtotime($waktu_sekarang) > strtotime($waktu_selesai)) {
+                                            echo "ujian telah berakhir";
+                                        }
+                                        elseif (strtotime($waktu_sekarang) >= strtotime($waktu_mulai) && strtotime($waktu_sekarang) <= strtotime($waktu_selesai)) {
+                                            echo "ujian sedang berlangsung";
+                                        }
+                                    ?>
+                                </td>
                                 <td class="text-center"><a href="{{route('waitExam',$item->ujian->id)}}">
-                                      <button type="button" class="btn btn-warning btn-sm">  
-                                            <i class="fa fa-edit fa-sm"></i> Masuk          
-                                        </button> </a> 
-                                </td>                             
-                                                       
+                                      <button type="button" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit fa-sm"></i> Masuk
+                                        </button> </a>
+                                </td>
+
                             </tr>
-                            @endforeach 
+                            @endforeach
                         </tbody>
                     </table>
 
-                
+
             </div>
         </div>
     </div>
 </div>
+
 @endif
 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
