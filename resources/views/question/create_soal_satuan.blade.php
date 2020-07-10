@@ -85,7 +85,7 @@
                 @if($item->jenis == "Essay")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {{$item->essay->pertanyaan}} </td>
+                        <td> {!!$item->essay->pertanyaan!!} </td>
                     </tr>
                     <tr>
                         <td><b> Kunci Jawaban </b></td> <td> : </td>
@@ -94,7 +94,7 @@
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {{$item->pilgan->pertanyaan}} </td>
+                        <td> {!!$item->pilgan->pertanyaan!!} </td>
                     </tr>
                     <tr>
                         <td> <b> Pilihan </b> </td> <td> : </td>
@@ -157,7 +157,7 @@
 
                             <div class="form-group">
                                 <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
+                                <textarea class="form-control" id="pertanyaanessay" rows="2" name="pertanyaan" placeholder=""> </textarea>
                             </div>
                             <div class="form-group">
                                 <label for="alamat"> Jawaban Benar</label>
@@ -213,7 +213,7 @@
 
                             <div class="form-group">
                                 <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
+                                <textarea class="form-control" id="pertanyaanpilgan" rows="2" name="pertanyaan" placeholder=""> </textarea>
                             </div>
                             <div class="form-group" >
                                 <!-- Pilihan A-->
@@ -395,4 +395,33 @@ $(document).ready(function(){
 </script>
 
 
-@endsection
+@stop
+@section('ckeditor')
+  <script>
+                  ClassicEditor
+                              .create( document.querySelector( '#pertanyaanessay' ) )
+                              .then( pertanyaanessay => {
+                                      console.log( pertanyaanessay );
+                              } )
+                              .catch( error => {
+                                      console.error( error );
+                              } );
+                              ClassicEditor
+                                          .create( document.querySelector( '#jawaban' ) )
+                                          .then( jawaban => {
+                                                  console.log( jawaban );
+                                          } )
+                                          .catch( error => {
+                                                  console.error( error );
+                                          } );
+
+                                          ClassicEditor
+                                                      .create( document.querySelector( '#pertanyaanpilgan' ) )
+                                                      .then( pertanyaanpilgan => {
+                                                              console.log( pertanyaanpilgan );
+                                                      } )
+                                                      .catch( error => {
+                                                              console.error( error );
+                                                      } );
+  </script>
+@stop
