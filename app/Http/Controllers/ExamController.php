@@ -91,6 +91,18 @@ class ExamController extends Controller
         return view('exams.wait',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
     }
 
+    function fetch_data(Request $request)
+    {
+        $ujian = Ujian::find($request->ujian_id);
+        $paket_soal_id = $ujian->paket_soal_id;
+        $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->paginate(1); 
+        if($request->ajax())
+        {      
+            return view('exams.pagination_data', ['soal_satuan' => $soal_satuan, 'ujian' => $ujian], compact('paket_soal_id'))->render();
+        }
+    }
+
 
     public function runExam($id) {
       $ujian = Ujian::find($id);
