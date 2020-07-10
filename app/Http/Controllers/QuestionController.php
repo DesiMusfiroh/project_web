@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
 
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
     public function index()
     {
         $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();

@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class ExamController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
     public function index(){
     //$ujian = Ujian::where('paket_soal_id');
     //$paket_soal_id = Auth::user()->paket_soal->id;
@@ -40,7 +45,7 @@ class ExamController extends Controller
     }
 
     public function edit($id){
-      
+
       $ujian = Ujian::where('id',$id)->get();
       $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
       $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
@@ -73,16 +78,16 @@ class ExamController extends Controller
 
         date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
         $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
-       
+
         $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
         $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
         $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
-        
+
         // waktu selesai = waktu mulai + durasi
         $selesai = date_create($ujian->waktu_mulai);
-        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds")); 
+        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
         $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
-        
+
         return view('exams.wait',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
     }
 
@@ -107,18 +112,18 @@ class ExamController extends Controller
 
       date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
       $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
-   
+
       $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
       $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
       $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
-      
+
       // waktu selesai = waktu mulai + durasi
       $selesai = date_create($ujian->waktu_mulai);
-      date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds")); 
+      date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
       $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
-  
+
       return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
   }
 
-    
+
 }
