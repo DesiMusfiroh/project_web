@@ -85,24 +85,24 @@
                 @if($item->jenis == "Essay")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {!!$item->essay->pertanyaan!!}</td>
+                        <td> {{$item->essay->pertanyaan}} </td>
                     </tr>
                     <tr>
                         <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {!!$item->essay->jawaban!!} </td>
+                        <td> {{$item->essay->jawaban}} </td>
                     </tr>
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
                         <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {!!$item->pilgan->pertanyaan!!} </td>
+                        <td> {{$item->pilgan->pertanyaan}} </td>
                     </tr>
                     <tr>
                         <td> <b> Pilihan </b> </td> <td> : </td>
-                        <td>  A . {!!$item->pilgan->pil_a!!}  <br>
-                                 B . {!!$item->pilgan->pil_b!!} <br>
-                                 C . {!!$item->pilgan->pil_c!!}  <br>
-                                 D . {!!$item->pilgan->pil_d!!} <br>
-                                 E . {!!$item->pilgan->pil_e!!}
+                        <td>  A . {{$item->pilgan->pil_a}}  <br>
+                                 B . {{$item->pilgan->pil_b}}  <br>
+                                 C . {{$item->pilgan->pil_c}}  <br>
+                                 D . {{$item->pilgan->pil_d}}  <br>
+                                 E . {{$item->pilgan->pil_e}}
                         </td>
                     </tr>
                     <tr>
@@ -157,7 +157,7 @@
 
                             <div class="form-group">
                                 <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaanessay" rows="2" name="pertanyaan" placeholder=""> </textarea>
+                                <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
                             </div>
                             <div class="form-group">
                                 <label for="alamat"> Jawaban Benar</label>
@@ -213,7 +213,7 @@
 
                             <div class="form-group">
                                 <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaanpilgan" rows="2" name="pertanyaan" placeholder=""> </textarea>
+                                <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
                             </div>
                             <div class="form-group" >
                                 <!-- Pilihan A-->
@@ -221,7 +221,7 @@
                                     <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
                                         <span class="input-group-text" > A </span>
                                     </div>
-                                    <input type="text" name="pil_a" id="pil_a" class="form-control" rows="2">
+                                    <input type="text" name="pil_a" id="pil_a" class="form-control" >
                                 </div>
                                 <!-- Pilihan B-->
                                 <div class="input-group mb-2">
@@ -394,35 +394,5 @@ $(document).ready(function(){
 
 </script>
 
-@stop
-@section('ckeditor')
-<script>
-ClassicEditor
-            .create( document.querySelector( '#pertanyaanessay' ) )
-            .then( pertanyaanessay => {
-                    console.log( pertanyaanessay );
-            } )
-            .catch( error => {
-                    console.error( error );
-            } );
- ClassicEditor
-            .create( document.querySelector( '#pertanyaanpilgan' ) )
-            .then( pertanyaanpilgan => {
-                    console.log( pertanyaanpilgan );
-            } )
-            .catch( error => {
-                    console.error( error );
-            } );
-  ClassicEditor
-             .create( document.querySelector( '#jawaban' ) )
-             .then( jawaban => {
-                     console.log( jawaban );
-             } )
-             .catch( error => {
-                     console.error( error );
-             } );
 
-        // CKEDITOR.replace( 'pertanyaan' );
-        // CKEDITOR.replace( 'pil_a' );
-</script>
-@stop
+@endsection
