@@ -48,66 +48,10 @@ video{
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">Soal Ujian</div>
-          <div class="card-body " >
-            <?php $i=0; ?>
-            @foreach($soal_satuan as $item)
-                <div class=" container row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
-                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
-                </div>
-                <div class="container">
-                <table >
-                @if($item->jenis == "Essay")
-                    <b> Pertanyaan </b> :
-                        {{$item->essay->pertanyaan}}
-                    <div>
-                      <textarea class="form-control" name="" id="" cols="30" rows="3">Jawaban Anda ...</textarea>
-                    </div>
-
-                @elseif($item->jenis == "Pilihan Ganda")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {{$item->pilgan->pertanyaan}} </td>
-                    </tr>
-                    <tr>
-                        <td> <b> Pilihan </b> </td> <td> : </td>
-                        <td>  A . {{$item->pilgan->pil_a}}  <br>
-                                 B . {{$item->pilgan->pil_b}}  <br>
-                                 C . {{$item->pilgan->pil_c}}  <br>
-                                 D . {{$item->pilgan->pil_d}}  <br>
-                                 E . {{$item->pilgan->pil_e}}
-                        </td>
-                    </tr>
-                    @endif
-                </table>
-                </div>
-
-                <hr>
-            @endforeach
-
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">Navigasi</div>
-          <div class="card-body">
-            <div class="row ">
-              <div class="col-12 text-center ">
-                {{ $soal_satuan->links() }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id="table_data">
+      @include('exams.pagination_data')
+      
     </div>
-
 
     <div class="row">
       <div class="col-md-8"></div>
@@ -217,5 +161,32 @@ const hitung_mundur = setInterval(function() {
         // do something
         alert("Izinkan menggunakan webcam untuk demo!")
     }
+
+
+
+// Pengaturan JS untuk Pagination
+$(document).ready(function(){
+    $(document).on('click', '.pagination a',function(event){
+        event.preventDefault(); //stop refresh webpage
+        var page = $(this).attr('href').split('page=')[1];
+        fetch_data(page);
+    });
+    function fetch_data(page)
+    {
+        const ujian_id = $('#ujian_id').val();
+        $.ajax({
+            url:"/pagination/fetch_data?page="+page,
+            type: "GET",
+            data: {
+              ujian_id: ujian_id
+            },
+            success: function(soal_satuan)
+            {
+                $('#table_data').html(soal_satuan);
+            }
+        });
+    }
+});
+
 </script>
 @endsection

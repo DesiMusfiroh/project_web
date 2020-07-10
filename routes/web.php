@@ -51,12 +51,8 @@ Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
+Route::get('pagination/fetch_data', 'ExamController@fetch_data');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
 
-
-
-Route::get('/tesCamera', function () {
-    return view('tesCamera');
-});
 
 
