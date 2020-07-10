@@ -9,7 +9,8 @@
 
             <div class="container">
 
-              <form class="" action="{{route('updateExam')}}" method="post" class="form-control">
+              <form class="" action="{{route('updateExam',$ujian->id)}}" method="post" class="form-control">
+                @method('patch')
                 @csrf
                 <div class="row">
                   <div class="col-md-3">

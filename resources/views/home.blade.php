@@ -29,7 +29,7 @@
                                 <th scope="col" >Durasi </th>
                                 <th scope="col" style="width:100px">Keterangan </th>
                                 <th scope="col" style="width:100px">Detail </th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
@@ -75,6 +75,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="ml-1">
+                      {{$peserta->links()}}
+                    </div>
 
 
             </div>

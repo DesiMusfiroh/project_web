@@ -50,7 +50,7 @@ video{
 
     <div id="table_data">
       @include('exams.pagination_data')
-      
+
     </div>
 
     <div class="row">
@@ -60,8 +60,8 @@ video{
       </div>
     </div>
 
-    
-    <div class="container">     
+
+    <div class="container">
       <div  class="row">
         <video autoplay="true" id="video-webcam" width="160px" height="122px"> </video>
       </div>
@@ -102,6 +102,21 @@ function openFullscreen() {
             closeFullscreen();
         }
     }, 1000);
+
+    // alert("ini fullscreen");
+
+    $(elem).mouseleave(function(){
+      // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
+      //
+      // if (!keluar) {
+      //   alert("semangat ngerjainnya. jangan nyontek ya");
+      //   window.history.openFullscreen();
+      // }else {
+      //   closeFullscreen();
+      // }
+      alert("Hayoooo jangan nyontek ya. jangan kemana mana");
+      closeFullscreen();
+    });
 
 }
 
