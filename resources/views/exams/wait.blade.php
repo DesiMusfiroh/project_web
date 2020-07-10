@@ -163,8 +163,8 @@ $("#start").hide();
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen() {
     $("#fullscreenExam").show();
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
+    if (elem.webkitRequestFullScreen) {
+        elem.webkitRequestFullScreen();
     }  
     const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
 
