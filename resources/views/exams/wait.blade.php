@@ -18,14 +18,10 @@ video{
         <h4>{{ $ujian->nama_ujian}} </h4>
     </div>
     <div class="card-body">
-        <?php
-          $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
-          $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
-        ?>
-        <p>Durasi : {{ $durasi_jam }} jam {{ $durasi_menit }} menit</p>
+        <p>Durasi : {{ $ujian->paket_soal->durasi}}</p>
         <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
-
-        <div id="teks"></div>
+            
+        <div id="teks"></div>     
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
@@ -42,30 +38,123 @@ video{
       <div class="col-md-12">
         <div class="card pt-3 pl-5 pr-5 pb-3">
           <h4>{{ $ujian->paket_soal->judul }}</h4>
-          <h6>Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </h6>
+          <h6>Durasi Pengerjaan : {{ $ujian->paket_soal->durasi }}</h6>
           <div id="teks_durasi"></div>
         </div>
       </div>
     </div>
 
-    <div id="table_data">
-      @include('exams.pagination_data')
-      
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">Soal Ujian</div>
+          <div class="card-body">
+            <?php $i=0; ?>   
+            @foreach($soal_satuan as $item)
+                <div class="row">
+                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
+                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
+                </div>
+                <table>
+                @if($item->jenis == "Essay")
+                    <tr>
+                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
+                        <td> {{$item->essay->pertanyaan}} </td>
+                    </tr>
+                    <div>
+                      <textarea class="form-control" name="" id="" cols="30" rows="3">Jawaban Anda ...</textarea>
+                    </div>
+                  
+                @elseif($item->jenis == "Pilihan Ganda")
+                    <tr>
+                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
+                        <td> {{$item->pilgan->pertanyaan}} </td>
+                    </tr>
+                    <tr>
+                        <td> <b> Pilihan </b> </td> <td> : </td>
+                        <td>  A . {{$item->pilgan->pil_a}}  <br>
+                                 B . {{$item->pilgan->pil_b}}  <br>
+                                 C . {{$item->pilgan->pil_c}}  <br>
+                                 D . {{$item->pilgan->pil_d}}  <br>
+                                 E . {{$item->pilgan->pil_e}}
+                        </td>
+                    </tr>
+                    @endif
+                </table>
+
+                <hr>
+            @endforeach
+
+            <div class="row ">
+              <div class="col-12 text-center ">
+                {{ $soal_satuan->links() }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">Navigasi</div>
+          <div class="card-body">
+          
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
-        <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button>
+        <button class="btn btn-danger" onclick="closeFullscreen();"> Selesai </button>
       </div>
     </div>
 
-    
-    <div class="container">     
-      <div  class="row">
-        <video autoplay="true" id="video-webcam" width="160px" height="122px"> </video>
-      </div>
-    </div>
+    <!-- <div class="card">
+        <div class="card-header">
+        <h4> {{ $ujian->paket_soal->judul }} </h4>
+        </div>
+        <div class="card-body">
+            <?php $i=0; ?>   
+            @foreach($soal_satuan as $item)
+                <div class="row">
+                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
+                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
+                </div>
+                <table>
+                @if($item->jenis == "Essay")
+                    <tr>
+                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
+                        <td> {{$item->essay->pertanyaan}} </td>
+                    </tr>
+                  
+                @elseif($item->jenis == "Pilihan Ganda")
+                    <tr>
+                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
+                        <td> {{$item->pilgan->pertanyaan}} </td>
+                    </tr>
+                    <tr>
+                        <td> <b> Pilihan </b> </td> <td> : </td>
+                        <td>  A . {{$item->pilgan->pil_a}}  <br>
+                                 B . {{$item->pilgan->pil_b}}  <br>
+                                 C . {{$item->pilgan->pil_c}}  <br>
+                                 D . {{$item->pilgan->pil_d}}  <br>
+                                 E . {{$item->pilgan->pil_e}}
+                        </td>
+                    </tr>
+                @endif
+                </table>
+
+                <hr>
+            @endforeach
+        </div>
+        <div class="card-footer">
+           
+            
+        </div>
+    </div> -->
+
 
   </div>
 </div>
@@ -80,17 +169,10 @@ $("#start").hide();
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen() {
     $("#fullscreenExam").show();
-<<<<<<< HEAD
-    if (elem.webkitRequestFullScreen) {
-        elem.webkitRequestFullScreen();
-    }  
-    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
-=======
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
-    }
-    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime();
->>>>>>> 9c850ac57b6d3ad06338fa1b7ef860189092967b
+    }  
+    const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime(); 
 
     const hitung_durasi = setInterval(function() {
         const sekarang = new Date().getTime();
@@ -118,10 +200,10 @@ function closeFullscreen() {
         $("#fullscreenExam").hide();
     }
 }
-// --------------------------------------------------------------------------
+
 
 // pengaturan JS untuk hitung waktu mulai ujian
-const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
+const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime(); 
 
 const hitung_mundur = setInterval(function() {
     const waktu_sekarang = new Date().getTime();
@@ -144,56 +226,8 @@ const hitung_mundur = setInterval(function() {
 }, 1000);
 // --------------------------------------------------------------------------
 
-
-//Pengaturan JS untuk akses kamera user
-    // seleksi elemen video
-    var video = document.querySelector("#video-webcam");
-
-    // minta izin user
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-    // jika user memberikan izin
-    if (navigator.getUserMedia) {
-        // jalankan fungsi handleVideo, dan videoError jika izin ditolak
-        navigator.getUserMedia({ video: true }, handleVideo, videoError);
-    }
-
-    // fungsi ini akan dieksekusi jika  izin telah diberikan
-    function handleVideo(stream) {
-        video.srcObject = stream;
-    }
-
-    // fungsi ini akan dieksekusi kalau user menolak izin
-    function videoError(e) {
-        // do something
-        alert("Izinkan menggunakan webcam untuk demo!")
-    }
-
-
-
-// Pengaturan JS untuk Pagination
-$(document).ready(function(){
-    $(document).on('click', '.pagination a',function(event){
-        event.preventDefault(); //stop refresh webpage
-        var page = $(this).attr('href').split('page=')[1];
-        fetch_data(page);
-    });
-    function fetch_data(page)
-    {
-        const ujian_id = $('#ujian_id').val();
-        $.ajax({
-            url:"/pagination/fetch_data?page="+page,
-            type: "GET",
-            data: {
-              ujian_id: ujian_id
-            },
-            success: function(soal_satuan)
-            {
-                $('#table_data').html(soal_satuan);
-            }
-        });
-    }
-});
-
+   
 </script>
+
+
 @endsection
