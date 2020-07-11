@@ -1,5 +1,10 @@
 @extends('layouts.sidebar')
 @section('content')
+@if(session('sukses'))
+  <div class="alert alert-success" role="alert">
+    {{session('sukses')}}
+  </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -30,32 +35,37 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" >Kode Akses </th>
                                 <th scope="col" >Jadwal Ujian </th>
-                                <th scope="col" style="width:100px">Opsi</th>        
+                                <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0; ?>                                                 
-                            @foreach ($ujian as $item) 
+                            <?php $i=0; ?>
+                            @foreach ($ujian as $item)
                             <tr>
                                 <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
                                 <td >{{$item->nama_ujian}}</td>
-                                <td class="text-center">{{ $item->paket_soal->judul }} </td>    
-                                <td class="text-center">{{ $item->kode_ujian }} </td>    
-                                <td class="text-center"> {{$item->waktu_mulai}} </td>                             
+                                <td class="text-center">{{ $item->paket_soal->judul }} </td>
+                                <td class="text-center">{{ $item->kode_ujian }} </td>
+                                <td class="text-center"> {{date("d-m-Y",strtotime($item->waktu_mulai))}} </td>
                                 <td class="text-center">
                                     <a href="{{route('editExam',$item->id)}}">
-                                        <button type="button" class="btn btn-warning btn-sm">  
-                                            <i class="fa fa-edit fa-sm"></i>           
+                                        <button type="button" class="btn btn-warning btn-sm">
+                                            <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
                                     <a href="{{route('deleteExam',$item->id)}}">
-                                        <button type="button" class="btn btn-danger btn-sm">  
-                                            <i class="fa fa-trash fa-sm"></i>        
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash fa-sm"></i>
                                         </button>
                                     </a>
-                                </td>                          
+                                    <a href="{{route('openMyExam',$item->id)}}">
+                                        <button type="button" class="btn btn-info btn-sm">
+                                            <i class="fa fa-eye fa-sm"></i>
+                                        </button>
+                                    </a>
+                                </td>
                             </tr>
-                            @endforeach 
+                            @endforeach
                         </tbody>
                     </table>
 

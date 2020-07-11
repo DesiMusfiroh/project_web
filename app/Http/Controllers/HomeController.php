@@ -13,7 +13,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $peserta = Peserta::where('user_id',auth()->user()->id)->get();
+        $peserta = Peserta::where('user_id',auth()->user()->id)->paginate(2);
         return view('home',compact(['peserta']));
     }
 

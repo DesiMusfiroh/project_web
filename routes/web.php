@@ -32,7 +32,7 @@ Route::get('question','QuestionController@index')->name('question'); //route unt
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
-Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
+Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 
 //essay
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
@@ -46,14 +46,18 @@ Route::get('/exam','ExamController@index')->name('getExam');
 Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
-Route::get('/exam/update','ExamController@update')->name('updateExam');
+Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
 Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
+
+//Route untuk masuk ke ujian miliknya sendiri
+Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
+
 
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
 Route::get('pagination/fetch_data', 'ExamController@fetch_data');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
 
-
+// menyimpan jawaban essay dan pilgan peserta ujian
 Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
