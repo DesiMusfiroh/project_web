@@ -6,88 +6,20 @@
         {{session('sukses')}}
       </div>
     @endif
-    @if($errors->has('poin'))
-      <div class="alert alert-danger" role="alert">
-        {{$errors->first('poin')}}
-      </div>
-    @endif
-    <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
-        <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-            <h4 class="card-title"> Paket Soal : {{$paket_soal->judul}}  </h4>
-        </div>
-        <div class="card-body">
-            <div class="container">
-                    <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id }}">
-                    <div class="row">
-                        <div class="col-md-12">Pilih Jenis Soal :</div>
-                        <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal_essay"
-                                    id="create"
-                                    data-paket_soal_id = "{{ $paket_soal_id }}"
-                                    style="box-shadow: 3px 2px 5px grey;"> Essay</button>
-                             <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target=".create_modal_pilgan"
-                                    id="create"
-                                    data-paket_soal_id = "{{ $paket_soal_id }}"
-                                    style="box-shadow: 3px 2px 5px grey;"> Pilihan Ganda</button>
-                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target=".create_modal_pilbanyak"
-                                    id="create"
-                                    data-paket_soal_id = "{{ $paket_soal_id }}"
-                                    style="box-shadow: 3px 2px 5px grey;"> Pilihan  Banyak</button>
-                        </div>
-                    </div>
-<hr>
-
-@if($soal_satuan->count() != 0)
-
         <div class="container">
             <?php $i=0; ?>
-            @foreach($soal_satuan as $item)
+            @foreach($jawaban_essay as $item)
                 <div class="row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
-                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
-                    <div class="col-md-2">
-                        <button class="btn btn-sm btn-primary">Edit</button>
-                        <a href="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus"><button class="btn btn-sm btn-danger">Hapus</button> </a>
-                    </div>
+                    <div><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
+                    <div class="col-md-1 text-right"><h6>{{$item->jawab}}</h6></div>
+                    <div class="col-md-7 text-right"><h6>Jawaban: {{$item->jawab}}</h6></div>
+                    <div class="col-md-7 text-right"><h6>Score: {{$item->score}}</h6></div>
                 </div>
-                <table>
-                @if($item->jenis == "Essay")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {!!$item->essay->pertanyaan!!} </td>
-                    </tr>
-                    <tr>
-                        <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {{$item->essay->jawaban}} </td>
-                    </tr>
-                @elseif($item->jenis == "Pilihan Ganda")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {!!$item->pilgan->pertanyaan!!} </td>
-                    </tr>
-                    <tr>
-                        <td> <b> Pilihan </b> </td> <td> : </td>
-                        <td>  A . {{$item->pilgan->pil_a}}  <br>
-                                 B . {{$item->pilgan->pil_b}}  <br>
-                                 C . {{$item->pilgan->pil_c}}  <br>
-                                 D . {{$item->pilgan->pil_d}}  <br>
-                                 E . {{$item->pilgan->pil_e}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {{$item->pilgan->kunci}} </td>
-                    </tr>
-
-                @endif
-                </table>
-
-                <hr>
             @endforeach
         </div>
     </div>
 </div>
-@endif
+
 
 
 <!-- Create Modal (essay)-->
@@ -331,6 +263,7 @@
         <input type="text" name="#" id="#"  class="form-control" >
         </div>
     </div>
+
 
 
 
