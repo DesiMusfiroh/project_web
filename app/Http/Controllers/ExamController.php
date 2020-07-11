@@ -5,6 +5,8 @@ use App\PaketSoal;
 use App\SoalSatuan;
 use App\Ujian;
 use App\Peserta;
+use App\EssayJawab;
+use App\PilganJawab;
 use Str;
 use Auth;
 use Illuminate\Http\Request;
@@ -19,7 +21,7 @@ class ExamController extends Controller
     public function index()
     {
         $ujian = Ujian::where('user_id',auth()->user()->id)->get();
-        // $ujian = Ujian::join('paket_soal',function ($join){
+        //  $ujian = Ujian::join('paket_soal',function ($join){
         //   $join->on('users.id','=','paket_soal.user_id')
         //        ->where('paket_soal.user','=',Auth::user()->id);
         // })->get();
@@ -68,9 +70,17 @@ class ExamController extends Controller
 
     public function openMyExam($id){
         $ujian = Ujian::find($id);
-        $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai));
-        return view('exams.myexam',compact(['ujian','waktu_mulai']));
+        return view('exams.myexam',compact(['ujian']));
     }
+
+//Koreksi
+public function koreksi($id){
+    $jawaban_essay = EssayJawab::all();
+    $jawaban_pilgan = PilganJawab::all();
+    $soal_satuan=SoalSatuan::all();
+   
+    return view('exams.koreksi', compact('jawaban_essay','jawaban_pilgan','soal_satuan'));
+}
 
     public function joinExam(Request $request){
         //Ujian::attempt(['kode_ujian' => $request->kode_akses])

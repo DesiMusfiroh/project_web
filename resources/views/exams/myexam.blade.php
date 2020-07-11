@@ -47,6 +47,7 @@
                             <tr>
                                 <th scope="col" style="width:50px">No.</th>
                                 <th scope="col" >Nama </th>
+                                <th scope="col" >&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,6 +55,13 @@
                             <tr>
                               <td>{{$loop->iteration}}</td>
                               <td class="text-center">{{$item->user->name}}</td>
+                              <td>  <a href="{{route('koreksi',$item->id)}}">
+                                        <button type="button" class="btn btn-info btn-sm" >
+                                        Koreksi
+                                        </button>
+                                        
+                                    </a>
+                              </td>
                             </tr>
                           @endforeach
                         </tbody>
@@ -64,27 +72,5 @@
         </div>
     </div>
 </div>
-<script>
-const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
 
-const hitung_mundur = setInterval(function() {
-    const waktu_sekarang = new Date().getTime();
-    const selisih = waktu_mulai - waktu_sekarang;
-
-    const hari = Math.floor(selisih / (1000 * 60 * 60 *24));
-    const jam = Math.floor(selisih % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-    const menit = Math.floor(selisih % (1000 * 60 * 60 ) / (1000 * 60 ));
-    const detik = Math.floor(selisih % (1000 * 60 ) / 1000 );
-
-    const teks = document.getElementById('teks');
-    teks.innerHTML = 'Ujian akan di mulai dalam : ' + hari + ' hari ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi ';
-    $("#start").hide();
-
-    if( selisih < 0 ) {
-        clearInterval(hitung_mundur);
-        teks.innerHTML = 'Ujian Dapat di mulai';
-        $("#start").show();
-    }
-}, 1000);
-</script>
 @endsection
