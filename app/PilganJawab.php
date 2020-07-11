@@ -10,7 +10,7 @@ use App\Pilgan;
 class PilganJawab extends Model
 {
     protected $table ='pilgan_jawab';
-    protected $fillable = ['user_id','pilgan_id','peserta_id','jawab'];
+    protected $fillable = ['user_id','pilgan_id','peserta_id','jawab','score','status'];
     public function users() {
         return $this->belongsTo(User::class);
     }

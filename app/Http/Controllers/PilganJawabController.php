@@ -19,19 +19,10 @@ class PilganJawabController extends Controller
             'user_id' => 'required',
             'peserta_id' => 'required',
             'pilgan_id' => 'required',
-            'jawab_pilgan' => 'required'
+            'jawab_pilgan' => 'required',
+            'score' => 'required',
+            'status' => 'required'
         ]);
-
-        $soal_satuan_id = Pilgan::whereId($request->pilgan_id)->value('soal_satuan_id');
-        $poin = SoalSatuan::where('id',$soal_satuan_id)->value('poin');
-        $kunci = Pilgan::whereId( $request->pilgan_id)->value('kunci');
-        if ( $request->jawab_pilgan == $kunci ) {
-            $score  = $poin;
-            $status = "T";
-        } elseif ( $request->jawab_pilgan != $kunci ) {
-            $score  = 0;
-            $status = "F"; 
-        }
         $check_jawaban = PilganJawab::where('user_id', Auth::user()->id)
                                     ->where('pilgan_id', $request->pilgan_id)
                                     ->where('peserta_id', $request->peserta_id)->first();
@@ -41,8 +32,8 @@ class PilganJawabController extends Controller
                 'peserta_id' => $request->peserta_id,
                 'pilgan_id' => $request->pilgan_id,
                 'jawab' => $request->jawab_pilgan,
-                'score' => $score,
-                'status' => $status
+                'score' => $request->score,
+                'status' => $request->status
             ]);  
         } elseif ($check_jawaban) {
             $update_pilgan_jawab = [
@@ -50,8 +41,8 @@ class PilganJawabController extends Controller
                 'peserta_id' => $request->peserta_id,
                 'pilgan_id' => $request->pilgan_id,
                 'jawab' => $request->jawab_pilgan,
-                'score' => $score,
-                'status' => $status
+                'score' => $request->score,
+                'status' => $request->status
             ];
             $posts = PilganJawab::where('user_id', Auth::user()->id)
                                 ->where('pilgan_id', $request->pilgan_id)

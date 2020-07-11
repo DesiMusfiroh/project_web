@@ -54,7 +54,7 @@ class QuestionController extends Controller
         $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
         $paket_soal = PaketSoal::find($paket_soal_id);
         $paket_soal_id = $paket_soal->id;
-        return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan], compact('paket_soal_id'));
+        return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan, 'paket_soal' => $paket_soal], compact('paket_soal_id'));
     }
 
     public function essay_store(Request $request)

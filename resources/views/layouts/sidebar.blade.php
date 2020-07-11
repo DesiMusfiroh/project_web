@@ -45,6 +45,9 @@
                         <a href="{{route('getExam')}}">Create Exam</a>
                     </li>
                     <li class="nav-item ">
+                        <a href="{{route('resultExam')}}">Result Exam</a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="#">Schedule</a>
                     </li>
                     <!-- <li class="nav-item ">

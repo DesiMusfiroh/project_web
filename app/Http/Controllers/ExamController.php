@@ -81,9 +81,9 @@ class ExamController extends Controller
             foreach ($idujian as $item) {
                 $id = $item->id;
             }
-            // $peserta->ujian_id = $id;
-            // $peserta->nilai = 0;
-            // $peserta->save();
+            $peserta->ujian_id = $id;
+            $peserta->nilai = 0;
+            $peserta->save();
             return redirect()->route('home');
         }
     }
@@ -143,6 +143,15 @@ class ExamController extends Controller
         $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
         return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
+    }
+
+    public function finishExam($id){
+        $peserta = Peserta::find($id);
+        $update_finish_peserta = [
+            'status' => 1,
+        ];
+        Peserta::where('id', $id)->update($update_finish_peserta);
+        return redirect()->route('home');
     }
 
 }
