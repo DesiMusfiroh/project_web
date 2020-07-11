@@ -26,12 +26,12 @@
     $profil = Profil::where('user_id', Auth::user()->id )->first(); 
 ?>
   <body>
-
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" >
-                  <img src="/images/{{$profil->foto}}" class="img-fluid mx-auto ">
+		  		<a href="#"  >
+                  <img src="/images/{{$profil->foto}}"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
+                  <center>{{auth()->user()->name}}</center>
                   </a>
                   
                 <ul class="list-unstyled components mb-5 ">
