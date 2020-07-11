@@ -21,13 +21,19 @@
  
 
   </head>
-
+  
+  <?php  use App\Profil;
+    $profil = Profil::where('user_id', Auth::user()->id )->first(); 
+?>
   <body>
 
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.png);"></a>
+		  		<a href="#" class="img logo rounded-circle mb-5" >
+                  <img src="/images/{{$profil->foto}}" class="img-fluid mx-auto ">
+                  </a>
+                  
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
                         <a href="{{ route('home') }}">Dashboard</a>
@@ -36,7 +42,7 @@
                         <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('joinExam')}}">Join Exam</a>
+                    <a type="button"  data-toggle="modal" data-target="#exampleModal" >Join Exam</a>
                     </li>
                     <li class="nav-item ">
                         <a href="{{route('question')}}">Question</a>
@@ -150,5 +156,40 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     @yield('ckeditor')
+
+    <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Join Exam</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                     {{ session('status') }}
+                </div>
+            @endif
+        <form method="POST" action="{{ route('joinExam') }}">
+            @csrf
+                <div class="form-row align-items-center">
+                    <div class="col-auto  offset-md-1">
+                         <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="kode_akses" type="kode_akses" class="form-control @error('kode_akses') is-invalid @enderror" name="kode_akses" required placeholder="Masukkan Kode Akses">
+                    </div>
+                    <div class="col-auto ">
+                        <button type="submit" style="border-radius:10px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:18px; box-shadow: 3px 3px 5px grey;">
+                            <strong> {{ __('Join') }}</strong>
+                        </button>
+                    </div>
+                </div>
+        </form>
+     </div>
+      <div class="modal-footer col-auto">
+       Nb : Kode akses hanya diperoleh dari guru/dosen!
+    </div>
+  </div>
+</div>
   </body>
 </html>

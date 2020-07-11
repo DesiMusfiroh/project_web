@@ -52,6 +52,7 @@ Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 //Route untuk masuk ke ujian miliknya sendiri
 Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
 
+Route::get('/exam/{id}/koreksi','ExamController@koreksi')->name('koreksi');
 
 Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
@@ -61,3 +62,7 @@ Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExa
 // menyimpan jawaban essay dan pilgan peserta ujian
 Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
