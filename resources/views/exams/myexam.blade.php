@@ -47,6 +47,7 @@
                             <tr>
                                 <th scope="col" style="width:50px">No.</th>
                                 <th scope="col" >Nama </th>
+                                <th>Nilai</th>
                                 <th scope="col" >&nbsp;</th>
                             </tr>
                         </thead>
@@ -55,11 +56,12 @@
                             <tr>
                               <td>{{$loop->iteration}}</td>
                               <td class="text-center">{{$item->user->name}}</td>
-                              <td>  <a href="{{route('koreksi',$item->id)}}">
+                              <td class="text-center">{{$item->nilai}}</td>
+                              <td class="text-center">  <a href="{{route('koreksi',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm" >
                                         Koreksi
                                         </button>
-                                        
+
                                     </a>
                               </td>
                             </tr>

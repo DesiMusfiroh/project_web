@@ -21,19 +21,21 @@
 
 
   </head>
-  
+
   <?php  use App\Profil;
-    $profil = Profil::where('user_id', Auth::user()->id )->first(); 
+    $profil = Profil::where('user_id', Auth::user()->id )->first();
 ?>
   <body>
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
 		  		<a href="#"  >
+
                   <img src="/images/{{$profil->foto}}"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
+
                   <center>{{auth()->user()->name}}</center>
                   </a>
-                  
+
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
                         <a href="{{ route('home') }}">Dashboard</a>

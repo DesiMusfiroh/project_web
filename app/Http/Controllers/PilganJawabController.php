@@ -50,7 +50,7 @@ class PilganJawabController extends Controller
             // 'nilai' => $nilai
             // ]);
             $sum_score = PilganJawab::where('peserta_id',$request->peserta_id)->sum('score');
-            Peserta::where('id',$request->peserta_id)->update([
+            Peserta::where('user_id',auth()->user()->id)->where('ujian_id',$request->peserta_id)->update([
             'nilai' => $sum_score
             ]);
         } elseif ($check_jawaban) {
@@ -63,7 +63,7 @@ class PilganJawabController extends Controller
                 'status' => $status
             ];
             $sum_score = PilganJawab::where('peserta_id',$request->peserta_id)->sum('score');
-            Peserta::where('id',$request->peserta_id)->update([
+            Peserta::where('user_id',auth()->user()->id)->where('ujian_id',$request->peserta_id)->update([
             'nilai' => $sum_score
             ]);
             $posts = PilganJawab::where('user_id', Auth::user()->id)

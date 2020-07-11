@@ -23,7 +23,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('/logout','HomeController@logout')->name('logout');
 // route profil
 Route::get('profil','ProfilController@index');
-Route::post('profil/store','ProfilController@store');
+Route::post('profil/store','ProfilController@store')->name('storeProfil');
 Route::get('profil/edit/{id}', 'ProfilController@edit');
 Route::patch('profil/update/{id}', 'ProfilController@update');
 

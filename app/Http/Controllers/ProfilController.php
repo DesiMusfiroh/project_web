@@ -37,14 +37,14 @@ class ProfilController extends Controller
         $tujuan_upload = 'images';
         $file->move($tujuan_upload,$nama_file);
 
-        Profil::create([
+        $profil = Profil::create([
             'user_id' => $request->user_id,
             'no_hp' => $request->no_hp,
             'institusi' => $request->institusi,
             'alamat' => $request->alamat,
             'foto' => $nama_file,
         ]);
-
+        dd($profil);
         return redirect()->back()
         ->with('success','Great! Biodata berhasil di simpan');
     }
