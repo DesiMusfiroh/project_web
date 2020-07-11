@@ -81,14 +81,14 @@ class ExamController extends Controller
             foreach ($idujian as $item) {
                 $id = $item->id;
             }
-            // $peserta->ujian_id = $id;
-            // $peserta->nilai = 0;
-            // $peserta->save();
+            $peserta->ujian_id = $id;
+            $peserta->nilai = 0;
+            $peserta->save();
             return redirect()->route('home');
         }
     }
 
-    public function waitExam($id) 
+    public function waitExam($id)
     {
         $peserta = Peserta::find($id);
         $ujian = Ujian::where('id',$peserta->ujian_id)->first();
@@ -123,7 +123,7 @@ class ExamController extends Controller
         }
     }
 
-    public function runExam($id) 
+    public function runExam($id)
     {
         $ujian = Ujian::find($id);
         $paket_soal_id = $ujian->paket_soal_id;

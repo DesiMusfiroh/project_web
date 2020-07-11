@@ -105,18 +105,18 @@ function openFullscreen() {
 
     // alert("ini fullscreen");
 
-    $(elem).mouseleave(function(){
-      // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
-      //
-      // if (!keluar) {
-      //   alert("semangat ngerjainnya. jangan nyontek ya");
-      //   window.history.openFullscreen();
-      // }else {
-      //   closeFullscreen();
-      // }
-      alert("Hayoooo jangan nyontek ya. jangan kemana mana");
-      closeFullscreen();
-    });
+    // $(elem).mouseleave(function(){
+    //   // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
+    //   //
+    //   // if (!keluar) {
+    //   //   alert("semangat ngerjainnya. jangan nyontek ya");
+    //   //   window.history.openFullscreen();
+    //   // }else {
+    //   //   closeFullscreen();
+    //   // }
+    //   alert("Hayoooo jangan nyontek ya. jangan kemana mana");
+    //   closeFullscreen();
+    // });
 
 }
 
