@@ -65,7 +65,7 @@
                                         }
                                     ?>
                                 </td>
-                                <td class="text-center"><a href="{{route('waitExam',$item->ujian->id)}}">
+                                <td class="text-center"><a href="{{route('waitExam',$item->id)}}">
                                       <button type="button" class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit fa-sm"></i> Masuk
                                         </button> </a>

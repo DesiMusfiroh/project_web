@@ -9,6 +9,7 @@ use App\Profil;
 use App\Ujian;
 use App\Peserta;
 use App\PaketSoal;
+use App\EssayJawab;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -29,6 +30,13 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->hasMany(Peserta::class,'user_id');
     }
 
+    public function essay_jawab(){
+      return $this->hasMany(EssayJawab::class,'user_id');
+    }
+    
+    public function pilgan_jawab(){
+      return $this->hasMany(PilganJawab::class,'user_id');
+    }
     /**
      * The attributes that are mass assignable.
      *

@@ -57,3 +57,7 @@ Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
 Route::get('pagination/fetch_data', 'ExamController@fetch_data');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
+
+// menyimpan jawaban essay dan pilgan peserta ujian
+Route::get('store/essay_jawab', 'EssayJawabController@store');
+Route::get('store/pilgan_jawab', 'PilganJawabController@store');

@@ -35,7 +35,7 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" >Kode Akses </th>
                                 <th scope="col" >Jadwal Ujian </th>
-                                <th scope="col" style="width:100px">Opsi</th>
+                                <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -15,7 +15,7 @@ class QuestionController extends Controller
 
     public function __construct()
     {
-      $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -48,26 +48,6 @@ class QuestionController extends Controller
         return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
 
     }
-
-    // public function show($id)
-    // {
-    //     //
-    // }
-    //
-    // public function edit($id)
-    // {
-    //     //
-    // }
-    //
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
-    //
-    // public function destroy($id)
-    // {
-    //     //
-    // }
 
     // SOAL SATUAN CRUD CONTROLLER
     public function create_soal_satuan($paket_soal_id){
@@ -140,10 +120,9 @@ class QuestionController extends Controller
     }
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
-      $soal_satuan = SoalSatuan::find($soal_satuan_id);
-      $soal_satuan->delete();
-      //dd('oke');
-      return redirect()->back()->with('sukses','Soal berhasil dihapus');
+        $soal_satuan = SoalSatuan::find($soal_satuan_id);
+        $soal_satuan->delete();
+        return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
 }
