@@ -55,4 +55,5 @@ Route::get('pagination/fetch_data', 'ExamController@fetch_data');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
 
 
-
+Route::get('store/essay_jawab', 'EssayJawabController@store');
+Route::get('store/pilgan_jawab', 'PilganJawabController@store');

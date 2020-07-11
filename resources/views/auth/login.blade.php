@@ -1,13 +1,26 @@
 @extends('layouts.splash')
 <style>
- html, body {
-                background: url('images/back.png');
+            html, body {
+                background: url('images/backbiru.png');
                 background-size: cover;
                 color: #636b6f;
                 font-family:  "Chelsea Market";
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+
+            button {
+                width: 120px;
+                height: 45px;
+                font-size: 20px;
+                font-family: "Chelsea Market";
+                padding: 5px;
+                margin:10px;
+                background: #35de9d;
+                border-radius: 18px;
+                border: none;
+                box-shadow: 6px 6px 6px rgba(119, 52, 171, 0.46);
             }
 
 </style>
@@ -69,7 +82,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-10 offset-md-2">
-                                <button type="submit" style="border-radius:10px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:15px; box-shadow: 3px 3px 5px grey;">
+                                <button type="submit" style="border-radius:18px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:18px; box-shadow: 3px 3px 5px grey;">
                                    <b> {{ __('Login') }}</b>
                                 </button>
 
