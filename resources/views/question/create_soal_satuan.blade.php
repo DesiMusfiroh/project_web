@@ -6,46 +6,15 @@
         {{session('sukses')}}
       </div>
     @endif
+    @if($errors->has('poin'))
+      <div class="alert alert-danger" role="alert">
+        {{$errors->first('poin')}}
+      </div>
+    @endif
     <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-            <h4 class="card-title"> Tambah Soal  </h4>
+            <h4 class="card-title"> Paket Soal : {{$paket_soal->judul}}  </h4>
         </div>
-      <!-- Kodingan Lama
-            <div class="card-body">
-
-            <div class="container">
-
-                    <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id ?? '' }}">
-                    <div class="row">
-                        <div class="col-md-1">No. 1</div>
-                        <div class="col-md-4">
-                            <select name="jenis" class="form-control" required width="100%">
-                                <option value="">Jenis Soal</option>
-                                <option value="essay" >Essay</option>
-                                <option value="pilgan" >Pilihan Ganda</option>
-                                <option value="pilbanyak">Pilihan Banyak</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="number" name="poin" class="poin form-control" placeholder="Poin" >
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal"
-                                    id="create"
-                                    data-paket_soal_id = "{{ $paket_soal_id ?? '' }}"
-                                    style="box-shadow: 3px 2px 5px grey;"> <i class="fa fa-plus"></i> Tambah Soal</button>
-                        </div>
-                    </div>
-            </div>
-
-        </div>
-    </div>
-
-
-
- -->
-
-<!-- Pembaruan -->
         <div class="card-body">
             <div class="container">
                     <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id }}">

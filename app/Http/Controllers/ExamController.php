@@ -98,7 +98,7 @@ public function koreksi($id){
         }
     }
 
-    public function waitExam($id) 
+    public function waitExam($id)
     {
         $peserta = Peserta::find($id);
         $ujian = Ujian::where('id',$peserta->ujian_id)->first();
@@ -133,7 +133,7 @@ public function koreksi($id){
         }
     }
 
-    public function runExam($id) 
+    public function runExam($id)
     {
         $ujian = Ujian::find($id);
         $paket_soal_id = $ujian->paket_soal_id;
@@ -153,6 +153,15 @@ public function koreksi($id){
         $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
         return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
+    }
+
+    public function finishExam($id){
+        $peserta = Peserta::find($id);
+        $update_finish_peserta = [
+            'status' => 1,
+        ];
+        Peserta::where('id', $id)->update($update_finish_peserta);
+        return redirect()->route('home');
     }
 
 }

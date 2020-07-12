@@ -10,16 +10,16 @@
     <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
     <p>
   </div>
-  <h2>Ujian yang anda ikuti</h2>
 
 @if($peserta->count() != 0)
 
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
+            <div class="card-header" >
+                ujian yang akan dikerjakan
+            </div>
             <div class="card-body">
-
-
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
                             <tr>
@@ -27,7 +27,7 @@
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Waktu Mulai </th>
                                 <th scope="col" >Durasi </th>
-                                <th scope="col" style="width:100px">Keterangan </th>
+                                <th scope="col" >Keterangan </th>
                                 <th scope="col" style="width:100px">Detail </th>
 
                             </tr>

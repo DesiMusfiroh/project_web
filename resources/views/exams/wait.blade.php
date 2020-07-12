@@ -56,7 +56,7 @@ video{
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
-        <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button>
+        <a href="{{route('finishExam',$peserta->id)}}"> <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button> </a> 
       </div>
     </div>
 
@@ -105,18 +105,18 @@ function openFullscreen() {
 
     // alert("ini fullscreen");
 
-    $(elem).mouseleave(function(){
-      // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
-      //
-      // if (!keluar) {
-      //   alert("semangat ngerjainnya. jangan nyontek ya");
-      //   window.history.openFullscreen();
-      // }else {
-      //   closeFullscreen();
-      // }
-      alert("Hayoooo jangan nyontek ya. jangan kemana mana");
-      closeFullscreen();
-    });
+    // $(elem).mouseleave(function(){
+    //   // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
+    //   //
+    //   // if (!keluar) {
+    //   //   alert("semangat ngerjainnya. jangan nyontek ya");
+    //   //   window.history.openFullscreen();
+    //   // }else {
+    //   //   closeFullscreen();
+    //   // }
+    //   alert("Hayoooo jangan nyontek ya. jangan kemana mana");
+    //   closeFullscreen();
+    // });
 
 }
 

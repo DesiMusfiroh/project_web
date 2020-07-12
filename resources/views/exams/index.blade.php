@@ -26,7 +26,7 @@
 
                 <div class="card-body">
 
-
+                @if($ujian->count() != 0) 
                 <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-light text-center">
                             <tr>
@@ -68,7 +68,14 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    @else
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong> Belum ada ujian yang di buat. Silahkan buat ujian baru!</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

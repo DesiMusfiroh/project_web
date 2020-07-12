@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('/logout','HomeController@logout')->name('logout');
 // route profil
 Route::get('profil','ProfilController@index');
-Route::post('profil/store','ProfilController@store');
+Route::post('profil/store','ProfilController@store')->name('storeProfil');
 Route::get('profil/edit/{id}', 'ProfilController@edit');
 Route::patch('profil/update/{id}', 'ProfilController@update');
 
@@ -58,10 +59,15 @@ Route::post('/joinexam','ExamController@joinExam')->name('joinExam');
 Route::get('/waitexam/{id}','ExamController@waitExam',['id'=> 'id'])->name('waitExam');
 Route::get('pagination/fetch_data', 'ExamController@fetch_data');
 Route::get('/runexam/{id}','ExamController@runExam',['id'=> 'id'])->name('runExam');
+Route::get('/finishexam/{id}','ExamController@finishExam',['id'=> 'id'])->name('finishExam');
 
 // menyimpan jawaban essay dan pilgan peserta ujian
 Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
+
+
+Route::get('/resultexam','PesertaController@resultIndex')->name('resultExam');
+Route::get('/resultdetail/{id}','PesertaController@resultDetail')->name('resultDetail');
 
 Auth::routes();
 

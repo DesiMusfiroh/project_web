@@ -23,7 +23,7 @@
 
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
-                        <td> {{$item->pilgan->pertanyaan}} </td>
+                        <td><p>{{$item->pilgan->pertanyaan}} </p> </td>
                     </tr>
                     <tr>  
                         <td>
@@ -37,6 +37,8 @@
                     <input type="hidden" id="pilgan_id" value="{{$item->pilgan->id}}">
                     <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
                     <input type="hidden" id="peserta_id" value="{{$ujian->id}}">
+                    <input type="hidden" id="poin" value="{{$item->poin}}">
+                    <input type="hidden" id="kunci" value="{{$item->pilgan->kunci}}">
                     @endif
                 </table>
                 </div>
@@ -100,6 +102,15 @@ $('input[type=radio][name="pilihan"]').click(function() {
     var user_id      = $("#user_id").val();
     const ujian_id   = $('#ujian_id').val();
 
+    var poin        = $("#poin").val();
+    var kunci       = $("#kunci").val();
+    if ( jawab_pilgan == kunci ) {
+        var score  = poin;
+        var status = "T";
+    } else {
+        var score  = 0;
+        var status = "F"; 
+    }
     $.ajax({
         url: "{{ url('store/pilgan_jawab') }}",
         type: "GET",
@@ -109,6 +120,8 @@ $('input[type=radio][name="pilihan"]').click(function() {
             pilgan_id: pilgan_id,
             peserta_id: peserta_id,
             user_id: user_id,
+            score: score,
+            status: status,
             ujian_id: ujian_id
         },
         success: function(data) {

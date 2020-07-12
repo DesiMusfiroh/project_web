@@ -10,31 +10,34 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
-    
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
- 
+
 
   </head>
-  
-  <?php  use App\Profil;
-    $profil = Profil::where('user_id', Auth::user()->id )->first(); 
-?>
-  <body>
-  @if ( Profil::where('user_id', Auth::user()->id )->first() != null ) 
+
+    <?php  use App\Profil;
+        $profil = Profil::where('user_id', Auth::user()->id )->first();
+    ?>
+    <body>
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
-		  		<a href="#"  >
-                  <img src="/images/{{$profil->foto}}"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
-                  <center>{{auth()->user()->name}}</center>
-                  </a>
-                  
+		  		<a href="#">
+                    @if ($profil !== null)
+                        <img src="/images/{{$profil->foto}}"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
+                        <center>{{auth()->user()->name}}</center>
+                        </a>
+                    @else
+                        <img src="/images/logo.png"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
+                    @endif
+
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
                         <a href="{{ route('home') }}">Dashboard</a>
@@ -50,6 +53,9 @@
                     </li>
                     <li class="nav-item ">
                         <a href="{{route('getExam')}}">Create Exam</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{route('resultExam')}}">Result Exam</a>
                     </li>
                     <li class="nav-item ">
                         <a href="#">Schedule</a>
@@ -156,6 +162,7 @@
     <script src="js/main.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
     @yield('ckeditor')
 
     <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
