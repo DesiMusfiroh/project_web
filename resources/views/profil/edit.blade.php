@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
 @section('content')
 <?php use App\Profil ; 
@@ -19,9 +19,9 @@
                                 <h4 class="card-title">Foto Profil</h4>
                             </div>
                             <div class="card-body">                                
-                                <div class="form-group">
+                                <div class="form-group text-center">
                                     <label for="foto"> <b> Foto :  </b></label> <br>
-                                    <img src="{{ asset('images/' . $profil->foto) }}" width="100px" height="100px" alt="{{ $profil->foto }}">
+                                    <img src="{{ asset('images/' . $profil->foto) }}" width="150px"  alt="{{ $profil->foto }}">
                                     <hr>
                                     <input type="file"  name="foto">
                                     @if($errors->has('foto'))
@@ -34,7 +34,7 @@
 
                     <div class="col-md-8">
                         <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 10px grey;">
-                            <div class="card-header  pt-3 pb-2 bg-primary text-center"  style="border-radius: 20px 20px 0px 0px;  background-color:#6BCB9D;">
+                            <div class="card-header  pt-3 pb-2  text-center"  style="border-radius: 20px 20px 0px 0px;  background-color:#6BCB9D;">
                                 <h4 class="card-title"> Profil </h4>
                             </div>
                             <div class="card-body">
