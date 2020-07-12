@@ -21,6 +21,7 @@ class ExamController extends Controller
     public function index()
     {
         $ujian = Ujian::where('user_id',auth()->user()->id)->get();
+
         //  $ujian = Ujian::join('paket_soal',function ($join){
         //   $join->on('users.id','=','paket_soal.user_id')
         //        ->where('paket_soal.user','=',Auth::user()->id);

@@ -56,7 +56,7 @@
                             <tr>
                               <td>{{$loop->iteration}}</td>
                               <td class="text-center">{{$item->user->name}}</td>
-                              <td class="text-center">{{$item->nilai}}</td>
+                              <td class="text-center">{{number_format($item->nilai,0)}}</td>
                               <td class="text-center">  <a href="{{route('koreksi',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm" >
                                         Koreksi

@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-
+    <link rel="icon" type="image/png" href="{{asset('/images/LiveEx.png')}}">
   </head>
 
     <?php  use App\Profil;
