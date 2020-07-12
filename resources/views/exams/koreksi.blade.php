@@ -103,6 +103,13 @@
             @endif
             </div>
             <div id="hasil">
+                @if ($peserta->nilai !== null)
+                <div class="alert alert-success" role="alert">
+                    Total Score : {{$peserta->nilai}} <br>
+                    Total Poin : {{$total_poin}} <br>
+                    Nilai Akhir : {{$nilai_akhir}}
+                </div>
+                @endif
                 <h5>Hasil Ujian Pilihan Ganda Peserta</h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
