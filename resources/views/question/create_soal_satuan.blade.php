@@ -47,7 +47,7 @@
                     <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                     <div class="col-md-2">
                         <button class="btn btn-sm btn-primary">Edit</button>
-                        <a href="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus"><button class="btn btn-sm btn-danger">Hapus</button> </a>
+                        <a href="#" class="btn btn-sm btn-danger hapus">Hapus</a>
                     </div>
                 </div>
                 <table>
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {{$item->essay->jawaban}} </td>
+                        <td> {!!$item->essay->jawaban!!} </td>
                     </tr>
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
@@ -359,8 +359,17 @@ $(document).ready(function(){
         $('.paket_soal_id').val(paket_soal_id);
 
     });
+
 });
 
+</script>
+<script>
+$('.hapus').click(function(){
+  const menghapus = confirm('Apakah mau dihapus?');
+  if (menghapus) {
+    window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
+  }
+})
 </script>
 
 

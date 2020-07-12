@@ -9,7 +9,7 @@ class Profil extends Model
 {
     protected $table ='profil';
     protected $fillable = ['user_id','foto','no_hp','alamat','institusi','jk'];
-    public function users() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 }
