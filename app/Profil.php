@@ -8,7 +8,7 @@ use App\User;
 class Profil extends Model
 {
     protected $table ='profil';
-    protected $fillable = ['user_id','foto','no_hp','alamat','institusi','gender'];
+    protected $fillable = ['user_id','foto','no_hp','alamat','institusi','jk'];
     public function users() {
         return $this->belongsTo(User::class);
     }
