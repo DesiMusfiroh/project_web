@@ -20,8 +20,13 @@
                             </div>
                             <div class="card-body">                                
                                 <div class="form-group">
-                                    <label for="file_foto"> <b> Foto :  </b></label> <br>
-                                    <input type="file" src="{{ asset('images/' . $profil->foto) }}" name="foto" alt="{{ $profil->foto }}" value="$profil->foto">
+                                    <label for="foto"> <b> Foto :  </b></label> <br>
+                                    <img src="{{ asset('images/' . $profil->foto) }}" width="100px" height="100px" alt="{{ $profil->foto }}">
+                                    <hr>
+                                    <input type="file"  name="foto">
+                                    @if($errors->has('foto'))
+                                                <span class="help-block">{{$errors->first('foto')}}</span>
+                                    @endif
                                 </div>                                             
                             </div>
                         </div>
@@ -70,18 +75,33 @@
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }} ">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="no_hp"> <b> Nomor HP : </b> </label>
-                                            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{$profil->no_hp}}" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                            <label for="jk"> <b> Jenis Kelamin : </b> </label>
+                                            <input type="text" class="form-control" id="jk" name="jk" value="{{$profil->jk}}" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                            @if($errors->has('jk'))
+                                                <span class="help-block">{{$errors->first('jk')}}</span>
+                                            @endif
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="nim"> <b> Institusi  : </b> </label>
-                                            <input type="text" class="form-control" id="institusi" name="institusi"  value="{{$profil->institusi}}" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                            <label for="no_hp"> <b> Nomor HP : </b> </label>
+                                            <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{$profil->no_hp}}" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                            @if($errors->has('no_hp'))
+                                                <span class="help-block">{{$errors->first('no_hp')}}</span>
+                                            @endif
                                         </div>
                                     </div>
-                   
+                                    <div class="form-group mt-1">
+                                        <label for="institusi"> <b> Institusi  : </b> </label>
+                                        <input type="text" class="form-control" id="institusi" name="institusi"  value="{{$profil->institusi}}" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
+                                        @if($errors->has('institusi'))
+                                                <span class="help-block">{{$errors->first('institusi')}}</span>
+                                        @endif
+                                    </div>
                                     <div class="form-group mt-1">
                                         <label for="alamat"> <b> Alamat : </b> </label>
                                         <textarea class="form-control" id="alamat" rows="2" name="alamat" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"> {{$profil->alamat}} </textarea>
+                                        @if($errors->has('alamat'))
+                                                <span class="help-block">{{$errors->first('alamat')}}</span>
+                                         @endif
                                     </div>
 
                                     <div class="text-right"> <button type="submit" class="btn btn-primary" style="box-shadow: 3px 2px 5px grey;"> Update </button> </div>

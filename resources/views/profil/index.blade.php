@@ -65,6 +65,11 @@
                                             <td> : </td>
                                             <td>{{ $profil->alamat }}</td>
                                         </tr>
+                                        <tr>
+                                            <td col><b> Jenis Kelamin </b> </td>
+                                            <td> : </td>
+                                            <td>{{ $profil->jk }}</td>
+                                        </tr>
                                     </table>
                             </div>
                         </div>
@@ -152,12 +157,20 @@
                                             <span class="help-block">{{$errors->first('institusi')}}</span>
                                             @endif
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jk"> <b> Jenis Kelamin : </b> </label>
+                                            <input type="text" class="form-control" id="jk" name="jk" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
+                                            @if($errors->has('jk'))
+                                            <span class="help-block">{{$errors->first('jk')}}</span>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <div class="form-group mt-0 text-center ">
                                         <label for="alamat" class="text-left"><b> Alamat : </b> </label>
                                         <textarea class="form-control" id="alamat" rows="2" name="alamat" style="border-radius:10px;  box-shadow: 2px 1px 3px grey;"> </textarea>
                                     </div>
+
 
                                     <div class="text-right" > <button type="submit" class="btn btn-primary" style="box-shadow: 3px 2px 5px grey;">Save </button> </div>
 

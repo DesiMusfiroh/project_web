@@ -29,7 +29,9 @@ class ProfilController extends Controller
             'no_hp' => 'required',
             'institusi' => 'required',
             'alamat' => 'required',
+            'jk' => 'required',
             'foto' => 'required|file|image|mimes:png,jpg,jpeg|max:2048',
+         
         ]);
 
         $file = $request->file('foto');
@@ -42,7 +44,9 @@ class ProfilController extends Controller
             'no_hp' => $request->no_hp,
             'institusi' => $request->institusi,
             'alamat' => $request->alamat,
+            'jk' => $request->jk,
             'foto' => $nama_file,
+
         ]);
         dd($profil);
         return redirect()->back()
@@ -67,19 +71,25 @@ class ProfilController extends Controller
             'no_hp' => 'required',
             'institusi' => 'required',
             'alamat' => 'required',
-            'foto' => 'required|file|image|mimes:png,jpg,jpeg|max:2048',
+            'jk' => 'required',
+            'foto' => 'nullable|file|image|mimes:png,jpg,jpeg|max:2048', //ini agar foto bisa null
         ]);
 
+        $profil = Profil::find($id);//tampilkan profil
+        $nama_file= $profil->foto;//simpan nama file foto yang sudah ada
+
+        if ($request->hasFile('foto')) {
         $file = $request->file('foto');
         $nama_file = time()."_".$file->getClientOriginalName();
         $tujuan_upload = 'images';
         $file->move($tujuan_upload,$nama_file);
-
+        }
         $update = [
             'user_id' => $request->user_id,
             'no_hp' => $request->no_hp,
             'institusi' => $request->institusi,
             'alamat' => $request->alamat,
+            'jk' => $request->jk,
             'foto' => $nama_file,
         ];
 
