@@ -7,6 +7,7 @@ use App\Ujian;
 use App\Peserta;
 use App\EssayJawab;
 use App\PilganJawab;
+use App\User;
 use Str;
 use Auth;
 use Illuminate\Http\Request;

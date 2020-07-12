@@ -9,10 +9,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background: #EDE5E5; ">
                     <div class="row">
                         <div class="col-md-6">
-                            Ujian
+                            <strong style="font-size:18px">  Ujian </strong>
                         </div>
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
@@ -28,7 +28,7 @@
 
                 @if($ujian->count() != 0) 
                 <table class="table table-striped table-bordered table-sm">
-                        <thead class="thead-light text-center">
+                        <thead class="thead-dark text-center" >
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Nama Ujian </th>

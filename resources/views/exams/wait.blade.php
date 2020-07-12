@@ -3,7 +3,7 @@
 @section('content')
 <style>
 :fullscreen {
-  background-color: #7BEDC4;
+  background-color:#a7ebc9;
 }
 video{
     background: #ccc;
@@ -12,25 +12,48 @@ video{
     margin-left: 85%
 }
 </style>
-
+<div class="row">
+<div class="col-md-8">
 <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);" >
-    <div class="card-header text-center "  style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-        <h4>{{ $ujian->nama_ujian}} </h4>
+    <div class="card-header text-center "  style="border-radius: 20px 20px 0px 0px;  background: #EDE5E5;">
+        <strong style="font-size:18px;">{{ $ujian->nama_ujian}}</strong>
     </div>
     <div class="card-body">
         <?php
+          use App\User;
           $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
           $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
+          $pembuat_ujian = User::where('id',$ujian->user_id)->value('name');
         ?>
-        <p>Durasi : {{ $durasi_jam }} jam {{ $durasi_menit }} menit</p>
-        <p>Waktu Mulai : {{$ujian->waktu_mulai}}</p>
+        <table>
+          <tr><td width="140px">Pembuat Ujian </td> <td  width="10px"> : </td> <td>{{$pembuat_ujian}}</td></tr>
+          <tr><td>Waktu Mulai </td> <td> : </td> <td>{{$ujian->waktu_mulai}}</td></tr>
+          <tr><td>Durasi Ujian </td> <td> : </td> <td> {{ $durasi_jam }} jam {{ $durasi_menit }} menit</td></tr>
+        </table>
+        <div class="alert alert-warning text-center mt-2 pt-2 pb-2 mb-1">
+          <div id="teks"></div>
+        </div>
 
-        <div id="teks"></div>
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
-        <button class="btn btn-success" onclick="openFullscreen();">Mulai Ujian</button>
+        <button class="btn btn-success" onclick="openFullscreen();" style="width:400px; box-shadow: 3px 2px 5px grey;">Mulai Ujian</button>
     </div>
+</div>
+</div>
+
+<div class="col-md-4">
+  <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Ketentuan</h4>
+          <ul class="pl-3">
+            <li> Ujian dapat di mulai ketika telah memasuki <b>waktu mulai ujian.</b></li>
+            <li> <b>Kamera</b> peserta akan selalu aktif selama pengerjaan ujian.</li>
+            <li> Tidak diperkenankan keluar dari <b>mode fullscreen</b> jika ujian belum diselesaikan.</li>
+          </ul>
+          <hr>
+        </div>
+    </div>
+  </div>
 </div>
 
 
@@ -41,7 +64,7 @@ video{
     <div class="row">
       <div class="col-md-12">
         <div class="card pt-3 pl-5 pr-5 pb-3">
-          <h4>{{ $ujian->paket_soal->judul }}</h4>
+          <h4 style="font-family:Chelsea Market;">{{ $ujian->paket_soal->judul }}</h4>
           <h6>Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </h6>
           <div id="teks_durasi"></div>
         </div>

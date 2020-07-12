@@ -19,7 +19,13 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-
+    <style>
+        .nav-icon{
+            width:30px;
+            color: #82e8b5;
+            font-size: 20px;
+        }
+    </style>
   </head>
 
     <?php  use App\Profil;
@@ -27,12 +33,12 @@
     ?>
     <body>
 		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar">
+			<nav id="sidebar" >
 				<div class="p-4 pt-5">
 		  		<a href="#">
                     @if ($profil !== null)
                         <img src="/images/{{$profil->foto}}"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
-                        <center>{{auth()->user()->name}}</center>
+                        <center> <strong>{{auth()->user()->name}}</strong> </center>
                         </a>
                     @else
                         <img src="/images/logo.png"  style="width: 150px; height: 150px; border-radius: 50%; display: block; margin: auto; ">
@@ -40,26 +46,24 @@
 
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
-                        <a href="{{ route('home') }}">Dashboard</a>
+                        <a href="{{ route('home') }}"><strong style="font-size:16px"> <i class="nav-icon fa fa-home"></i>  Dashboard</strong> </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil">Profil</a>
+                        <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil"><strong style="font-size:16px"> <i class="nav-icon fa fa-user"></i>  Profil</strong></a>
                     </li>
                     <li class="nav-item ">
-                    <a type="button"  data-toggle="modal" data-target="#exampleModal" >Join Exam</a>
+                    <a type="button"  data-toggle="modal" data-target="#exampleModal" ><strong style="font-size:16px"> <i class="nav-icon fa fa-plus"></i> Join Exam</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('question')}}">Question</a>
+                        <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Question</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('getExam')}}">Create Exam</a>
+                        <a href="{{route('getExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-thumb-tack"></i> Create Exam</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('resultExam')}}">Result Exam</a>
+                        <a href="{{route('resultExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-graduation-cap"></i> Result Exam</strong></a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#">Schedule</a>
-                    </li>
+                  
                     <!-- <li class="nav-item ">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Question</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -88,9 +92,7 @@
                 </ul>
 
 	        <div class="footer">
-	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	        	<p> Copyright &copy;<script>document.write(new Date().getFullYear());</script></p>
 	        </div>
 
 	      </div>
@@ -100,7 +102,7 @@
 
     <div id="content" class="p-4 p-md-5">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #daf5e4; box-shadow: 3px 3px 10px #b5aeb8">
           <div class="container-fluid">
 
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -125,8 +127,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}  - <span class="caret"></span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle mb-0 mt-0 pt-0 pb-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <strong style="font-size:15px">{{ Auth::user()->name }}  <i class="fa fa-user mr-3 ml-1" style="font-size:24px"></i> <span class="caret"></span> </strong> 
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

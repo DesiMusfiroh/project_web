@@ -1,14 +1,14 @@
 @extends('layouts.sidebar')
 
 @section('content')
-
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row  justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background: #EDE5E5; ">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4>Paket Soal</h4>
+                            <strong style="font-size:18px"> Paket Soal </strong>
                         </div>
                         <div class="col-md-6 ">
                             <div class="text-right" style="font-size:20px; font-family:segoe ui black; font-weight:bold;">
@@ -75,5 +75,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection
