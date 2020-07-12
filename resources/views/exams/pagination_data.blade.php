@@ -18,7 +18,6 @@
                       <textarea class="form-control" name="jawab" id="jawaban_essay" cols="30" rows="3" ></textarea>
                       <input type="hidden" id="essay_id" value="{{$item->essay->id}}">
                       <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
-                      <input type="hidden" id="peserta_id" value="{{$ujian->id}}">
                     </div>
 
                 @elseif($item->jenis == "Pilihan Ganda")
@@ -36,7 +35,6 @@
                     </tr>
                     <input type="hidden" id="pilgan_id" value="{{$item->pilgan->id}}">
                     <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
-                    <input type="hidden" id="peserta_id" value="{{$ujian->id}}">
                     <input type="hidden" id="poin" value="{{$item->poin}}">
                     <input type="hidden" id="kunci" value="{{$item->pilgan->kunci}}">
                     @endif
@@ -67,6 +65,7 @@
     </div>
 
     <input type="hidden" value="{{ $ujian->id }}" id="ujian_id">
+    <input type="hidden" value="{{ $peserta->id }}" id="peserta_id">
 
 <script>
 // Pengaturan JS untuk simpan jawaban essay
