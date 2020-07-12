@@ -26,6 +26,7 @@
     $profil = Profil::where('user_id', Auth::user()->id )->first(); 
 ?>
   <body>
+  @if ( Profil::where('user_id', Auth::user()->id )->first() != null ) 
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="p-4 pt-5">
