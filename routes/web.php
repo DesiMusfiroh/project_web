@@ -64,6 +64,7 @@ Route::get('/finishexam/{id}','ExamController@finishExam',['id'=> 'id'])->name('
 // menyimpan jawaban essay dan pilgan peserta ujian
 Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
+Route::patch('/essay_jawab/score/update', 'EssayJawabController@updateScore');
 
 
 Route::get('/resultexam','PesertaController@resultIndex')->name('resultExam');

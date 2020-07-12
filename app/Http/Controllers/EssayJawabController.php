@@ -48,4 +48,13 @@ class EssayJawabController extends Controller
         return response()->json($posts);
     }
 
+    public function updateScore(Request $request)
+    {
+        $essay_jawab = EssayJawab::findOrFail($request->id);
+        $update_essay_jawab = [
+            'score' => $request->score
+        ];
+        EssayJawab::where('id', $request->id)->update($update_essay_jawab);
+        return redirect()->back();
+    }
 }

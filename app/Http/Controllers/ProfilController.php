@@ -44,7 +44,6 @@ class ProfilController extends Controller
             'alamat' => $request->alamat,
             'foto' => $nama_file,
         ]);
-        dd($profil);
         return redirect()->back()
         ->with('success','Great! Biodata berhasil di simpan');
     }

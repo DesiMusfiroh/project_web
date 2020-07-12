@@ -75,11 +75,14 @@ class ExamController extends Controller
 
 //Koreksi
 public function koreksi($id){
-    $jawaban_essay = EssayJawab::all();
-    $jawaban_pilgan = PilganJawab::all();
-    $soal_satuan=SoalSatuan::all();
-   
-    return view('exams.koreksi', compact('jawaban_essay','jawaban_pilgan','soal_satuan'));
+
+    $peserta = Peserta::find($id);
+    $essay_jawab = EssayJawab::where('peserta_id', $peserta->id)->where('score','!=',null)->get();
+    $pilgan_jawab = PilganJawab::where('peserta_id', $peserta->id)->get();
+
+    $koreksi_jawaban = EssayJawab::where('peserta_id', $peserta->id)->where('score','=',null)->get();
+
+    return view('exams.koreksi', ['peserta' => $peserta, 'essay_jawab' => $essay_jawab, 'pilgan_jawab' => $pilgan_jawab, 'koreksi_jawaban' => $koreksi_jawaban]);
 }
 
     public function joinExam(Request $request){
