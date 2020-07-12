@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 //use RealRashid\SweetAlert\Facades\Alert;
+=======
+>>>>>>> 3fb859440b95cb8d8850f774fd9997608a16eff8
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +67,7 @@ Route::get('/finishexam/{id}','ExamController@finishExam',['id'=> 'id'])->name('
 // menyimpan jawaban essay dan pilgan peserta ujian
 Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
+Route::patch('/essay_jawab/score/update', 'EssayJawabController@updateScore');
 
 
 Route::get('/resultexam','PesertaController@resultIndex')->name('resultExam');

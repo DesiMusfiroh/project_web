@@ -2,328 +2,179 @@
 
 @section('content')
     @if(session('sukses'))
-      <div class="alert alert-success" role="alert">
-        {{session('sukses')}}
-      </div>
+        <div class="alert alert-success" role="alert">
+            {{session('sukses')}}
+        </div>
     @endif
-        <div class="container">
-            <?php $i=0; ?>
-            @foreach($jawaban_essay as $item)
+    <?php 
+        use App\Profil;
+        $fotoprofil = Profil::where('user_id',$peserta->user->id)->value('foto');  
+        $institusi   = Profil::where('user_id',$peserta->user->id)->value('institusi');  
+        $no_hp      = Profil::where('user_id',$peserta->user->id)->value('no_hp');  
+    ?>
+    <div class="row mb-4">
+        <div class="col-sm-7">
+            <div class="card"  style="height: 120px;">
+                <div class="card-body pb-2 pt-2">
                 <div class="row">
-                    <div><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
-                    <div class="col-md-1 text-right"><h6>{{$item->jawab}}</h6></div>
-                    <div class="col-md-7 text-right"><h6>Jawaban: {{$item->jawab}}</h6></div>
-                    <div class="col-md-7 text-right"><h6>Score: {{$item->score}}</h6></div>
+                    <div class="col-sm-3 ">  
+                        @if ( $fotoprofil !== null)
+                            <img src="/images/{{$fotoprofil}}" class="card-img" width="140px" >
+                        @else 
+                            <img src="/images/logo.png" class="card-img" alt="..."  width="100px">
+                        @endif
+                    </div>
+                    <div class="col-sm-9">
+                    <h5 class="pb-0 mb-0 pt-3 ">{{ $peserta->user->name }} </h5> 
+                            @if ($institusi !== null) 
+                                <table>
+                                    <tr> <td width="100px"> institusi   </td> <td> : </td> <td> {{$institusi}}  </td> </tr>
+                                    <tr> <td> Nomor HP  </td> <td> : </td> <td> {{$no_hp}}  </td> </tr>
+                                </table>
+                            @else
+                                <table>
+                                    <tr> <td width="100px"> institusi   </td> <td> : </td> <td> - </td> </tr>
+                                    <tr> <td> Nomor HP  </td> <td> : </td> <td> - </td> </tr>
+                                </table>
+                            @endif
+                    </div>
                 </div>
-            @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card text-right" style="height: 120px;">
+            <div class="card-body">
+                <h5 class="card-title">{{$peserta->ujian->nama_ujian}}</h5>
+                <p class="card-text">Paket Soal {{$peserta->ujian->paket_soal->judul}}</p>
+            </div>
+            </div>
         </div>
     </div>
-</div>
 
+    <div class="card text-center">
+     
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active"  id="nav_koreksi">Koreksi Jawaban Peserta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="nav_hasil">Hasil Ujian Peserta</a>
+            </li>
+            </ul>
+        </div>
+    
+        <div class="card-body">
+            <div id="koreksi">
+            @if($koreksi_jawaban->count() != 0) 
 
-
-<!-- Create Modal (essay)-->
-<div class="modal fade create_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <h5 class="modal-title " id="exampleModalLabel"> Soal No. </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                @foreach ($koreksi_jawaban as $item)
+                <div class="alert alert-success text-left" role="alert">
+                    Pertanyaan : {{$item->essay->pertanyaan}} <br>
+                    kunci jawaban : {{$item->essay->jawaban}} <br>
+                    Jawaban Peserta : {{$item->jawab}}
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 text-left"></div>
+                        <div class="col-md-4 ">
+                            <form action="/essay_jawab/score/update" method="post"> 
+                            @csrf
+                            @method('PATCH')
+                                <input type="hidden" name="id" id="id" value="{{$item->id}}">  
+                                <div class="input-group">
+                                <input type="number" name="score" class="form-control" placeholder="Score" aria-label="score" aria-describedby="button-addon2" max="{{$item->essay->soal_satuan->poin}}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit" id="simpan">Simpan</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>         
+                </div>     
+                @endforeach
+            @else
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong> Tidak ada jawaban peserta yang perlu di koreksi </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+            @endif
+            </div>
+            <div id="hasil">
+                <h5>Hasil Ujian Pilihan Ganda Peserta</h5>
+                <table class="table table-striped table-bordered table-sm">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th scope="col" style="width:50px">No</th>
+                            <th scope="col" style="width:400px">Jawaban Peserta</th>
+                            <th scope="col" style="width:150px">Kunci Jawaban</th>
+                            <th scope="col" style="width:150px">Keterangan</th>
+                            <th scope="col" style="width:140px">score</th>
+                              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i=0; ?>   
+                        @foreach ($pilgan_jawab as $item)
+                        <tr>
+                            <td scope="row"><?php  $i++;  echo $i; ?></td>
+                            <td>{{$item->jawab}}</td>
+                            <td>{{$item->pilgan->kunci}}</td>
+                            <td>@if ($item->status == 'T') Benar @else Salah @endif</td>
+                            <td>{{$item->score}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                <form action="{{route('storeSingleQuestionEssay')}}" enctype="multipart/form-data" method="post">
-                   @csrf
-                    <div class="modal-body">
-                        <div class="container">
-
-                            <input type="hidden" name="paket_soal_id" class="paket_soal_id" value="">
-                            <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="">
-
-                            <div class="form-group row">
-                                <label for="nama" class="col-sm-2 col-form-label">No. 1</label>
-                                <div class="col-sm-6">
-                                <input type="text" class="form-control" id="jenis" name="jenis" value="Essay" readonly >
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend" >
-                                            <div class="input-group-text">Poin</div>
-                                        </div>
-                                        <input type="text" name="poin" id="poin" value=""  class="form-control text-right">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaanessay" rows="2" name="pertanyaan" placeholder=""> </textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="alamat"> Jawaban Benar</label>
-                                <textarea class="form-control" id="jawaban" rows="2" name="jawaban" placeholder="opsional"> </textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Simpan</button>
-                    </div>
-                </form>
+                <h5>Hasil Ujian Essay Peserta</h5>
+                <table class="table table-striped table-bordered table-sm">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th scope="col" style="width:50px">No</th>
+                            <th scope="col" style="width:400px">Pertanyaan</th>
+                            <th scope="col" style="width:150px">Jawaban Peserta</th>
+                            <th scope="col" style="width:140px">score</th>
+                              
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i=0; ?>   
+                        @foreach ($essay_jawab as $item)
+                        <tr>
+                            <td scope="row"><?php  $i++;  echo $i; ?></td>
+                            <td>{{$item->essay->pertanyaan}}</td>
+                            <td>{{$item->jawab}}</td>
+                            <td>{{$item->score}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+              
             </div>
         </div>
     </div>
-<!-- Penutup Create Modal -->
 
-<!-- Create Modal (Pilgan)-->
-<div class="modal fade create_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <h5 class="modal-title " id="exampleModalLabel"> Soal No. </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <form action="{{route('storeSingleQuestionPilgan')}}" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                    <div class="modal-body">
-                        <div class="container">
-
-                            <input type="hidden" name="paket_soal_id" class="paket_soal_id" value="">
-                            <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="">
-
-                            <div class="form-group row">
-                                <label for="nama" class="col-sm-2 col-form-label">No. 1</label>
-                                <div class="col-sm-6">
-                                <input type="text" class="form-control" id="jenis" name="jenis" value="Pilihan Ganda" readonly>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend" >
-                                            <div class="input-group-text">Poin</div>
-                                        </div>
-                                        <input type="text" name="poin" id="poin" value=""  class="form-control text-right">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="alamat"> Pertanyaan </label>
-                                <textarea class="form-control" id="pertanyaanpilgan" rows="2" name="pertanyaan" placeholder=""> </textarea>
-                            </div>
-                            <div class="form-group" >
-                                <!-- Pilihan A-->
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                        <span class="input-group-text" > A </span>
-                                    </div>
-                                    <input type="text" name="pil_a" id="pil_a" class="form-control" >
-                                </div>
-                                <!-- Pilihan B-->
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                        <span class="input-group-text"> B </span>
-                                    </div>
-                                    <input type="text" name="pil_b" id="pil_b"  class="form-control" >
-                                </div>
-                                 <!-- Pilihan C-->
-                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                        <span class="input-group-text" > C </span>
-                                    </div>
-                                    <input type="text" name="pil_c" id="pil_c"  class="form-control" >
-                                </div>
-                                 <!-- Pilihan D-->
-                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                        <span class="input-group-text"> D </span>
-                                    </div>
-                                    <input type="text" name="pil_d" id="pil_d"  class="form-control" >
-                                </div>
-                                 <!-- Pilihan E-->
-                                 <div class="input-group mb-2">
-                                    <div class="input-group-prepend" style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;">
-                                        <span class="input-group-text"> E </span>
-                                    </div>
-                                    <input type="text" name="pil_e" id="pil_e" class="form-control" >
-                                </div>
-                                <div class="input-group-inline">
-                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Jawaban Benar</label>
-                                        <select class="custom-select my-1 mr-sm-2" name="kunci" >
-                                            <option selected>Choose...</option>
-                                            <option value="A" >A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                            <option value="D">D</option>
-                                            <option value="E">E</option>
-                                        </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-info">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<!-- Penutup Create Modal -->
-
-<!-- Create Modal (pilbanyak)-->
-    <div class="modal fade create_modal_pilbanyak"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" >
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h5 class="modal-title " id="exampleModalLabel"> Soal No. </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="#" enctype="multipart/form-data" method="post">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="container">
-
-                                <input type="hidden" name="paket_soal_id" id="paket_soal_id" value="">
-                                <input type="hidden" name="soal_satuan_id" id="soal_satuan_id" value="">
-
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-2 col-form-label">No. 1</label>
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="jenis" name="jenis" value="Pilihan Banyak" readonly>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="input-group mb-2">
-                                            <div class="input-group-prepend" >
-                                                <div class="input-group-text">Poin</div>
-                                            </div>
-                                            <input type="text" name="poin" id="poin" value=""  class="form-control text-right">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="alamat"> Pertanyaan </label>
-                                    <textarea class="form-control" id="pertanyaan" rows="2" name="pertanyaan" placeholder=""> </textarea>
-                                </div>
-                                <div class="form-group">
-
-
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-            <input type="checkbox"/>
-                <div class="control__indicator"></div>
-        </label>
-        <div class="col-sm-10">
-        <input type="text" name="#" id="#"  class="form-control" >
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-            <input type="checkbox"/>
-                <div class="control__indicator"></div>
-        </label>
-        <div class="col-sm-10">
-        <input type="text" name="#" id="#"  class="form-control" >
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-            <input type="checkbox"/>
-                <div class="control__indicator"></div>
-        </label>
-        <div class="col-sm-10">
-        <input type="text" name="#" id="#"  class="form-control" >
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-            <input type="checkbox"/>
-                <div class="control__indicator"></div>
-        </label>
-        <div class="col-sm-10">
-        <input type="text" name="#" id="#"  class="form-control" >
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-            <input type="checkbox"/>
-                <div class="control__indicator"></div>
-        </label>
-        <div class="col-sm-10">
-        <input type="text" name="#" id="#"  class="form-control" >
-        </div>
-    </div>
-
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-info">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-<!-- Penutup Create Modal -->
-
+    
+    
 <script>
+$("#hasil").hide();
+$("#koreksi").show();
 $(document).ready(function(){
-    $(document).on('click','#create', function(){
-        var id              = $(this).data('id');
-        var paket_soal_id   = $(this).data('paket_soal_id');
-
-        $('#id').val(id);
-        $('.paket_soal_id').val(paket_soal_id);
-
+    $('#nav_koreksi').click(function() {
+        $("#hasil").hide();
+        $("#nav_koreksi").attr('class','nav-link active');
+        $("#nav_hasil").attr('class','nav-link');
+        $("#koreksi").show();
+    });
+    $('#nav_hasil').click(function() {
+        $("#koreksi").hide();
+        $("#nav_hasil").attr('class','nav-link active');
+        $("#nav_koreksi").attr('class','nav-link ');
+        $("#hasil").show();   
     });
 });
-
 </script>
-
-
-@stop
-@section('ckeditor')
-  <script>
-                  ClassicEditor
-                              .create( document.querySelector( '#pertanyaanessay' ) )
-                              .then( pertanyaanessay => {
-                                      console.log( pertanyaanessay );
-                              } )
-                              .catch( error => {
-                                      console.error( error );
-                              } );
-                              ClassicEditor
-                                          .create( document.querySelector( '#jawaban' ) )
-                                          .then( jawaban => {
-                                                  console.log( jawaban );
-                                          } )
-                                          .catch( error => {
-                                                  console.error( error );
-                                          } );
-
-                                          ClassicEditor
-                                                      .create( document.querySelector( '#pertanyaanpilgan' ) )
-                                                      .then( pertanyaanpilgan => {
-                                                              console.log( pertanyaanpilgan );
-                                                      } )
-                                                      .catch( error => {
-                                                              console.error( error );
-                                                      } );
-  </script>
-@stop
+@endsection

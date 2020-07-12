@@ -73,14 +73,17 @@ class ExamController extends Controller
         return view('exams.myexam',compact(['ujian']));
     }
 
-//Koreksi
-public function koreksi($id){
-    $jawaban_essay = EssayJawab::all();
-    $jawaban_pilgan = PilganJawab::all();
-    $soal_satuan=SoalSatuan::all();
-   
-    return view('exams.koreksi', compact('jawaban_essay','jawaban_pilgan','soal_satuan'));
-}
+    //Koreksi
+    public function koreksi($id){
+
+        $peserta = Peserta::find($id);
+        $essay_jawab = EssayJawab::where('peserta_id', $peserta->id)->where('score','!=',null)->get();
+        $pilgan_jawab = PilganJawab::where('peserta_id', $peserta->id)->get();
+
+        $koreksi_jawaban = EssayJawab::where('peserta_id', $peserta->id)->where('score','=',null)->get();
+
+        return view('exams.koreksi', ['peserta' => $peserta, 'essay_jawab' => $essay_jawab, 'pilgan_jawab' => $pilgan_jawab, 'koreksi_jawaban' => $koreksi_jawaban]);
+    }
 
     public function joinExam(Request $request){
         //Ujian::attempt(['kode_ujian' => $request->kode_akses])
@@ -123,13 +126,14 @@ public function koreksi($id){
 
     function fetch_data(Request $request)
     {
-        $ujian = Ujian::find($request->ujian_id);
+        $peserta = Peserta::find($request->peserta_id);
+        $ujian = Ujian::where('id',$peserta->ujian_id)->first();
         $paket_soal_id = $ujian->paket_soal_id;
         $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
         $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->paginate(1);
         if($request->ajax())
         {
-            return view('exams.pagination_data', ['soal_satuan' => $soal_satuan, 'ujian' => $ujian], compact('paket_soal_id'))->render();
+            return view('exams.pagination_data', ['soal_satuan' => $soal_satuan, 'ujian' => $ujian, 'peserta' => $peserta ], compact('paket_soal_id'))->render();
         }
     }
 

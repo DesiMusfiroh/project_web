@@ -188,12 +188,12 @@ $(document).ready(function(){
     });
     function fetch_data(page)
     {
-        const ujian_id = $('#ujian_id').val();
+        const peserta_id = $('#peserta_id').val();
         $.ajax({
             url:"/pagination/fetch_data?page="+page,
             type: "GET",
             data: {
-              ujian_id: ujian_id
+              peserta_id: peserta_id
             },
             success: function(soal_satuan)
             {
