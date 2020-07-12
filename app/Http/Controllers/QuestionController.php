@@ -121,7 +121,16 @@ class QuestionController extends Controller
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
+        
         $soal_satuan->delete();
+        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+    }
+
+    public function update_soal_satuan_essay(Request $request, $id){
+        $soal_satuan = SoalSatuan::findorFail($id);
+        $essay = Essay::all();
+        $essay->update($request->all());
+        $soal_satuan->update($request->all());
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
