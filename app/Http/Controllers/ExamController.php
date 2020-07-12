@@ -79,8 +79,21 @@ class ExamController extends Controller
         $peserta = Peserta::find($id);
         $essay_jawab = EssayJawab::where('peserta_id', $peserta->id)->where('score','!=',null)->get();
         $pilgan_jawab = PilganJawab::where('peserta_id', $peserta->id)->get();
-
         $koreksi_jawaban = EssayJawab::where('peserta_id', $peserta->id)->where('score','=',null)->get();
+
+        $total_poin = SoalSatuan::where('paket_soal_id',$peserta->ujian->paket_soal->id)->sum('poin');
+
+        $score_pilgan = PilganJawab::where('peserta_id',$peserta->id)->sum('score');
+
+        if($koreksi_jawaban->count() == 0) {
+            $score_essay = EssayJawab::where('peserta_id',$peserta->id)->sum('score');
+            $total_score = $score_essay + $score_pilgan;
+            $nilai_akhir = $total_score / $total_poin * 100;
+            Peserta::where('id',$id)->update([
+                'nilai' => $total_score
+            ]);
+            return view('exams.koreksi', ['peserta' => $peserta, 'essay_jawab' => $essay_jawab, 'pilgan_jawab' => $pilgan_jawab, 'koreksi_jawaban' => $koreksi_jawaban], compact('nilai_akhir','total_poin'));
+        }
 
         return view('exams.koreksi', ['peserta' => $peserta, 'essay_jawab' => $essay_jawab, 'pilgan_jawab' => $pilgan_jawab, 'koreksi_jawaban' => $koreksi_jawaban]);
     }
