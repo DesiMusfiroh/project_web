@@ -125,4 +125,12 @@ class QuestionController extends Controller
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
+    public function update_soal_satuan_essay(Request $request, $id){
+        $soal_satuan = SoalSatuan::findorFail($id);
+        $essay = Essay::all();
+        $essay->update($request->all());
+        $soal_satuan->update($request->all());
+        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+    }
+
 }

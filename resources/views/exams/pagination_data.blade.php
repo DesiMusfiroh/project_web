@@ -1,7 +1,7 @@
 <div class="row">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Soal Ujian</div>
+          <div class="card-header" style=" background: #EDE5E5;">Soal Ujian</div>
           <div class="card-body " >
             <?php $i=0; ?>
             @foreach($soal_satuan as $item)
@@ -52,7 +52,7 @@
 
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header">Navigasi</div>
+          <div class="card-header"  style=" background: #EDE5E5;">Navigasi</div>
           <div class="card-body">
             <div class="row ">
               <div class="col-12 text-center ">

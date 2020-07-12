@@ -9,20 +9,21 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    Hasil Ujian
+                <div class="card-header text-center" style="background: #EDE5E5; ">
+                    <strong style="font-size:18px"> Hasil Ujian </strong>
                 </div>
 
                 <div class="card-body">
 
                 @if($peserta->count() != 0) 
-                <table class="table table-striped table-bordered table-sm">
-                        <thead class="thead-light text-center">
+                <table class="table table-striped table-bordered table-sm" >
+                        <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Nama Ujian </th>
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" >Tanggal Ujian </th>
+                                <th scope="col" >Nilai Ujian </th>
                                 <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
@@ -34,6 +35,7 @@
                                 <td >{{$item->ujian->nama_ujian}}</td>
                                 <td class="text-center">{{ $item->ujian->paket_soal->judul }} </td>
                                 <td class="text-center"> {{date("d-m-Y",strtotime($item->ujian->waktu_mulai))}} </td>
+                                <td class="text-center"> @if ($item->nilai !== null) {{ $item->nilai }} @else -@endif </td>
                                 <td class="text-center">
                                     <a href="{{route('resultDetail',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm">

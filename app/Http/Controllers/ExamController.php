@@ -7,6 +7,7 @@ use App\Ujian;
 use App\Peserta;
 use App\EssayJawab;
 use App\PilganJawab;
+use App\User;
 use Str;
 use Auth;
 use Illuminate\Http\Request;
@@ -53,7 +54,8 @@ class ExamController extends Controller
         $ujian = Ujian::find($id);
         $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
         $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
-        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian'));
+        $paket_soal=PaketSoal::all();
+        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
     }
 
     public function update(Request $request, $id)
