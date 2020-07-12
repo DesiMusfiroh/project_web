@@ -6,27 +6,27 @@
             {{session('sukses')}}
         </div>
     @endif
-    <?php 
+    <?php
         use App\Profil;
-        $fotoprofil = Profil::where('user_id',$peserta->user->id)->value('foto');  
-        $institusi   = Profil::where('user_id',$peserta->user->id)->value('institusi');  
-        $no_hp      = Profil::where('user_id',$peserta->user->id)->value('no_hp');  
+        $fotoprofil = Profil::where('user_id',$peserta->user->id)->value('foto');
+        $institusi   = Profil::where('user_id',$peserta->user->id)->value('institusi');
+        $no_hp      = Profil::where('user_id',$peserta->user->id)->value('no_hp');
     ?>
     <div class="row mb-4">
         <div class="col-sm-7">
             <div class="card"  style="height: 120px;">
                 <div class="card-body pb-2 pt-2">
                 <div class="row">
-                    <div class="col-sm-3 ">  
+                    <div class="col-sm-3 ">
                         @if ( $fotoprofil !== null)
                             <img src="/images/{{$fotoprofil}}" class="card-img" width="140px" >
-                        @else 
+                        @else
                             <img src="/images/logo.png" class="card-img" alt="..."  width="100px">
                         @endif
                     </div>
                     <div class="col-sm-9">
-                    <h5 class="pb-0 mb-0 pt-3 ">{{ $peserta->user->name }} </h5> 
-                            @if ($institusi !== null) 
+                    <h5 class="pb-0 mb-0 pt-3 ">{{ $peserta->user->name }} </h5>
+                            @if ($institusi !== null)
                                 <table>
                                     <tr> <td width="100px"> institusi   </td> <td> : </td> <td> {{$institusi}}  </td> </tr>
                                     <tr> <td> Nomor HP  </td> <td> : </td> <td> {{$no_hp}}  </td> </tr>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="card text-center">
-     
+
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
@@ -64,24 +64,24 @@
             </li>
             </ul>
         </div>
-    
+
         <div class="card-body">
             <div id="koreksi">
-            @if($koreksi_jawaban->count() != 0) 
+            @if($koreksi_jawaban->count() != 0)
 
                 @foreach ($koreksi_jawaban as $item)
                 <div class="alert alert-success text-left" role="alert">
-                    Pertanyaan : {{$item->essay->pertanyaan}} <br>
-                    kunci jawaban : {{$item->essay->jawaban}} <br>
+                    Pertanyaan : {!!$item->essay->pertanyaan!!} <br>
+                    kunci jawaban : {!!$item->essay->jawaban!!} <br>
                     Jawaban Peserta : {{$item->jawab}}
                     <hr>
                     <div class="row">
                         <div class="col-md-8 text-left"></div>
                         <div class="col-md-4 ">
-                            <form action="/essay_jawab/score/update" method="post"> 
+                            <form action="/essay_jawab/score/update" method="post">
                             @csrf
                             @method('PATCH')
-                                <input type="hidden" name="id" id="id" value="{{$item->id}}">  
+                                <input type="hidden" name="id" id="id" value="{{$item->id}}">
                                 <div class="input-group">
                                 <input type="number" name="score" class="form-control" placeholder="Score" aria-label="score" aria-describedby="button-addon2" max="{{$item->essay->soal_satuan->poin}}">
                                 <div class="input-group-append">
@@ -90,8 +90,8 @@
                                 </div>
                             </form>
                         </div>
-                    </div>         
-                </div>     
+                    </div>
+                </div>
                 @endforeach
             @else
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -103,6 +103,13 @@
             @endif
             </div>
             <div id="hasil">
+                @if ($peserta->nilai !== null)
+                <div class="alert alert-success" role="alert">
+                    Total Score : {{$peserta->nilai}} <br>
+                    Total Poin : {{$total_poin}} <br>
+                    Nilai Akhir : {{$nilai_akhir}}
+                </div>
+                @endif
                 <h5>Hasil Ujian Pilihan Ganda Peserta</h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
@@ -112,11 +119,11 @@
                             <th scope="col" style="width:150px">Kunci Jawaban</th>
                             <th scope="col" style="width:150px">Keterangan</th>
                             <th scope="col" style="width:140px">score</th>
-                              
+
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i=0; ?>   
+                        <?php $i=0; ?>
                         @foreach ($pilgan_jawab as $item)
                         <tr>
                             <td scope="row"><?php  $i++;  echo $i; ?></td>
@@ -137,28 +144,28 @@
                             <th scope="col" style="width:400px">Pertanyaan</th>
                             <th scope="col" style="width:150px">Jawaban Peserta</th>
                             <th scope="col" style="width:140px">score</th>
-                              
+
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i=0; ?>   
+                        <?php $i=0; ?>
                         @foreach ($essay_jawab as $item)
                         <tr>
                             <td scope="row"><?php  $i++;  echo $i; ?></td>
-                            <td>{{$item->essay->pertanyaan}}</td>
-                            <td>{{$item->jawab}}</td>
+                            <td>{!!$item->essay->pertanyaan!!}</td>
+                            <td>{!!$item->jawab!!}</td>
                             <td>{{$item->score}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-              
+
             </div>
         </div>
     </div>
 
-    
-    
+
+
 <script>
 $("#hasil").hide();
 $("#koreksi").show();
@@ -173,7 +180,7 @@ $(document).ready(function(){
         $("#koreksi").hide();
         $("#nav_hasil").attr('class','nav-link active');
         $("#nav_koreksi").attr('class','nav-link ');
-        $("#hasil").show();   
+        $("#hasil").show();
     });
 });
 </script>

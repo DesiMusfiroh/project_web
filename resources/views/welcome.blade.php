@@ -64,8 +64,8 @@
             #logo_keterangan{
                 margin: 10px 0px 20px 0px;
             }
-           
-            
+
+
         </style>
     </head>
     <body>
@@ -88,7 +88,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>      
+            </div>
         </nav>
 
         <div class="row justify-content-center">
@@ -98,14 +98,14 @@
             <div class="col-md-6" id="kanan">
                 <div class="row" id="keterangan" >
                     <img src="/images/LiveEx.png" alt="" width="170px" id="logo_keterangan">
-                    
+
                     <h4>Apa Itu LiveEx ? <br> LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </h4>
                 </div>
                 <div class="row text-center" id="aksi">
                 @if (Route::has('login'))
                     <div class="container">
                         @auth
-                            
+
                             <a href="{{ route('home') }} "> <button> Home </button> </a>
                         @else
                             <a href="{{ route('login') }}"><button> Login </button> </a>
@@ -118,7 +118,7 @@
                 @endif
 
                 </div>
-               
+
             </div>
         </div>
 
@@ -126,7 +126,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        
+
                         <a href="{{ url('/home') }}"> <button> Home </button> </a>
                     @else
                         <a href="{{ route('login') }}"><button> Login </button> </a>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="links">
-                   
+
                 </div>
             </div>
         </div> -->
@@ -155,7 +155,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-   
+
 
     </body>
 </html>

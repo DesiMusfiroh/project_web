@@ -106,7 +106,7 @@ use App\PaketSoal;
                     </tr>
                     <tr>
                         <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {{$item->essay->jawaban}} </td>
+                        <td> {!!$item->essay->jawaban!!} </td>
                     </tr>
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
@@ -575,8 +575,17 @@ $(document).ready(function(){
         $('.paket_soal_id').val(paket_soal_id);
 
     });
+
 });
 
+</script>
+<script>
+$('.hapus').click(function(){
+  const menghapus = confirm('Apakah mau dihapus?');
+  if (menghapus) {
+    window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
+  }
+})
 </script>
 
 
