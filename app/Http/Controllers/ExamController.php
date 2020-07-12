@@ -52,7 +52,8 @@ class ExamController extends Controller
         $ujian = Ujian::find($id);
         $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
         $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
-        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian'));
+        $paket_soal=PaketSoal::all();
+        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
     }
 
     public function update(Request $request, $id)
