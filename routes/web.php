@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 //use RealRashid\SweetAlert\Facades\Alert;
-=======
->>>>>>> 3fb859440b95cb8d8850f774fd9997608a16eff8
 
 /*
 |--------------------------------------------------------------------------
