@@ -61,12 +61,6 @@ use App\PaketSoal;
                                     >  
                                     Edit           
                      </button>
-                     <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".delete_modal_essay"
-                                            id="delete_essay"
-                                            data-id_essay_delete="{{ $item->essay->id }}">
-                                            Hapus                                     
-                                            </button>
-
                     @elseif($item->jenis == "Pilihan Ganda")
                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_pilgan"
                                     id="update_pilgan"                                   
@@ -83,21 +77,20 @@ use App\PaketSoal;
                                     >  
                                     Edit           
                      </button>
-                      <!--Button Hapus-->
-                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=".delete_modal_pilgan"
-                                            id="delete_pilgan"
-                                            data-id_pilgan_delete="{{ $item->pilgan->id }}">
-                                            Hapus                                     
-                                            </button>
-                                            <!--Batas Button Hapus-->
-                       <!-- <a href="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus"><button class="btn btn-sm btn-danger">Hapus</button> </a>
-                    -->
-                    
-                    @endif
+                   @endif
+                   <a href="#" class="btn btn-sm btn-danger hapus">Hapus</a>
                   
                 </div> 
                 </div>
-               
+                <script>
+$('.hapus').click(function(){
+  const menghapus = confirm('Apakah mau dihapus?');
+  if (menghapus) {
+      
+    window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
+  }
+})
+</script>         
                 <table>
                 @if($item->jenis == "Essay")
                     <tr>
@@ -136,64 +129,6 @@ use App\PaketSoal;
     </div>
 </div>
 @endif
-<!-- Delete Modal Essay -->
-<div class="modal fade delete_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" >
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title " id="exampleModalLabel">Hapus Soal</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-@foreach($soal_satuan as $item)
-<form action="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus" method="get">
-@endforeach
-@csrf
-<div class="modal-body">
-    <input type="hidden" name="id" value="" id="id_essay_delete" >
-    <p>Anda yakin akan menghapus soal ini? </p> 
-    
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-danger">Hapus</button>
-</div>
-</form>
-</div>
-</div>
-</div>
-<!-- Penutup Delete Modal Essay -->
-
-<!-- Delete Modal Pilgan -->
-<div class="modal fade delete_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" >
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title " id="exampleModalLabel">Hapus Soal</h5>
-<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-@foreach($soal_satuan as $item)
-<form action="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus" method="get">
-@endforeach
-@csrf
-<div class="modal-body">
-    <input type="hidden" name="id" value="" id="id_pilgan_delete" >
-    <p>Anda yakin akan menghapus soal ini? </p> 
-    
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-danger">Hapus </button>
-</div>
-</form>
-</div>
-</div>
-</div>
-<!-- Penutup Delete Modal Essay -->
-
 <!-- update Modal (essay)-->
 <div class="modal fade update_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
@@ -532,10 +467,7 @@ $('#kunci_pilgan_update').val(kunci_pilgan_update);
 $('#poin_pilgan_update').val(poin_pilgan_update);   
 });
 
-$(document).on('click','#delete', function(){
-var id_pilgan_delete   = $(this).data('id_pilgan_delete');     
-$('#id_pilgan_delete').val(id_pilgan_delete);
-});     
+    
 });
 </script>
 <!--edit-->
@@ -556,11 +488,7 @@ $('#pertanyaan_essay_update').val(pertanyaan_essay_update);
 $('#jawaban_essay_update').val(jawaban_essay_update);   
 $('#poin_essay_update').val(poin_essay_update);   
 });
-
-$(document).on('click','#delete', function(){
-var id_essay_delete   = $(this).data('id_essay_delete');     
-$('#id_essay_delete').val(id_essay_delete);
-});     
+    
 });
 </script>
 <!--edit-->
@@ -579,14 +507,8 @@ $(document).ready(function(){
 });
 
 </script>
-<script>
-$('.hapus').click(function(){
-  const menghapus = confirm('Apakah mau dihapus?');
-  if (menghapus) {
-    window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
-  }
-})
-</script>
+
+
 
 
 @stop

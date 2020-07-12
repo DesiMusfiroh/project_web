@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm-3 ">
                     @if ( $fotoprofil !== null)
-                        <img src="/images/{{$fotoprofil}}" class="card-img" width="140px" >
+                        <img src="/images/{{$fotoprofil}}" class="card-img" width="120px" height="100px"  >
                     @else
                         <img src="/images/logo.png" class="card-img" alt="..."  width="100px">
                     @endif
