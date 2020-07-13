@@ -62,7 +62,7 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <a  href="{{route('exportSoal',$item->id)}}">   
+                                    <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >   
                                     <button type="button" class="btn btn-info btn-sm">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>

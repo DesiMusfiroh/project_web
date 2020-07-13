@@ -27,6 +27,8 @@
 <td>: {{date('d M Y',strtotime($ujian->waktu_mulai))}} </td>
 <tr>
 </table>
+<br/>
+<br/>
 
 @if ($ujian->peserta->count() != 0)
 <table rules="rows" width="100%">
