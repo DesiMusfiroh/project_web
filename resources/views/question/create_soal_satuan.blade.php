@@ -2,42 +2,60 @@
 
 @section('content')
 <?php  
-use App\Essay; 
-use App\Pilgan;
-use App\PaketSoal;
+    use App\Essay; 
+    use App\Pilgan;
+    use App\PaketSoal;
 ?>
-    @if(session('sukses'))
-      <div class="alert alert-success" role="alert">
-        {{session('sukses')}}
-      </div>
-    @endif
-    @if($errors->has('poin'))
-      <div class="alert alert-danger" role="alert">
-        {{$errors->first('poin')}}
-      </div>
-    @endif
-    <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
-        <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-            <h4 class="card-title"> Paket Soal : {{$paket_soal->judul}}  </h4>
+<style>
+    .subjudul {
+        text-align:left;
+        font-weight:bold;
+    }
+    .isi {
+        margin-left:30px;
+    }
+</style>
+<div class="container">
+    <div class="card" style="border-radius:20px;  box-shadow:  5px 5px 10px rgba(48, 10, 64, 0.5);">
+        <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color: #EDE5E5; ">
+            <strong style="font-size:18px;"> Paket Soal : {{$paket_soal->judul}}  </strong>  
         </div>
         <div class="card-body">
             <div class="container">
                     <input type="hidden" name="paket_soal_id" value="{{ $paket_soal_id }}">
-                    <div class="row">
-                        <div class="col-md-12">Pilih Jenis Soal :</div>
+                    <div class="alert alert-warning">
+                        <div class="col-md-12"><strong>Tambah Soal Baru </strong></div>
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target=".create_modal_essay"
+                            Pilih Jenis Soal :
+                            <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target=".create_modal_essay"
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
                                     style="box-shadow: 3px 2px 5px grey; margin:5px;"> Essay</button> 
-                             <button type="submit" class="btn btn-info" data-toggle="modal" data-target=".create_modal_pilgan"
+                            <button type="submit" class="btn btn-info" data-toggle="modal" data-target=".create_modal_pilgan"
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
                                     style="box-shadow: 3px 2px 5px grey;"> Pilihan Ganda</button>
                             
                         </div>
                     </div>
-<hr>
+                    <hr>
+
+@if(session('sukses'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{session('sukses')}}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if($errors->has('poin'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{$errors->first('poin')}}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
 @if($soal_satuan->count() != 0)
 
@@ -45,13 +63,41 @@ use App\PaketSoal;
             <?php $i=0; ?>
             @foreach($soal_satuan as $item)
                 <div class="row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
-                    <div class="col-md-7 text-right"><h6>Poin : {{$item->poin}}</h6></div>
-                    <div class="col-md-2">
-                    @if ($item->jenis == 'Essay')
-                    <!--Button Edit-->
-                   
-                     <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_essay"
+                    <div class="col-md-10">
+                        <h6>Soal No.  <?php  $i++;  echo $i; ?> </h6>
+                        
+                        @if($item->jenis == "Essay")
+                            <div class="subjudul"> Pertanyaan : </div>
+                            <div class="isi"> {!!$item->essay->pertanyaan!!} </div>
+                            <div class="subjudul"> Kunci Jawaban : </div>
+                            <div class="isi"> {!!$item->essay->jawaban!!} </div>
+                            
+                        @elseif($item->jenis == "Pilihan Ganda")
+                            <div class="subjudul"> Pertanyaan : </div> 
+                            <div class="isi"> {!!$item->pilgan->pertanyaan!!} </div>
+                            <div class="subjudul"> Pilihan : </div> 
+                            <div class="isi">    A . {{$item->pilgan->pil_a}}  <br>
+                                B . {{$item->pilgan->pil_b}}  <br>
+                                C . {{$item->pilgan->pil_c}}  <br>
+                                D . {{$item->pilgan->pil_d}}  <br>
+                                E . {{$item->pilgan->pil_e}} </div>
+                            <div class="subjudul"> Kunci Jawaban : {{$item->pilgan->kunci}}</div>
+                            
+
+                        @endif
+
+                    </div>
+
+                    <div class="col-md-2 text-right">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1" style="background-color:#EDE5E5;">Poin</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="{{$item->poin}}" aria-label="Poin" aria-describedby="basic-addon1" disabled>
+                        </div>
+                        @if ($item->jenis == 'Essay')
+                        <!--Button Edit-->
+                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_essay"  style="box-shadow: 3px 2px 5px grey; margin:5px;"
                                     id="update"                                   
                                     data-id_essay_update="{{ $item->essay->id }}"    
                                     data-soal_satuan_id_essay_update="{{ $item->essay->soal_satuan_id }}"     
@@ -59,10 +105,10 @@ use App\PaketSoal;
                                     data-jawaban_essay_update="{{ $item->essay->jawaban }}"    
                                     data-poin_essay_update="{{ $item->poin }}"   
                                     >  
-                                    Edit           
-                     </button>
-                    @elseif($item->jenis == "Pilihan Ganda")
-                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_pilgan"
+                                    Edit <i class="fa fa-edit"></i>          
+                        </button>
+                        @elseif($item->jenis == "Pilihan Ganda")
+                        <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_pilgan"  style="box-shadow: 3px 2px 5px grey; margin:5px;"
                                     id="update_pilgan"                                   
                                     data-id_pilgan_update="{{ $item->pilgan->id }}"    
                                     data-soal_satuan_id_pilgan_update="{{ $item->pilgan->soal_satuan_id }}"     
@@ -75,62 +121,33 @@ use App\PaketSoal;
                                     data-kunci_pilgan_update="{{ $item->pilgan->kunci }}"    
                                     data-poin_pilgan_update="{{ $item->poin }}"   
                                     >  
-                                    Edit           
-                     </button>
-                   @endif
-                   <a href="#" class="btn btn-sm btn-danger hapus">Hapus</a>
-                  
-                </div> 
+                                    Edit <i class="fa fa-edit"></i>           
+                        </button>
+                        @endif
+                        <a href="#" class="btn btn-sm btn-danger hapus"  style="box-shadow: 3px 2px 5px grey; margin:5px;"> Hapus <i class="fa fa-trash"></i> </a>        
+                    </div> 
+           
                 </div>
                 <script>
-$('.hapus').click(function(){
-  const menghapus = confirm('Apakah mau dihapus?');
-  if (menghapus) {
-      
-    window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
-  }
-})
-</script>         
-                <table>
-                @if($item->jenis == "Essay")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td width="10px"> : </td>
-                        <td> {!!$item->essay->pertanyaan!!} </td>
-                    </tr>
-                    <tr>
-                        <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {!!$item->essay->jawaban!!} </td>
-                    </tr>
-                @elseif($item->jenis == "Pilihan Ganda")
-                    <tr>
-                        <td width="130px"><b> Pertanyaan </b></td> <td  width="10px"> : </td>
-                        <td> {!!$item->pilgan->pertanyaan!!} </td>
-                    </tr>
-                    <tr>
-                        <td> <b> Pilihan </b> </td> <td> : </td>
-                        <td>  A . {{$item->pilgan->pil_a}}  <br>
-                                 B . {{$item->pilgan->pil_b}}  <br>
-                                 C . {{$item->pilgan->pil_c}}  <br>
-                                 D . {{$item->pilgan->pil_d}}  <br>
-                                 E . {{$item->pilgan->pil_e}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b> Kunci Jawaban </b></td> <td> : </td>
-                        <td> {{$item->pilgan->kunci}} </td>
-                    </tr>
-
-                @endif
-                </table>
-
+                    $('.hapus').click(function(){
+                    const menghapus = confirm('Apakah mau dihapus?');
+                    if (menghapus) {
+                        
+                        window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
+                    }
+                    })
+                </script>         
+                
                 <hr>
             @endforeach
         </div>
     </div>
 </div>
 @endif
+
+</div>
 <!-- update Modal (essay)-->
-<div class="modal fade update_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade update_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header ">
@@ -139,15 +156,14 @@ $('.hapus').click(function(){
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-@foreach($soal_satuan as $item)
-                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/update" method="post">
-@endforeach            
+                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/update" method="post">
+                   
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
                         <div class="container">
 
-                            <input type="hidden" name="id" class="id_essay_update" value="">
+                            <input type="hidden" name="id" id="id_essay_update" value="">
                             <input type="hidden" name="soal_satuan_id" id="soal_satuan_id_essay_update" value="">
 
                             <div class="form-group row">
@@ -187,7 +203,7 @@ $('.hapus').click(function(){
 <!-- Penutup Create Modal -->
 
 <!-- Create Modal (essay)-->
-<div class="modal fade create_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade create_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header ">
@@ -242,7 +258,7 @@ $('.hapus').click(function(){
 <!-- Penutup Create Modal -->
 
 <!-- Create Modal (Pilgan)-->
-<div class="modal fade create_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade create_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header ">
@@ -342,7 +358,7 @@ $('.hapus').click(function(){
 <!-- Penutup Create Modal -->
 
 <!-- Update Modal (Pilgan)-->
-<div class="modal fade update_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade update_modal_pilgan"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header ">
@@ -352,7 +368,7 @@ $('.hapus').click(function(){
                     </button>
                 </div>
 
-                <form action="#" enctype="multipart/form-data" method="post">
+                <form action="" enctype="multipart/form-data" method="post">
                 @csrf
                 @method('PATCH')
                     <div class="modal-body">
@@ -444,30 +460,29 @@ $('.hapus').click(function(){
 <!--edit pilgan-->
 <script type="text/javascript">
 $(document).ready(function(){
-$(document).on('click','#update_pilgan', function(){
-var id_pilgan_update                       = $(this).data('id_pilgan_update');
-var soal_satuan_id_pilgan_update      = $(this).data('soal_satuan_id_pilgan_update');
-var pertanyaan_pilgan_update                 = $(this).data('pertanyaan_pilgan_update');
-var pil_a_pilgan_update                 = $(this).data('pil_a_pilgan_update');
-var pil_b_pilgan_update                 = $(this).data('pil_b_pilgan_update');
-var pil_c_pilgan_update                 = $(this).data('pil_c_pilgan_update');
-var pil_d_pilgan_update                 = $(this).data('pil_d_pilgan_update');
-var pil_e_pilgan_update                 = $(this).data('pil_e_pilgan_update');
-var kunci_pilgan_update                 = $(this).data('kunci_pilgan_update');
-var poin_pilgan_update                 = $(this).data('poin_pilgan_update');
-$('#id_pilgan_update').val(id_pilgan_update); 
-$('#soal_satuan_id_pilgan_update').val(soal_satuan_id_pilgan_update);      
-$('#pertanyaan_pilgan_update').val(pertanyaan_pilgan_update); 
-$('#pil_a_pilgan_update').val(pil_a_pilgan_update);              
-$('#pil_b_pilgan_update').val(pil_b_pilgan_update);              
-$('#pil_c_pilgan_update').val(pil_c_pilgan_update);              
-$('#pil_d_pilgan_update').val(pil_d_pilgan_update);              
-$('#pil_e_pilgan_update').val(pil_e_pilgan_update);              
-$('#kunci_pilgan_update').val(kunci_pilgan_update);   
-$('#poin_pilgan_update').val(poin_pilgan_update);   
-});
+    $(document).on('click','#update_pilgan', function(){
+    var id_pilgan_update                       = $(this).data('id_pilgan_update');
+    var soal_satuan_id_pilgan_update      = $(this).data('soal_satuan_id_pilgan_update');
+    var pertanyaan_pilgan_update                 = $(this).data('pertanyaan_pilgan_update');
+    var pil_a_pilgan_update                 = $(this).data('pil_a_pilgan_update');
+    var pil_b_pilgan_update                 = $(this).data('pil_b_pilgan_update');
+    var pil_c_pilgan_update                 = $(this).data('pil_c_pilgan_update');
+    var pil_d_pilgan_update                 = $(this).data('pil_d_pilgan_update');
+    var pil_e_pilgan_update                 = $(this).data('pil_e_pilgan_update');
+    var kunci_pilgan_update                 = $(this).data('kunci_pilgan_update');
+    var poin_pilgan_update                 = $(this).data('poin_pilgan_update');
+    $('#id_pilgan_update').val(id_pilgan_update); 
+    $('#soal_satuan_id_pilgan_update').val(soal_satuan_id_pilgan_update);      
+    $('#pertanyaan_pilgan_update').val(pertanyaan_pilgan_update); 
+    $('#pil_a_pilgan_update').val(pil_a_pilgan_update);              
+    $('#pil_b_pilgan_update').val(pil_b_pilgan_update);              
+    $('#pil_c_pilgan_update').val(pil_c_pilgan_update);              
+    $('#pil_d_pilgan_update').val(pil_d_pilgan_update);              
+    $('#pil_e_pilgan_update').val(pil_e_pilgan_update);              
+    $('#kunci_pilgan_update').val(kunci_pilgan_update);   
+    $('#poin_pilgan_update').val(poin_pilgan_update);   
+    });
 
-    
 });
 </script>
 <!--edit-->
@@ -476,18 +491,18 @@ $('#poin_pilgan_update').val(poin_pilgan_update);
 <!--edit essay-->
 <script type="text/javascript">
 $(document).ready(function(){
-$(document).on('click','#update', function(){
-var id_essay_update                          = $(this).data('id_essay_update');
-var soal_satuan_id_esaay_update      = $(this).data('soal_satuan_id_essay_update');
-var pertanyaan_essay_update                 = $(this).data('pertanyaan_essay_update');
-var jawaban_essay_update                 = $(this).data('jawaban_essay_update');
-var poin_essay_update                 = $(this).data('poin_essay_update');
-$('#id_essay_update').val(id_essay_update); 
-$('#soal_satuan_id_essay_update').val(soal_satuan_id_essay_update);      
-$('#pertanyaan_essay_update').val(pertanyaan_essay_update);             
-$('#jawaban_essay_update').val(jawaban_essay_update);   
-$('#poin_essay_update').val(poin_essay_update);   
-});
+    $(document).on('click','#update', function(){
+    var id_essay_update                  = $(this).data('id_essay_update');
+    var soal_satuan_id_esaay_update      = $(this).data('soal_satuan_id_essay_update');
+    var pertanyaan_essay_update          = $(this).data('pertanyaan_essay_update');
+    var jawaban_essay_update             = $(this).data('jawaban_essay_update');
+    var poin_essay_update                = $(this).data('poin_essay_update');
+    $('#id_essay_update').val(id_essay_update); 
+    $('#soal_satuan_id_essay_update').val(soal_satuan_id_essay_update);      
+    $('#pertanyaan_essay_update').val(pertanyaan_essay_update);             
+    $('#jawaban_essay_update').val(jawaban_essay_update);   
+    $('#poin_essay_update').val(poin_essay_update);   
+    });
     
 });
 </script>

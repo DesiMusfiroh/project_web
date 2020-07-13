@@ -25,6 +25,12 @@
             color: #82e8b5;
             font-size: 20px;
         }
+        /* #sidebar {
+           position:fixed; height:660px
+        }
+        #content {
+            margin-left:295px;
+        } */
     </style>
   </head>
 
@@ -100,7 +106,7 @@
 
         <!-- Page Content  -->
 
-    <div id="content" class="p-4 p-md-5">
+    <div id="content" class="p-4 p-md-5" >
 
         <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #daf5e4; box-shadow: 3px 3px 10px #b5aeb8">
           <div class="container-fluid">
