@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,16 +27,13 @@ Route::post('profil/store','ProfilController@store')->name('storeProfil');
 Route::get('profil/edit/{id}', 'ProfilController@edit');
 Route::patch('profil/update/{id}', 'ProfilController@update');
 
-
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
 Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
-
 //update
-Route::patch('/question/update_soal_satuan/{{$paket_soal_id}}/{{$item->id}}','QuestionController@edit_soal_satuan');
-
+Route::patch('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/update','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('updateSoalSatuan');
 
 //essay
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
@@ -45,7 +41,6 @@ Route::post('question_store/essay_store','QuestionController@essay_store')->name
 Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->name('storeSingleQuestionPilgan');
 
 //Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
-
 
 Route::get('/exam','ExamController@index')->name('getExam');
 Route::get('/exam/create','ExamController@create')->name('createExam');
@@ -70,12 +65,9 @@ Route::get('store/essay_jawab', 'EssayJawabController@store');
 Route::get('store/pilgan_jawab', 'PilganJawabController@store');
 Route::patch('/essay_jawab/score/update', 'EssayJawabController@updateScore');
 
-
 Route::get('/resultexam','PesertaController@resultIndex')->name('resultExam');
 Route::get('/resultdetail/{id}','PesertaController@resultDetail')->name('resultDetail');
 
 Auth::routes();
 
-
 Route::get('/home', 'HomeController@index')->name('home');
-

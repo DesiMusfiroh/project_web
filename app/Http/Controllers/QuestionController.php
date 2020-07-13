@@ -9,7 +9,6 @@ use App\Essay;
 use App\Pilgan;
 use Illuminate\Http\Request;
 
-
 class QuestionController extends Controller
 {
 
@@ -121,13 +120,17 @@ class QuestionController extends Controller
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
+        
         $soal_satuan->delete();
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
-    public function edit_soal_satuan($id){
-        $soal_satuan = SoalSatuan::find($id);
-        return view('question/update_soal_satuan', ['soal_satuan' => $soal_satuan]);
+    public function update_soal_satuan_essay(Request $request, $id){
+        $soal_satuan = SoalSatuan::findorFail($id);
+        $essay = Essay::all();
+        $essay->update($request->all());
+        $soal_satuan->update($request->all());
+        return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
 }
