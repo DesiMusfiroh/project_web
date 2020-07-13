@@ -42,24 +42,22 @@
     </div>
 </div>
 
-<div class="card text-center">
+<div class="card ">
 
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-            <span class="nav-link" id="nav_hasil">Hasil Ujian Peserta</span>  
-        </li>
-       
-        </ul>
-                                    @if($peserta->nilai != null )
-                                    <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">   
-                                    <button type="button" class="btn btn-info btn-sm">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                    
-                                    </button>
-                                    </a>
-                                    @endif 
-        
+    <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5; ">
+        <div class="row">
+            <div class="col-md-9"><strong style="font-size:18px">Hasil Ujian Peserta</strong></div>
+            <div class="col-md-3 text-right">
+            @if($peserta->nilai != null )
+                <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">   
+                    <button type="button" class="btn btn-info">
+                    <i class="fa fa-download" aria-hidden="true"></i> Download PDF
+                    </button>
+                </a>
+            @endif 
+            </div>
+        </div>
+                                 
     </div>
 
     <div class="card-body">

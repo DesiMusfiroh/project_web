@@ -9,17 +9,15 @@
         </button>
     </div>
 @endif
-<div class="alert alert-success " role="alert">
-  <h4 class="alert-heading">Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx!</h4>
-  <p>LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </p>
-  <hr>
-    <p>
-    Sudah punya kode akses untuk ujian?
-    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
-    <p>
-  </div>
-
-
+<div class="container">
+    <div class="alert alert-success mb-4" role="alert">
+        <h5 class="alert-heading"> <strong> Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx! </strong></h5>
+        <p> <img src="/images/LiveEx.png" alt="" width="60px;">  adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung. </p>
+    <hr>
+        Sudah punya kode akses untuk ujian?
+        <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">  Klik disini</a>
+   
+    </div>
 
 @if($peserta->count() != 0)
 
