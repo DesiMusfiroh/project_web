@@ -31,7 +31,7 @@ class ProfilController extends Controller
             'alamat' => 'required',
             'jk' => 'required',
             'foto' => 'required|file|image|mimes:png,jpg,jpeg|max:2048',
-         
+
         ]);
 
         $file = $request->file('foto');
@@ -57,13 +57,13 @@ class ProfilController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $profil = Profil::find($id);
+        $profil = Profil::find(auth()->user()->profil->id);
         return view('profil.edit', ['profil' => $profil]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $this->validate($request,[
             'user_id' => 'required',
@@ -74,7 +74,7 @@ class ProfilController extends Controller
             'foto' => 'nullable|file|image|mimes:png,jpg,jpeg|max:2048', //ini agar foto bisa null
         ]);
 
-        $profil = Profil::find($id);//tampilkan profil
+        $profil = Profil::find(auth()->user()->profil->id);//tampilkan profil
         $nama_file= $profil->foto;//simpan nama file foto yang sudah ada
 
         if ($request->hasFile('foto')) {
@@ -92,7 +92,8 @@ class ProfilController extends Controller
             'foto' => $nama_file,
         ];
 
-        Profil::whereId($id)->update($update);
+
+        Profil::whereId($profil->id)->update($update);
 
         return redirect('/profil')
        ->with('success','Great! Biodata berhasil di update');
