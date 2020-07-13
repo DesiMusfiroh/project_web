@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.splash')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+            <div class="card"  style="border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);">
+                <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #daf5e4; "> <strong>Verifikasi Alamat Email</strong> </div>
 
                 <div class="card-body">
                     @if (session('resent'))

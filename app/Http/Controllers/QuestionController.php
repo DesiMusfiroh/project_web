@@ -9,7 +9,6 @@ use App\Essay;
 use App\Pilgan;
 use Illuminate\Http\Request;
 
-
 class QuestionController extends Controller
 {
 
@@ -121,16 +120,51 @@ class QuestionController extends Controller
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
+        
         $soal_satuan->delete();
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
-    public function update_soal_satuan_essay(Request $request, $id){
-        $soal_satuan = SoalSatuan::findorFail($id);
-        $essay = Essay::all();
-        $essay->update($request->all());
-        $soal_satuan->update($request->all());
-        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+    public function update_soal_satuan_essay(Request $request, $paket_soal_id){
+        $paket_soal = PaketSoal::findorFail($paket_soal_id);
+        $essay      = Essay::findorFail($request->id);
+
+        $update_essay = [
+            'pertanyaan' => $request->pertanyaan,
+            'jawaban' => $request->jawaban,
+        ];
+        $essay->update($update_essay);
+
+        $update_poin = [
+            'poin' => $request->poin,
+        ];
+        SoalSatuan::whereId($essay->soal_satuan_id)->update($update_poin);
+
+        return redirect()->back()->with('sukses','Soal berhasil diupdate');
     }
+
+    public function update_soal_satuan_pilgan(Request $request, $paket_soal_id){
+        $paket_soal = PaketSoal::findorFail($paket_soal_id);
+        $pilgan      = Pilgan::findorFail($request->id);
+
+        $update_pilgan = [
+            'pertanyaan' => $request->pertanyaan,
+            'pil_a' => $request->pil_a,
+            'pil_b' => $request->pil_b,
+            'pil_c' => $request->pil_c,
+            'pil_d' => $request->pil_d,
+            'pil_e' => $request->pil_e,
+            'kunci' => $request->kunci,
+        ];
+        $pilgan->update($update_pilgan);
+
+        $update_poin = [
+            'poin' => $request->poin,
+        ];
+        SoalSatuan::whereId($pilgan->soal_satuan_id)->update($update_poin);
+
+        return redirect()->back()->with('sukses','Soal berhasil diupdate');
+    }
+
 
 }
