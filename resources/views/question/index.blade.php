@@ -29,7 +29,7 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
                                 <th scope="col" style="width:100px">Jumlah Soal </th>
-                                <th scope="col" style="width:140px">Opsi</th>
+                                <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,9 +48,18 @@
 
                                 <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket" 
+                                    id="update"
+                                    data-id_paket_update="{{ $item->id }}"
+                                    data-user_id_paket_update="{{ $item->user->id }}"
+                                    data-judul_paket_update="{!! $item->judul!!}"
+                                    data-durasi_paket_update="{!! $item->durasi !!}"
+                                    >
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                </button>
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">
-                                        <button type="button" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit fa-sm"></i>
+                                        <button type="button" class="btn btn-success btn-sm">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </a>
                                     <a  href="{{route('exportSoal',$item->id)}}" title="Cetak Soal PDF">
@@ -81,4 +90,81 @@
         </div>
     </div>
 </div>
+
+
+<!-- update Modal (paket)-->
+<div class="modal fade update_modal_paket"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="exampleModalLabel"> Edit Paket Soal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/questionupdate/{id}" method="post">
+
+                    @csrf
+                    @method('PATCH')
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <input type="hidden" name="id" id="id_paket_update" value="">
+                            <input type="hidden" name="user_id" id="user_id_paket_update" value="">
+
+                    <div class="form-row mb-0 mt-0 pt-0">
+                    <div class="form-group col-md-9">
+                        <label for="judul"><b> Judul  : </b></label>
+                        <input type="text" class="form-control" id="judul_paket_update" name="judul" placeholder="Nama paket soal" style="border-radius:10px;  box-shadow: 3px 0px 5px grey;">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="durasi"> <b> Durasi </b> </label>
+                        <input  id="time" type="time" name="durasi" onchange="ampm(this.value)"  style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
+                        <span id="display_time"></span>
+                    </div>
+                </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Penutup Create Modal -->
+<script>
+function ampm(time) {
+
+console.log(time);
+if (time.value !== "") {
+  var hours = time.split(":")[0];
+  var minutes = time.split(":")[1];
+  var suffix = hours >= 12 ? "pm" : "am";
+  hours = hours % 12 || 12;
+  hours = hours < 10 ? "0" + hours : hours;
+
+  var displayTime = hours + ":" + minutes + " " + suffix;
+  document.getElementById("display_time").innerHTML = displayTime;
+}
+
+}
+</script>
+<!--edit essay-->
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click','#update', function(){
+    var id_paket_update                     = $(this).data('id_paket_update');
+    var user_id_paket_update                = $(this).data('user_id_paket_update');
+    var judul_paket_update                  = $(this).data('judul_paket_update');
+    var durasi_paket_update                = $(this).data('durasi_paket_update');
+    $('#id_paket_update ').val(id_paket_update );
+    $('#user_id_paket_update').val(user_id_paket_update);
+    $('#judul_paket_update ').val(judul_paket_update );
+    $('#durasi_paket_update').val(durasi_paket_update );
+    });
+
+});
+</script>
+<!--edit-->
 @endsection

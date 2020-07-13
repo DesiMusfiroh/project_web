@@ -32,6 +32,11 @@ class DocumentController extends Controller
     //     $objWriter->save('Appdividend.docx');
     //     return response()->download(public_path('Appdividend.docx'));
     // }
+    public function genereteHasil($id){
+        $ujian = Ujian::find($id);
+        $pdf = PDF::loadView('exams/myResult',compact('ujian'));
+        return $pdf->stream();
+    }
     public function generatePDF($id)
 
     {

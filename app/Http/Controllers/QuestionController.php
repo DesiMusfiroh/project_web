@@ -184,5 +184,14 @@ class QuestionController extends Controller
         return redirect()->back()->with('sukses','Soal berhasil diupdate');
     }
 
+    public function updatePaketSoal(Request $request, $id){
+        $paket_soal = PaketSoal::findorFail($id);
+        $update_paket = [
+            'judul' => $request->judul,
+            'durasi' => $request->durasi,
+        ];
+        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+    }
+
 
 }
