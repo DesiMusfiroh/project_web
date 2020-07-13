@@ -61,6 +61,8 @@ Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 Route::get('/copy_kode_ujian','ExamController@copy_kode');
 //Route untuk masuk ke ujian miliknya sendiri
 Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
+//cetak hasil ujian
+Route::get('/exam/{id}','DocumentController@genereteHasil')->name('downloadHasil');
 
 Route::get('/exam/{id}/koreksi','ExamController@koreksi')->name('koreksi');
 
