@@ -4,43 +4,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>Download Hasil Ujian</title>
 </head>
-<body>          <p align="right"> Dibuat pada {{date('d M Y',strtotime($paket_soal->created_at))}} </p>
-    <center><h3>{{$paket_soal->judul}}<br> </h3></center>
+<body>          
+    <p align="right"> Dibuat pada {{date('d M Y',strtotime($paket_soal->created_at))}} </p>
+    <center><h3>Naskah Soal <br/>{{$paket_soal->judul}} </h3></center>
 
 <center>
 <hr>
 <table >
 <tr >
 <td> Nama </td>
-<td> : {{ auth()->user()->name }}</td>
+<td> : </td>
 </tr>
 <tr>
-@if ($institusi  !== null)
 <td>Institusi </td>
-<td>: {{$institusi}}</td>
-@else
-<td>Institusi </td>
-<td>: -</td>
-</tr>
-@endif
-
+<td>: </td>
 <tr>
-<td>Total poin   </td>
-<td>:  {{$total_poin}}</td>
-</tr>
+<td>Tanggal Ujian </td>
+<td>: </td>
+<tr>
 </table>
 <hr>
-<table width="600px">
-
-
-
+<table>
 	<tr>
-        <td></td>
-		<td ><b>Soal Pilihan Ganda</b></td>
-	</tr>
-    <tr>
-
-		<td>&nbsp;</td>
+        <td><b>No.</b></td>
+        <td ><b>Soal Pilihan Ganda</b></td>
         <td>&nbsp;</td>
 	</tr>
     <?php $i = 0; ?>
@@ -49,13 +36,6 @@
 
 		<td><?php   $i++;  echo $i; ?></td>
         <td>{!!$item->pilgan->pertanyaan!!}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
         <td align="right">{{$item->poin}} Poin</td>
 
     </tr>
@@ -70,20 +50,10 @@
             E. {{$item->pilgan->pil_e}}<br/>
         </td>
 	</tr>
-    <tr>
-
-		<td>&nbsp;</td>
-        <td>Kunci jawaban  : {{$item->pilgan->kunci}}</td>
-	</tr>
-    <tr>
-
-<td>&nbsp;</td>
-<td>
-   &nbsp;
-</td>
-</tr>
+   
     @endforeach
   </table>
+  @if($soal_essay != null)
 <hr>
   <table width="600px">
 	<tr>
@@ -113,7 +83,7 @@
     <tr>
 
 		<td>&nbsp;</td>
-        <td>Jawaban :  {!!$item->essay->jawaban!!}</td>
+        <td>Jawab : </td>
 	</tr>
     <tr>
 
@@ -123,6 +93,10 @@
     @endforeach
 
 </table>
+@else
+<table>
+</table>
+@endif
 </center>
 
 </body>

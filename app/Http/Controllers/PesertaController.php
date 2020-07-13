@@ -18,6 +18,7 @@ class PesertaController extends Controller
 {
     public function resultIndex(){
         $peserta = Peserta::where('user_id',auth()->user()->id)->where('status','=',1)->paginate(8);
+        
         return view('exams.result_index',compact(['peserta']));
     }
     public function resultDetail($id){
