@@ -125,12 +125,22 @@ class QuestionController extends Controller
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
 
-    public function update_soal_satuan_essay(Request $request, $id){
-        $soal_satuan = SoalSatuan::findorFail($id);
-        $essay = Essay::all();
-        $essay->update($request->all());
-        $soal_satuan->update($request->all());
-        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+    public function update_soal_satuan_essay(Request $request, $paket_soal_id){
+        $paket_soal = PaketSoal::findorFail($paket_soal_id);
+        $essay      = Essay::findorFail($request->id);
+
+        $update_essay = [
+            'pertanyaan' => $request->pertanyaan,
+            'jawaban' => $request->jawaban,
+        ];
+        $essay->update($update_essay);
+
+        $update_poin = [
+            'poin' => $request->poin,
+        ];
+        SoalSatuan::whereId($essay->soal_satuan_id)->update($update_poin);
+
+        return redirect()->back()->with('sukses','Soal berhasil diupdate');
     }
 
 }

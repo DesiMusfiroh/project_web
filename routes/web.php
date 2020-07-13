@@ -33,7 +33,7 @@ Route::post('question_store','QuestionController@store')->name('paketSoalStore')
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
 Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 //update
-Route::patch('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/update','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('updateSoalSatuan');
+Route::patch('question_create_soal_satuan/{paket_soal_id}/update','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id'])->name('updateSoalSatuan');
 
 //essay
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
