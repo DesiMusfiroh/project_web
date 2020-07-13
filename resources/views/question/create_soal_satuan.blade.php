@@ -1,8 +1,8 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<?php  
-    use App\Essay; 
+<?php
+    use App\Essay;
     use App\Pilgan;
     use App\PaketSoal;
 ?>
@@ -18,7 +18,7 @@
 <div class="container">
     <div class="card" style="border-radius:20px;  box-shadow:  5px 5px 10px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color: #EDE5E5; ">
-            <strong style="font-size:18px;"> Paket Soal : {{$paket_soal->judul}}  </strong>  
+            <strong style="font-size:18px;"> Paket Soal : {{$paket_soal->judul}}  </strong>
         </div>
         <div class="card-body">
             <div class="container">
@@ -30,19 +30,19 @@
                             <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target=".create_modal_essay"
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
-                                    style="box-shadow: 3px 2px 5px grey; margin:5px;"> Essay</button> 
+                                    style="box-shadow: 3px 2px 5px grey; margin:5px;"> Essay</button>
                             <button type="submit" class="btn btn-info" data-toggle="modal" data-target=".create_modal_pilgan"
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
                                     style="box-shadow: 3px 2px 5px grey;"> Pilihan Ganda</button>
-                            
+
                         </div>
                     </div>
                     <hr>
 
 @if(session('sukses'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>{{session('sukses')}}</strong> 
+        <strong>{{session('sukses')}}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -50,7 +50,7 @@
 @endif
 @if($errors->has('poin'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{$errors->first('poin')}}</strong> 
+        <strong>{{$errors->first('poin')}}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -65,24 +65,24 @@
                 <div class="row">
                     <div class="col-md-10">
                         <h6>Soal No.  <?php  $i++;  echo $i; ?> </h6>
-                        
+
                         @if($item->jenis == "Essay")
                             <div class="subjudul"> Pertanyaan : </div>
                             <div class="isi"> {!!$item->essay->pertanyaan!!} </div>
                             <div class="subjudul"> Kunci Jawaban : </div>
                             <div class="isi"> {!!$item->essay->jawaban!!} </div>
-                            
+
                         @elseif($item->jenis == "Pilihan Ganda")
-                            <div class="subjudul"> Pertanyaan : </div> 
+                            <div class="subjudul"> Pertanyaan : </div>
                             <div class="isi"> {!!$item->pilgan->pertanyaan!!} </div>
-                            <div class="subjudul"> Pilihan : </div> 
+                            <div class="subjudul"> Pilihan : </div>
                             <div class="isi">    A . {{$item->pilgan->pil_a}}  <br>
                                 B . {{$item->pilgan->pil_b}}  <br>
                                 C . {{$item->pilgan->pil_c}}  <br>
                                 D . {{$item->pilgan->pil_d}}  <br>
                                 E . {{$item->pilgan->pil_e}} </div>
                             <div class="subjudul"> Kunci Jawaban : {{$item->pilgan->kunci}}</div>
-                            
+
 
                         @endif
 
@@ -95,51 +95,51 @@
                             </div>
                             <input type="text" class="form-control" placeholder="{{$item->poin}}" aria-label="Poin" aria-describedby="basic-addon1" disabled>
                         </div>
-                    
+
                         @if ($item->jenis == 'Essay')
                         <!--Button Edit-->
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_essay"  style="box-shadow: 3px 2px 5px grey; margin:5px;"
-                                    id="update"                                   
-                                    data-id_essay_update="{{ $item->essay->id }}"    
-                                    data-soal_satuan_id_essay_update="{{ $item->essay->soal_satuan_id }}"     
-                                    data-pertanyaan_essay_update="{{ $item->essay->pertanyaan }}"    
-                                    data-jawaban_essay_update="{{ $item->essay->jawaban }}"    
-                                    data-poin_essay_update="{{ $item->poin }}"   
-                                    >  
-                                    Edit <i class="fa fa-edit"></i>          
+                                    id="update"
+                                    data-id_essay_update="{{ $item->essay->id }}"
+                                    data-soal_satuan_id_essay_update="{{ $item->essay->soal_satuan_id }}"
+                                    data-pertanyaan_essay_update="{!! $item->essay->pertanyaan !!}"
+                                    data-jawaban_essay_update="{!! $item->essay->jawaban !!}"
+                                    data-poin_essay_update="{{ $item->poin }}"
+                                    >
+                                    Edit <i class="fa fa-edit"></i>
                         </button>
                         @elseif($item->jenis == "Pilihan Ganda")
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_pilgan"  style="box-shadow: 3px 2px 5px grey; margin:5px;"
-                                    id="update_pilgan"                                   
-                                    data-id_pilgan_update="{{ $item->pilgan->id }}"    
-                                    data-soal_satuan_id_pilgan_update="{{ $item->pilgan->soal_satuan_id }}"     
-                                    data-pertanyaan_pilgan_update="{{ $item->pilgan->pertanyaan }}"    
-                                    data-pil_a_pilgan_update="{{ $item->pilgan->pil_a }}"    
-                                    data-pil_b_pilgan_update="{{ $item->pilgan->pil_b }}"    
-                                    data-pil_c_pilgan_update="{{ $item->pilgan->pil_c }}"    
-                                    data-pil_d_pilgan_update="{{ $item->pilgan->pil_d }}"    
-                                    data-pil_e_pilgan_update="{{ $item->pilgan->pil_e }}"    
-                                    data-kunci_pilgan_update="{{ $item->pilgan->kunci }}"    
-                                    data-poin_pilgan_update="{{ $item->poin }}"   
-                                    >  
-                                    Edit <i class="fa fa-edit"></i>           
+                                    id="update_pilgan"
+                                    data-id_pilgan_update="{{ $item->pilgan->id }}"
+                                    data-soal_satuan_id_pilgan_update="{{ $item->pilgan->soal_satuan_id }}"
+                                    data-pertanyaan_pilgan_update="{!! $item->pilgan->pertanyaan !!}"
+                                    data-pil_a_pilgan_update="{!! $item->pilgan->pil_a !!}"
+                                    data-pil_b_pilgan_update="{!! $item->pilgan->pil_b !!}"
+                                    data-pil_c_pilgan_update="{!! $item->pilgan->pil_c !!}"
+                                    data-pil_d_pilgan_update="{!! $item->pilgan->pil_d !!}"
+                                    data-pil_e_pilgan_update="{!! $item->pilgan->pil_e !!}"
+                                    data-kunci_pilgan_update="{!! $item->pilgan->kunci !!}"
+                                    data-poin_pilgan_update="{!! $item->poin !!}"
+                                    >
+                                    Edit <i class="fa fa-edit"></i>
                         </button>
                         @endif
-                        <a href="#" class="btn btn-sm btn-danger hapus"  style="box-shadow: 3px 2px 5px grey; margin:5px;"> Hapus <i class="fa fa-trash"></i> </a>        
-                    
-                    </div> 
-           
+                        <a href="#" class="btn btn-sm btn-danger hapus"  style="box-shadow: 3px 2px 5px grey; margin:5px;"> Hapus <i class="fa fa-trash"></i> </a>
+
+                    </div>
+
                 </div>
                 <script>
                     $('.hapus').click(function(){
                     const menghapus = confirm('Apakah mau dihapus?');
                     if (menghapus) {
-                        
+
                         window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
                     }
                     })
-                </script>         
-                
+                </script>
+
                 <hr>
             @endforeach
         </div>
@@ -160,7 +160,7 @@
                     </button>
                 </div>
                 <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updateessay" method="post">
-                   
+
                     @csrf
                     @method('PATCH')
                     <div class="modal-body">
@@ -372,7 +372,7 @@
                 </div>
 
                 <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updatepil" method="post">
-                   
+
                     @csrf
                     @method('PATCH')
                      <div class="modal-body">
@@ -475,16 +475,16 @@ $(document).ready(function(){
     var pil_e_pilgan_update                 = $(this).data('pil_e_pilgan_update');
     var kunci_pilgan_update                 = $(this).data('kunci_pilgan_update');
     var poin_pilgan_update                 = $(this).data('poin_pilgan_update');
-    $('#id_pilgan_update').val(id_pilgan_update); 
-    $('#soal_satuan_id_pilgan_update').val(soal_satuan_id_pilgan_update);      
-    $('#pertanyaan_pilgan_update').val(pertanyaan_pilgan_update); 
-    $('#pil_a_pilgan_update').val(pil_a_pilgan_update);              
-    $('#pil_b_pilgan_update').val(pil_b_pilgan_update);              
-    $('#pil_c_pilgan_update').val(pil_c_pilgan_update);              
-    $('#pil_d_pilgan_update').val(pil_d_pilgan_update);              
-    $('#pil_e_pilgan_update').val(pil_e_pilgan_update);              
-    $('#kunci_pilgan_update').val(kunci_pilgan_update);   
-    $('#poin_pilgan_update').val(poin_pilgan_update);   
+    $('#id_pilgan_update').val(id_pilgan_update);
+    $('#soal_satuan_id_pilgan_update').val(soal_satuan_id_pilgan_update);
+    $('#pertanyaan_pilgan_update').val(pertanyaan_pilgan_update);
+    $('#pil_a_pilgan_update').val(pil_a_pilgan_update);
+    $('#pil_b_pilgan_update').val(pil_b_pilgan_update);
+    $('#pil_c_pilgan_update').val(pil_c_pilgan_update);
+    $('#pil_d_pilgan_update').val(pil_d_pilgan_update);
+    $('#pil_e_pilgan_update').val(pil_e_pilgan_update);
+    $('#kunci_pilgan_update').val(kunci_pilgan_update);
+    $('#poin_pilgan_update').val(poin_pilgan_update);
     });
 
 });
@@ -500,13 +500,13 @@ $(document).ready(function(){
     var pertanyaan_essay_update          = $(this).data('pertanyaan_essay_update');
     var jawaban_essay_update             = $(this).data('jawaban_essay_update');
     var poin_essay_update                = $(this).data('poin_essay_update');
-    $('#id_essay_update').val(id_essay_update); 
-    $('#soal_satuan_id_essay_update').val(soal_satuan_id_essay_update);      
-    $('#pertanyaan_essay_update').val(pertanyaan_essay_update);             
-    $('#jawaban_essay_update').val(jawaban_essay_update);   
-    $('#poin_essay_update').val(poin_essay_update);   
+    $('#id_essay_update').val(id_essay_update);
+    $('#soal_satuan_id_essay_update').val(soal_satuan_id_essay_update);
+    $('#pertanyaan_essay_update').val(pertanyaan_essay_update);
+    $('#jawaban_essay_update').val(jawaban_essay_update);
+    $('#poin_essay_update').val(poin_essay_update);
     });
-    
+
 });
 </script>
 <!--edit-->
@@ -555,4 +555,3 @@ $(document).ready(function(){
                                                       } );
   </script>
 @stop
-
