@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
+<div class="container">
     @if(session('sukses'))
         <div class="alert alert-success" role="alert">
             {{session('sukses')}}
@@ -54,13 +55,13 @@
 
     <div class="card text-center">
 
-        <div class="card-header">
+        <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
             <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
-                <a class="nav-link active"  id="nav_koreksi">Koreksi Jawaban Peserta</a>
+                <a class="nav-link active"  id="nav_koreksi"> <strong>Koreksi Jawaban Peserta</strong> </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="nav_hasil">Hasil Ujian Peserta</a>
+                <a class="nav-link" id="nav_hasil"> <strong>Hasil Ujian Peserta</strong> </a>
             </li>
             </ul>
         </div>
@@ -104,13 +105,25 @@
             </div>
             <div id="hasil">
                 @if ($peserta->nilai !== null)
-                <div class="alert alert-success" role="alert">
-                    Total Score : {{$peserta->nilai}} <br>
-                    Total Poin : {{$total_poin}} <br>
-                    Nilai Akhir : {{$nilai_akhir}}
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="alert alert-success" role="alert">
+                            Total Score : {{$peserta->nilai}}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="alert alert-success" role="alert">
+                            Total Poin : {{$total_poin}} 
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="alert alert-success" role="alert">
+                            Nilai Akhir : {{$nilai_akhir}}
+                        </div>
+                    </div>
                 </div>
                 @endif
-                <h5>Hasil Ujian Pilihan Ganda Peserta</h5>
+                <h5> <strong>Hasil Ujian Pilihan Ganda Peserta</strong> </h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
                         <tr>
@@ -118,7 +131,7 @@
                             <th scope="col" style="width:400px">Jawaban Peserta</th>
                             <th scope="col" style="width:150px">Kunci Jawaban</th>
                             <th scope="col" style="width:150px">Keterangan</th>
-                            <th scope="col" style="width:140px">score</th>
+                            <th scope="col" style="width:140px">Score</th>
 
                         </tr>
                     </thead>
@@ -136,14 +149,15 @@
                     </tbody>
                 </table>
 
-                <h5>Hasil Ujian Essay Peserta</h5>
+                <h5> <strong> Hasil Ujian Essay Peserta</strong></h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
                         <tr>
                             <th scope="col" style="width:50px">No</th>
                             <th scope="col" style="width:400px">Pertanyaan</th>
                             <th scope="col" style="width:150px">Jawaban Peserta</th>
-                            <th scope="col" style="width:140px">score</th>
+                            <th scope="col" style="width:150px">Poin Soal</th>
+                            <th scope="col" style="width:140px">Score</th>
 
                         </tr>
                     </thead>
@@ -154,6 +168,7 @@
                             <td scope="row"><?php  $i++;  echo $i; ?></td>
                             <td>{!!$item->essay->pertanyaan!!}</td>
                             <td>{!!$item->jawab!!}</td>
+                            <td>{!!$item->essay->soal_satuan->poin!!}</td>
                             <td>{{$item->score}}</td>
                         </tr>
                         @endforeach
@@ -164,7 +179,7 @@
         </div>
     </div>
 
-
+</div>
 
 <script>
 $("#hasil").hide();

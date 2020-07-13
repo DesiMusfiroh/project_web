@@ -25,6 +25,9 @@
             color: #82e8b5;
             font-size: 20px;
         }
+        .card-header {border-radius: 20px 20px 0px 0px; background: #EDE5E5; }
+        .card {border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);}
+        
         /* #sidebar {
            position:fixed; height:660px
         }
@@ -52,22 +55,22 @@
 
                 <ul class="list-unstyled components mb-5 ">
                     <li class="nav-item ">
-                        <a href="{{ route('home') }}"><strong style="font-size:16px"> <i class="nav-icon fa fa-home"></i>  Dashboard</strong> </a>
+                        <a href="{{ route('home') }}"><strong style="font-size:16px"> <i class="nav-icon fa fa-home"></i>  Beranda </strong> </a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil"><strong style="font-size:16px"> <i class="nav-icon fa fa-user"></i>  Profil</strong></a>
                     </li>
                     <li class="nav-item ">
-                    <a type="button"  data-toggle="modal" data-target="#exampleModal" ><strong style="font-size:16px"> <i class="nav-icon fa fa-plus"></i> Join Exam</strong></a>
+                    <a type="button"  data-toggle="modal" data-target="#exampleModal" ><strong style="font-size:16px"> <i class="nav-icon fa fa-plus"></i> Ikuti Ujian</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Question</strong></a>
+                        <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Kelola Soal </strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('getExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-thumb-tack"></i> Create Exam</strong></a>
+                        <a href="{{route('getExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-thumb-tack"></i> Kelola Ujian</strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('resultExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-graduation-cap"></i> Result Exam</strong></a>
+                        <a href="{{route('resultExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-graduation-cap"></i> Hasil Ujian</strong></a>
                     </li>
 
                     <!-- <li class="nav-item ">
@@ -175,39 +178,41 @@
 
     @yield('ckeditor')
 
+<!-- Modal Join Exam -->
     <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Join Exam</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" >
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                     {{ session('status') }}
-                </div>
-            @endif
-        <form method="POST" action="{{ route('joinExam') }}">
-            @csrf
-                <div class="form-row align-items-center">
-                    <div class="col-auto  offset-md-1">
-                         <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="kode_akses" type="kode_akses" class="form-control @error('kode_akses') is-invalid @enderror" name="kode_akses" required placeholder="Masukkan Kode Akses">
+    <div class="modal-dialog" style="border-radius:2px;  box-shadow: 3px 3px 5px grey;">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Join Exam</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" >
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
                     </div>
-                    <div class="col-auto ">
-                        <button type="submit" style="border-radius:10px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:18px; box-shadow: 3px 3px 5px grey;">
-                            <strong> {{ __('Join') }}</strong>
-                        </button>
+                @endif
+            <form method="POST" action="{{ route('joinExam') }}">
+                @csrf
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-8  offset-md-1">
+                            <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="kode_akses" type="kode_akses" class="form-control @error('kode_akses') is-invalid @enderror" name="kode_akses" required placeholder="Masukkan Kode Akses">
+                        </div>
+                        <div class="col-sm-2 ">
+                            <button type="submit" class="btn btn-success" style="border-radius:10px; box-shadow: 3px 3px 5px grey;">
+                                <strong> {{ __('Join') }}</strong>
+                            </button>
+                        </div>
                     </div>
-                </div>
-        </form>
-     </div>
-      <div class="modal-footer col-auto">
-       Nb : Kode akses hanya diperoleh dari guru/dosen!
+            </form>
+        </div>
+        <div class="modal-footer col-auto">
+        Nb : Kode akses hanya diperoleh dari guru/dosen!
+        </div>
     </div>
-  </div>
-</div>
+    </div>
+<!-- penutup modal  -->
   </body>
 </html>

@@ -1,7 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<p>Detail Hasil Ujian </p>
-
+<div class="container">
 <div class="row mb-4">
     <div class="col-sm-7">
         <div class="card"  style="height: 120px;">
@@ -44,12 +43,8 @@
 
 <div class="card text-center">
 
-    <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-            <a class="nav-link" id="nav_hasil">Hasil Ujian Peserta</a>
-        </li>
-        </ul>
+    <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
+        <strong style="font-size:18px">Detail Hasil Ujian</strong>
     </div>
 
     <div class="card-body">
@@ -120,5 +115,6 @@
       <strong>Menunggu di koreksi </strong>
       @endif
     </div>
+</div>
 </div>
 @endsection
