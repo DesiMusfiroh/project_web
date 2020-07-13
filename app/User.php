@@ -33,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function essay_jawab(){
       return $this->hasMany(EssayJawab::class,'user_id');
     }
-    
+
     public function pilgan_jawab(){
       return $this->hasMany(PilganJawab::class,'user_id');
     }
