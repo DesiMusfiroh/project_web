@@ -14,7 +14,7 @@ video{
 </style>
 <div class="row">
 <div class="col-md-8">
-<div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);" >
+<div class="card"  style="border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);" >
     <div class="card-header text-center "  style="border-radius: 20px 20px 0px 0px;  background: #EDE5E5;">
         <strong style="font-size:18px;">{{ $ujian->nama_ujian}}</strong>
     </div>

@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                
-                @if($paketsoal->count() != 0) 
+
+                @if($paketsoal->count() != 0)
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-light text-center">
                             <tr>

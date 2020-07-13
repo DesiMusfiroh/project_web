@@ -69,7 +69,7 @@
                     <li class="nav-item ">
                         <a href="{{route('resultExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-graduation-cap"></i> Result Exam</strong></a>
                     </li>
-                  
+
                     <!-- <li class="nav-item ">
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Question</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -134,7 +134,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle mb-0 mt-0 pt-0 pb-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <strong style="font-size:15px">{{ Auth::user()->name }}  <i class="fa fa-user mr-3 ml-1" style="font-size:24px"></i> <span class="caret"></span> </strong> 
+                                    <strong style="font-size:15px">{{ Auth::user()->name }}  <i class="fa fa-user mr-3 ml-1" style="font-size:24px"></i> <span class="caret"></span> </strong>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -163,6 +163,8 @@
 
 
     </div>
+
+    @include('sweetalert::alert')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/popper.js"></script>

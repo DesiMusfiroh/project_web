@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Peserta;
 use Illuminate\Http\Request;
+use Alert;
 
 class HomeController extends Controller
 {

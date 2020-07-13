@@ -11,6 +11,7 @@ use App\User;
 use Str;
 use Auth;
 use Illuminate\Http\Request;
+use Alert;
 
 class ExamController extends Controller
 {
@@ -22,6 +23,7 @@ class ExamController extends Controller
     public function index()
     {
         $ujian = Ujian::where('user_id',auth()->user()->id)->get();
+
         //  $ujian = Ujian::join('paket_soal',function ($join){
         //   $join->on('users.id','=','paket_soal.user_id')
         //        ->where('paket_soal.user','=',Auth::user()->id);
@@ -50,11 +52,19 @@ class ExamController extends Controller
     public function edit($id)
     {
         // $ujian = Ujian::where('id',$id)->get();
-        $ujian = Ujian::find($id);
-        $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
-        $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
-        $paket_soal=PaketSoal::all();
-        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
+        $ownuser = Ujian::where('id',$id)->value('user_id');
+
+        if (auth()->user()->id === $ownuser) {
+          $ujian = Ujian::find($id);
+          $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
+          $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
+          $paket_soal=PaketSoal::where('user_id',auth()->user()->id)->get();
+          return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
+        }else {
+          $error = "Tidak bisa mengakses halaman";
+          return view('error',compact(['error']));
+        }
+
     }
 
     public function update(Request $request, $id)
@@ -67,7 +77,7 @@ class ExamController extends Controller
         ]);
         $ujian = Ujian::find($id);
         $ujian->update($request->all());
-        return redirect()->route('getExam')->with('sukses','Berhasil update ujian');
+        return redirect()->route('getExam')->with('success', 'Perubahan berhasil di simpan');
     }
 
     public function openMyExam($id){
@@ -113,7 +123,7 @@ class ExamController extends Controller
             $peserta->ujian_id = $id;
             $peserta->nilai = null;
             $peserta->save();
-            return redirect()->route('home');
+            return redirect()->route('home')->withSuccess('Berhasil mengikuti ujian baru');
         }
     }
 

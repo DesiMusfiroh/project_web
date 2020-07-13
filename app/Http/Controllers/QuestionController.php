@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Gate;
 use App\PaketSoal;
 use App\User;
 use App\SoalSatuan;
 use App\Essay;
 use App\Pilgan;
 use Illuminate\Http\Request;
+use Alert;
 
 class QuestionController extends Controller
 {
@@ -50,10 +51,18 @@ class QuestionController extends Controller
 
     // SOAL SATUAN CRUD CONTROLLER
     public function create_soal_satuan($paket_soal_id){
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
-        $paket_soal = PaketSoal::find($paket_soal_id);
-        $paket_soal_id = $paket_soal->id;
-        return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan, 'paket_soal' => $paket_soal], compact('paket_soal_id'));
+      $ownuser = PaketSoal::where('id',$paket_soal_id)->value('user_id');
+      //agar dia cuma bisa akses paket soal yg dimilikinya
+      if (auth()->user()->id === $ownuser) {
+          $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+          $paket_soal = PaketSoal::find($paket_soal_id);
+          $paket_soal_id = $paket_soal->id;
+          return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan, 'paket_soal' => $paket_soal], compact('paket_soal_id'));
+        }else {
+          $error = "Tidak bisa mengakses halaman";
+          return view('error',compact(['error']));
+        }
+
     }
     
     public function essay_store(Request $request)
@@ -120,7 +129,7 @@ class QuestionController extends Controller
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
-        
+
         $soal_satuan->delete();
         return redirect()->back()->with('sukses','Soal berhasil dihapus');
     }
@@ -140,7 +149,7 @@ class QuestionController extends Controller
         ];
         SoalSatuan::whereId($essay->soal_satuan_id)->update($update_poin);
 
-        return redirect()->back()->with('sukses','Soal berhasil diupdate');
+        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
     }
 
     public function update_soal_satuan_pilgan(Request $request, $paket_soal_id){

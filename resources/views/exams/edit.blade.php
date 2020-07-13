@@ -38,32 +38,15 @@ use App\Ujian ;
                     </select>
                   </div>
                 </div>
-                <!-- <div class="row mt-2">
-                  <div class="col-md-3">
-                    <label for="">Paket Soal</label>
-                  </div>
-                  <div class="col-md-7">
-                    <input type="text"  name="paket_soal_id" value = "{{$ujian->paket_soal->judul}}"  disabled> <span style="color:red">*paket  soal tidak bisa di ubah</span>
-                  </div>
-                </div> -->
                 <div class="row mt-2 mr-3">
                   <div class="col-md-3  offset-md-1">
                     <label for="">Waktu mulai</label>
                   </div>
                   <div class="col-md-8">
-                    <input type="hidden" class="form-control"  value = "{{$ujian->waktu_mulai}}"  id="jamawal">
-                    <input type="datetime-local" class="form-control"  name="waktu_mulai"   id="jamberubah">
-                  
+                    <input type="hidden" id="waktu_awal"  value="{{$ujian->waktu_mulai}}" >
+                    <input class="form-control" type="datetime-local" name="waktu_mulai" value = ""  id="waktu_input">
                   </div>
                 </div>
-               
-                <script> 
-                var dateControl = document.querySelector('input[type="datetime-local"]');
-                var jamawal = $('#jamawal').val();
-                
-                var jamberubah = jamawal;
-                dateControl.value= berubah;
-                </script> 
                 <hr>
                   <div class="row mt-2 offset-md-10">
                   <button type="submit" class="btn" style="background-color:#7BEDC4; border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46);">
@@ -77,5 +60,16 @@ use App\Ujian ;
     </div>
 </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    var waktu_awal = document.getElementById("waktu_awal").value;
+    let waktu = new Date(waktu_awal);
+
+    var dateControl = document.querySelector('input[type="datetime-local"]');
+    dateControl.value = waktu.toISOString().substring(0, 16);
+});
+</script>
+
 @endsection
 

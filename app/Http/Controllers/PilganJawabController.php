@@ -10,6 +10,7 @@ use App\Peserta;
 use App\Pilgan;
 use App\PilganJawab;
 use Auth;
+use Alert;
 
 class PilganJawabController extends Controller
 {

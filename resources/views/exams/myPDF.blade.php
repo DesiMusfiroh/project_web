@@ -73,8 +73,8 @@
 	</tr>
     <tr>
 
-		<td>Jawaban Anda</td>
-        <td>{{$item->jawab}} @if ($item->status == 'T') &#10003; (Poin : {{$item->score}}) @elseif($item->status == 'F') (&#10008;) (Poin : {{$item->score}}) Kunci {{$item->pilgan->kunci}} @endif</td>
+		<td>&nbsp;</td>
+        <td>Jawaban Anda : {{$item->jawab}} @if ($item->status == 'T') (Benar) <b> (Poin : {{$item->score}}) </b> @elseif($item->status == 'F') (Salah) <b>(Poin : {{$item->score}})  Kunci {{$item->pilgan->kunci}} </b> @endif</td>
 	</tr>
     <tr>
 
@@ -106,13 +106,13 @@
     </tr>
     <tr>
 
-		<td>Jawaban Anda</td>
-        <td>: {{$item->jawab}} (poin : {{$item->score}})</td>
+		<td>&nbsp;</td>
+        <td>Jawaban Anda : {{$item->jawab}} <b>(poin :  {{$item->score}}) <b></td>
 	</tr>
     <tr>
 
-		<td>Kunci</td>
-        <td>: {{$item->essay->jawaban}}</td>
+		<td>&nbsp;</td>
+        <td><b>Kunci :  {{$item->essay->jawaban}} </b></td>
 	</tr>
     <tr>
 

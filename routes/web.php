@@ -24,8 +24,8 @@ Route::get('/logout','HomeController@logout')->name('logout');
 // route profil
 Route::get('profil','ProfilController@index');
 Route::post('profil/store','ProfilController@store')->name('storeProfil');
-Route::get('profil/edit/{id}', 'ProfilController@edit');
-Route::patch('profil/update/{id}', 'ProfilController@update');
+Route::get('profil/edit', 'ProfilController@edit');
+Route::patch('profil/update', 'ProfilController@update');
 
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
