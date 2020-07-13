@@ -145,6 +145,7 @@
 </div>
 @endif
 
+
 </div>
 <!-- update Modal (essay)-->
     <div class="modal fade update_modal_essay"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -461,9 +462,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $(document).on('click','#update_pilgan', function(){
-    var id_pilgan_update                       = $(this).data('id_pilgan_update');
-    var soal_satuan_id_pilgan_update      = $(this).data('soal_satuan_id_pilgan_update');
-    var pertanyaan_pilgan_update                 = $(this).data('pertanyaan_pilgan_update');
+    var id_pilgan_update                    = $(this).data('id_pilgan_update');
+    var soal_satuan_id_pilgan_update        = $(this).data('soal_satuan_id_pilgan_update');
+    var pertanyaan_pilgan_update            = $(this).data('pertanyaan_pilgan_update');
     var pil_a_pilgan_update                 = $(this).data('pil_a_pilgan_update');
     var pil_b_pilgan_update                 = $(this).data('pil_b_pilgan_update');
     var pil_c_pilgan_update                 = $(this).data('pil_c_pilgan_update');

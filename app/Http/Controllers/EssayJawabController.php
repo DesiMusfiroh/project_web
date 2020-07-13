@@ -10,6 +10,7 @@ use App\Peserta;
 use App\Essay;
 use App\EssayJawab;
 use Auth;
+use Alert;
 
 class EssayJawabController extends Controller
 {

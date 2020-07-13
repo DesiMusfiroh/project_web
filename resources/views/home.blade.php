@@ -104,11 +104,11 @@
         <form method="POST" action="{{ route('joinExam') }}">
             @csrf
                 <div class="form-row align-items-center">
-                    <div class="col-auto  offset-md-1">
+                    <div class="col-sm-8  offset-md-1">
                          <input style="border-radius:10px; border-color:#c4cdcf; box-shadow: 3px 3px 5px grey;"id="kode_akses" type="kode_akses" class="form-control @error('kode_akses') is-invalid @enderror" name="kode_akses" required placeholder="Masukkan Kode Akses">
                     </div>
-                    <div class="col-auto ">
-                        <button type="submit" style="border-radius:10px; border-color:#c4cdcf; font-family: Chelsea Market; font-size:18px; box-shadow: 3px 3px 5px grey;">
+                    <div class="col-sm-2 ">
+                        <button type="submit" class="btn btn-success" style="border-radius:10px; box-shadow: 3px 3px 5px grey;">
                             <strong> {{ __('Join') }}</strong>
                         </button>
                     </div>
