@@ -29,7 +29,7 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
                                 <th scope="col" style="width:100px">Jumlah Soal </th>
-                                <th scope="col" style="width:100px">Opsi</th>
+                                <th scope="col" style="width:140px">Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
