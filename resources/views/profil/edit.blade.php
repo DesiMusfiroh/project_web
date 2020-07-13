@@ -9,7 +9,7 @@
         <div class="animated fadeIn">
 
 
-            <form action="/profil/update/{{ $profil->id }}" method="post" enctype="multipart/form-data" >
+            <form action="/profil/update" method="post" enctype="multipart/form-data" >
             @csrf
             @method('PATCH')
                 <div class="row">
@@ -18,7 +18,7 @@
                             <div class="card-header  pt-3 pb-2 text-center"  style="border-radius: 20px 20px 0px 0px;  background-color:#6BCB9D;">
                                 <strong style="font-size:18px"> Foto Profil </strong>
                             </div>
-                            <div class="card-body">                                
+                            <div class="card-body">
                                 <div class="form-group text-center">
                                     <label for="foto"> <b> Foto :  </b></label> <br>
                                     <img src="{{ asset('images/' . $profil->foto) }}" width="150px"  alt="{{ $profil->foto }}">

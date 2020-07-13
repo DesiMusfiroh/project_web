@@ -36,9 +36,9 @@
                       <div class="alert alert-success">Status Ujian </div>
                     </div>
                   </div>
-                  
+
                   <div class="text-center"><h5><strong >Peserta Ujian</strong></h5></div>
-                  
+
                   <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
                             <tr>
@@ -54,7 +54,7 @@
                               <td class="text-center">{{$loop->iteration}}</td>
                               <td class="text-center">{{$item->user->name}}</td>
                               <td class="text-center">{{$item->nilai}}</td>
-                              <td class="text-center">  
+                              <td class="text-center">
                                   <a href="{{route('koreksi',$item->id)}}">
                                     @if ($item->nilai !== null)
                                     <button type="button" class="btn btn-info btn-sm" >

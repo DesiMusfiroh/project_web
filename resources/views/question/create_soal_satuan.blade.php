@@ -95,6 +95,7 @@
                             </div>
                             <input type="text" class="form-control" placeholder="{{$item->poin}}" aria-label="Poin" aria-describedby="basic-addon1" disabled>
                         </div>
+                    
                         @if ($item->jenis == 'Essay')
                         <!--Button Edit-->
                         <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_essay"  style="box-shadow: 3px 2px 5px grey; margin:5px;"
@@ -125,6 +126,7 @@
                         </button>
                         @endif
                         <a href="#" class="btn btn-sm btn-danger hapus"  style="box-shadow: 3px 2px 5px grey; margin:5px;"> Hapus <i class="fa fa-trash"></i> </a>        
+                    
                     </div> 
            
                 </div>
@@ -157,7 +159,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/update" method="post">
+                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updateessay" method="post">
                    
                     @csrf
                     @method('PATCH')
@@ -369,13 +371,14 @@
                     </button>
                 </div>
 
-                <form action="" enctype="multipart/form-data" method="post">
-                @csrf
-                @method('PATCH')
-                    <div class="modal-body">
+                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updatepil" method="post">
+                   
+                    @csrf
+                    @method('PATCH')
+                     <div class="modal-body">
                         <div class="container">
 
-                            <input type="hidden" name="id" class="id_pilgan_update" value="">
+                            <input type="hidden" name="id" id="id_pilgan_update" value="">
                             <input type="hidden" name="soal_satuan_id" id="soal_satuan_id_pilgan_update" value="">
 
                             <div class="form-group row">
@@ -488,7 +491,6 @@ $(document).ready(function(){
 </script>
 <!--edit-->
 
-
 <!--edit essay-->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -519,13 +521,9 @@ $(document).ready(function(){
         $('.paket_soal_id').val(paket_soal_id);
 
     });
-
 });
 
 </script>
-
-
-
 
 @stop
 @section('ckeditor')
@@ -557,3 +555,4 @@ $(document).ready(function(){
                                                       } );
   </script>
 @stop
+
