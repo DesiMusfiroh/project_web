@@ -196,6 +196,9 @@
                                         <input type="file" class="custom-file-input" id="customFile"  name="foto">
                                         <label class="custom-file-label" for="customFile">Pilih File Foto ..</label>
                                     </div>
+<!-- <script>
+     if (document.getElementById('FName_Status').getAttribute('src') == "pictures/apic.png")
+</script> -->
                                     @if($errors->has('foto'))
                                       <span class="help-block">{{$errors->first('foto')}}</span>
                                     @endif
