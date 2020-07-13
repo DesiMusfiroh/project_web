@@ -53,6 +53,11 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
+                                    <a  href="#">   
+                                    <button type="button" class="btn btn-info btn-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
                                     <a href="">
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>

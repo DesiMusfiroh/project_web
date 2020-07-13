@@ -11,6 +11,7 @@
             <div class="card">
                 <div class="card-header text-center" style="background: #EDE5E5; ">
                     <strong style="font-size:18px"> Hasil Ujian </strong>
+                    
                 </div>
 
                 <div class="card-body">
@@ -42,6 +43,7 @@
                                             <i class="fa fa-eye fa-sm"></i> Detail
                                         </button>
                                     </a>
+                                   
                                 </td>
                             </tr>
                             @endforeach

@@ -55,7 +55,7 @@ class QuestionController extends Controller
         $paket_soal_id = $paket_soal->id;
         return view('question.create_soal_satuan',['soal_satuan' => $soal_satuan, 'paket_soal' => $paket_soal], compact('paket_soal_id'));
     }
-
+    
     public function essay_store(Request $request)
     {
         $this->validate($request,[

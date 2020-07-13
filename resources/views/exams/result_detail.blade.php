@@ -27,6 +27,7 @@
                                 <tr> <td> Nomor HP  </td> <td> : </td> <td> - </td> </tr>
                             </table>
                         @endif
+                        
                 </div>
             </div>
             </div>
@@ -47,9 +48,19 @@
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
         <li class="nav-item">
-            <a class="nav-link" id="nav_hasil">Hasil Ujian Peserta</a>
+            <span class="nav-link" id="nav_hasil">Hasil Ujian Peserta</span>  
         </li>
+       
         </ul>
+                                    @if($peserta->nilai != null )
+                                    <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">   
+                                    <button type="button" class="btn btn-info btn-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    
+                                    </button>
+                                    </a>
+                                    @endif 
+        
     </div>
 
     <div class="card-body">

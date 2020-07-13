@@ -51,14 +51,19 @@ use App\Ujian ;
                     <label for="">Waktu mulai</label>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control"  name="waktu_mulai" value = "{{$ujian->waktu_mulai}}"  id="jam">
+                    <input type="hidden" class="form-control"  value = "{{$ujian->waktu_mulai}}"  id="jamawal">
+                    <input type="datetime-local" class="form-control"  name="waktu_mulai"   id="jamberubah">
+                  
                   </div>
                 </div>
                
-                <!-- <script> untuk isi value
+                <script> 
                 var dateControl = document.querySelector('input[type="datetime-local"]');
-                dateControl.value = {{$ujian->waktu_mulai}};
-                </script> -->
+                var jamawal = $('#jamawal').val();
+                
+                var jamberubah = jamawal;
+                dateControl.value= berubah;
+                </script> 
                 <hr>
                   <div class="row mt-2 offset-md-10">
                   <button type="submit" class="btn" style="background-color:#7BEDC4; border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46);">

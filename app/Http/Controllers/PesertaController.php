@@ -20,7 +20,7 @@ class PesertaController extends Controller
         return view('exams.result_index',compact(['peserta']));
     }
     public function resultDetail($id){
-      $peserta = Peserta::find($id);
+      $peserta = Peserta::find($id); 
       $fotoprofil = Profil::where('user_id',$peserta->user->id)->value('foto');
       $institusi   = Profil::where('user_id',$peserta->user->id)->value('institusi');
       $no_hp      = Profil::where('user_id',$peserta->user->id)->value('no_hp');
