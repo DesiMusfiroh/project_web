@@ -143,4 +143,28 @@ class QuestionController extends Controller
         return redirect()->back()->with('sukses','Soal berhasil diupdate');
     }
 
+    public function update_soal_satuan_pilgan(Request $request, $paket_soal_id){
+        $paket_soal = PaketSoal::findorFail($paket_soal_id);
+        $pilgan      = Pilgan::findorFail($request->id);
+
+        $update_pilgan = [
+            'pertanyaan' => $request->pertanyaan,
+            'pil_a' => $request->pil_a,
+            'pil_b' => $request->pil_b,
+            'pil_c' => $request->pil_c,
+            'pil_d' => $request->pil_d,
+            'pil_e' => $request->pil_e,
+            'kunci' => $request->kunci,
+        ];
+        $pilgan->update($update_pilgan);
+
+        $update_poin = [
+            'poin' => $request->poin,
+        ];
+        SoalSatuan::whereId($pilgan->soal_satuan_id)->update($update_poin);
+
+        return redirect()->back()->with('sukses','Soal berhasil diupdate');
+    }
+
+
 }

@@ -156,7 +156,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/update" method="post">
+                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updateessay" method="post">
                    
                     @csrf
                     @method('PATCH')
@@ -368,13 +368,14 @@
                     </button>
                 </div>
 
-                <form action="" enctype="multipart/form-data" method="post">
-                @csrf
-                @method('PATCH')
-                    <div class="modal-body">
+                <form action="/question_create_soal_satuan/{{$paket_soal_id}}/updatepil" method="post">
+                   
+                    @csrf
+                    @method('PATCH')
+                     <div class="modal-body">
                         <div class="container">
 
-                            <input type="hidden" name="id" class="id_pilgan_update" value="">
+                            <input type="hidden" name="id" id="id_pilgan_update" value="">
                             <input type="hidden" name="soal_satuan_id" id="soal_satuan_id_pilgan_update" value="">
 
                             <div class="form-group row">
