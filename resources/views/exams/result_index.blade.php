@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header text-center" style="background: #EDE5E5; ">
+                <div class="card-header text-center"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
                     <strong style="font-size:18px"> Hasil Ujian </strong>
                     
                 </div>

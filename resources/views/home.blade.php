@@ -1,22 +1,23 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="alert alert-success " role="alert">
-  <h4 class="alert-heading">Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx!</h4>
-  <p>LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </p>
-  <hr>
-    <p>
-    Sudah punya kode akses untuk ujian?
-    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
-    <p>
-  </div>
+<div class="container">
+    <div class="alert alert-success mb-4" role="alert">
+        <h5 class="alert-heading"> <strong> Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx! </strong></h5>
+        <p> <img src="/images/LiveEx.png" alt="" width="60px;">  adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung. </p>
+        <hr>
+            
+            Sudah punya kode akses untuk ujian?
+            <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">  Klik disini</a>
+        
+    </div>
 
 @if($peserta->count() != 0)
 
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" style=" background: #EDE5E5;">
+            <div class="card-header"  style="border-radius:20px 20px 0px 0px; ">
                 <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong> 
             </div>
             <div class="card-body">
@@ -120,7 +121,5 @@
     </div>
   </div>
 </div>
-
-
-
+</div>
 @endsection

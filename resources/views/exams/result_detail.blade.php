@@ -1,7 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<p>Detail Hasil Ujian </p>
-
+<div class="container">
 <div class="row mb-4">
     <div class="col-sm-7">
         <div class="card"  style="height: 120px;">
@@ -131,5 +130,6 @@
       <strong>Menunggu di koreksi </strong>
       @endif
     </div>
+</div>
 </div>
 @endsection

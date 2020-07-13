@@ -22,7 +22,7 @@ class ExamController extends Controller
 
     public function index()
     {
-        $ujian = Ujian::where('user_id',auth()->user()->id)->get();
+        $ujian = Ujian::where('user_id',auth()->user()->id)->paginate(8);
 
         //  $ujian = Ujian::join('paket_soal',function ($join){
         //   $join->on('users.id','=','paket_soal.user_id')
@@ -46,7 +46,7 @@ class ExamController extends Controller
         $ujian->kode_ujian = Str::random(6);
         $ujian->waktu_mulai = $request->waktu_mulai;
         $ujian->save();
-        return redirect()->route('getExam');
+        return redirect()->route('getExam')->with('success',"<p> $request->nama_ujian berhasil di buat ! </p>");
     }
 
     public function edit($id)
@@ -77,7 +77,7 @@ class ExamController extends Controller
         ]);
         $ujian = Ujian::find($id);
         $ujian->update($request->all());
-        return redirect()->route('getExam')->with('success', 'Perubahan berhasil di simpan');
+        return redirect()->route('getExam')->with('success', 'Data update ujian berhasil di simpan !');
     }
 
     public function openMyExam($id){
@@ -191,7 +191,10 @@ class ExamController extends Controller
             'status' => 1,
         ];
         Peserta::where('id', $id)->update($update_finish_peserta);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('info','Ujian telah diselesaikan, jawaban anda telah tersimpan !');
     }
 
+    public function copy_kode(){
+        return redirect()->back()->with('success','Kode akses ujian berhasil di salin !');
+    }
 }

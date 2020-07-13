@@ -55,7 +55,7 @@ Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
 Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
 Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
-
+Route::get('/copy_kode_ujian','ExamController@copy_kode');
 //Route untuk masuk ke ujian miliknya sendiri
 Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
 
