@@ -8,6 +8,8 @@ use App\SoalSatuan;
 use App\Ujian;
 use App\Peserta;
 use App\Profil;
+use App\Pilgan;
+use App\Essay;
 use App\EssayJawab;
 use App\PilganJawab;
 use PDF;
@@ -50,10 +52,34 @@ class DocumentController extends Controller
     }
 
     public function exportSoal($id){
+      // $paket_soal = PaketSoal::where('id',$id)->get();
+      // foreach ($paket_soal as $item) {
+      //     $paket_soal_id = $item->id;
+      // }
+      //
+      //
+      // $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->get();
+      //
+      // dd($soal_satuan_id[]);
+      // $pilgan = Pilgan::where('soal_satuan_id',$soal_satuan->id)->get();
+      // $essay = Essay::where('soal_satuan_id',$soal_satuan->id)->get();
+      // $institusi   = Profil::where('user_id',auth()->user()->id)->value('institusi');
+      // $total_poin = SoalSatuan::where('paket_soal_id',$id)->sum('poin');
+      // dd($pilgan,$essay);
+      $institusi   = Profil::where('user_id',auth()->user()->id)->value('institusi');
       $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->get();
+      $total_poin = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->sum('poin');
+      $soal_pilgan = SoalSatuan::where('jenis','Pilihan Ganda')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
+      $soal_essay = SoalSatuan::where('jenis','Essay')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
       $paket_soal = PaketSoal::find($id);
-      $paket_soal_id = $paket_soal->id;
-      
+      //$paket_soal_id = $paket_soal->id;
+
+
+      $pdf = PDF::loadView('question/exportsoal',compact(['institusi','soal_satuan','paket_soal','soal_pilgan','soal_essay','total_poin']));
+      return $pdf->stream();
+
+
+
 
       // dd($paketsoal);
     }
