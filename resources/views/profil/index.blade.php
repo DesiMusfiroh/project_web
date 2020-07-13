@@ -14,8 +14,8 @@
 
                 <div class="col-md-8">
                     <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 10px grey;">
-                        <div class="card-header pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#6BCB9D;">
-                            <h4 class="card-title"> Profil </h4>
+                        <div class="card-header pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background: #EDE5E5; ">
+                            <strong style="font-size:18px"> Profil</strong>
                         </div>
                         <div class="card-body" >
                                 @if (session('success'))
@@ -85,7 +85,7 @@
                 <div class="col-md-4">
                     <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 10px grey;">
                         <div class="card-header pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color:#6BCB9D;">
-                            <h4 class="card-title">Foto Profil</h4>
+                            <strong style="font-size:18px"> Foto Profil </strong>
                         </div>
                         <div class="card-body text-center">
                             <div class="form-group">
@@ -106,8 +106,8 @@
 
                     <div class="col-md-8">
                         <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
-                            <div class="card-header  pt-3 pb-2 text-center"  style="border-radius: 20px 20px 0px 0px; background-color:#7BEDC4;">
-                                <h4 class="card-title"> Profil </h4>
+                            <div class="card-header  pt-3 pb-2 text-center"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
+                                <strong style="font-size:18px"> Profil </strong>
                             </div>
                             <div class="card-body">
                                 @if (session('success'))
@@ -183,12 +183,15 @@
                     <div class="col-md-4">
                         <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
                             <div class="card-header  pt-3 pb-2 text-center"  style="border-radius: 20px 20px 0px 0px ; background-color:#7BEDC4;">
-                                <h4 class="card-title">Foto Profil</h4>
+                                <strong style="font-size:18px"> Foto Profil </strong>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="file_foto"> <b> Foto : </b> </label>
-                                    <input type="file" name="foto" >
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile"  name="foto">
+                                        <label class="custom-file-label" for="customFile">Pilih File Foto ..</label>
+                                    </div>
                                     @if($errors->has('foto'))
                                       <span class="help-block">{{$errors->first('foto')}}</span>
                                     @endif

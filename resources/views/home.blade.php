@@ -16,8 +16,8 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" >
-                ujian yang akan dikerjakan
+            <div class="card-header" style=" background: #EDE5E5;">
+                <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong> 
             </div>
             <div class="card-body">
                     <table class="table table-striped table-bordered table-sm">

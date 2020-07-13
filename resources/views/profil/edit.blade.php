@@ -16,14 +16,17 @@
                     <div class="col-md-4">
                         <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 10px grey;">
                             <div class="card-header  pt-3 pb-2 text-center"  style="border-radius: 20px 20px 0px 0px;  background-color:#6BCB9D;">
-                                <h4 class="card-title">Foto Profil</h4>
+                                <strong style="font-size:18px"> Foto Profil </strong>
                             </div>
                             <div class="card-body">                                
                                 <div class="form-group text-center">
                                     <label for="foto"> <b> Foto :  </b></label> <br>
                                     <img src="{{ asset('images/' . $profil->foto) }}" width="150px"  alt="{{ $profil->foto }}">
                                     <hr>
-                                    <input type="file"  name="foto">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile"  name="foto">
+                                        <label class="custom-file-label" for="customFile">Pilih File Foto ..</label>
+                                    </div>
                                     @if($errors->has('foto'))
                                                 <span class="help-block">{{$errors->first('foto')}}</span>
                                     @endif
@@ -34,8 +37,8 @@
 
                     <div class="col-md-8">
                         <div class="card"  style="border-radius:20px;  box-shadow: 10px 10px 10px grey;">
-                            <div class="card-header  pt-3 pb-2  text-center"  style="border-radius: 20px 20px 0px 0px;  background-color:#6BCB9D;">
-                                <h4 class="card-title"> Profil </h4>
+                            <div class="card-header  pt-3 pb-2  text-center"  style="border-radius: 20px 20px 0px 0px;  background: #EDE5E5;">
+                                <strong style="font-size:18px"> Foto Profil </strong>
                             </div>
                             <div class="card-body">
                                 @if (session('success'))
