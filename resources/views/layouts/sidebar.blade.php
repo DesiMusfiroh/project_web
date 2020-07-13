@@ -64,6 +64,9 @@
                     <a type="button"  data-toggle="modal" data-target="#exampleModal" ><strong style="font-size:16px"> <i class="nav-icon fa fa-plus"></i> Ikuti Ujian</strong></a>
                     </li>
                     <li class="nav-item ">
+                        <a href="{{route('roomExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-camera"></i>  Monitoring Ujian </strong></a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Kelola Soal </strong></a>
                     </li>
                     <li class="nav-item ">

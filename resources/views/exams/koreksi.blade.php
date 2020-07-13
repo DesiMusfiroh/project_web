@@ -123,6 +123,8 @@
                     </div>
                 </div>
                 @endif
+
+                @if ($pilgan_jawab->count() != 0)
                 <h5> <strong>Hasil Ujian Pilihan Ganda Peserta</strong> </h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
@@ -148,7 +150,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @endif
 
+                @if ($essay_jawab->count() != 0)
                 <h5> <strong> Hasil Ujian Essay Peserta</strong></h5>
                 <table class="table table-striped table-bordered table-sm">
                     <thead class="thead-dark text-center">
@@ -174,7 +178,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                @endif
             </div>
         </div>
     </div>

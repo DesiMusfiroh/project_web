@@ -60,17 +60,30 @@
                                  
     </div>
 
-    <div class="card-body">
+    <div class="card-body text-center">
       @if ($peserta->nilai !== null)
         <div id="hasil">
-
-            <div class="alert alert-success" role="alert">
-                Total Score : {{$peserta->nilai}} <br>
-                Total Poin : {{$total_poin}} <br>
-                Nilai Akhir : {{$nilai_akhir}}
-            </div>
-
-            <h5>Hasil Ujian Pilihan Ganda Peserta</h5>
+            @if ($peserta->nilai !== null)
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="alert alert-success" role="alert">
+                            Total Score : {{$peserta->nilai}}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="alert alert-success" role="alert">
+                            Total Poin : {{$total_poin}} 
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="alert alert-success" role="alert">
+                            Nilai Akhir : {{$nilai_akhir}}
+                        </div>
+                    </div>
+                </div>
+                @endif
+            @if ($pilgan_jawab->count() != 0)
+            <h5> <strong>Hasil Ujian Pilihan Ganda Peserta</strong> </h5>
             <table class="table table-striped table-bordered table-sm">
                 <thead class="thead-dark text-center">
                     <tr>
@@ -95,14 +108,17 @@
                     @endforeach
                 </tbody>
             </table>
+            @endif
 
-            <h5>Hasil Ujian Essay Peserta</h5>
+            @if ($essay_jawab->count() != 0)
+            <h5> <strong> Hasil Ujian Essay Peserta</strong></h5>
             <table class="table table-striped table-bordered table-sm">
                 <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col" style="width:50px">No</th>
                         <th scope="col" style="width:400px">Pertanyaan</th>
                         <th scope="col" style="width:150px">Jawaban Peserta</th>
+                        <th scope="col" style="width:150px">Poin Soal</th>
                         <th scope="col" style="width:140px">score</th>
 
                     </tr>
@@ -114,12 +130,13 @@
                         <td scope="row"><?php  $i++;  echo $i; ?></td>
                         <td>{!!$item->essay->pertanyaan!!}</td>
                         <td>{{$item->jawab}}</td>
+                        <td>{!!$item->essay->soal_satuan->poin!!}</td>
                         <td>{{$item->score}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-
+            @endif
         </div>
       @else
       <script>

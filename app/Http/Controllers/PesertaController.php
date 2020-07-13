@@ -38,6 +38,7 @@ class PesertaController extends Controller
           $score_essay = EssayJawab::where('peserta_id',$peserta->id)->sum('score');
           $total_score = $score_essay + $score_pilgan;
           $nilai_akhir = $total_score / $total_poin * 100;
+          $nilai_akhir = substr($nilai_akhir, 0, 5);
           Peserta::where('id',$id)->update([
               'nilai' => $total_score
           ]);
