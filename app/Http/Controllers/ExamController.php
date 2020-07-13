@@ -58,7 +58,7 @@ class ExamController extends Controller
           $ujian = Ujian::find($id);
           $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
           $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
-          $paket_soal=PaketSoal::all();
+          $paket_soal=PaketSoal::where('user_id',auth()->user()->id)->get();
           return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
         }else {
           $error = "Tidak bisa mengakses halaman";
