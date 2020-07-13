@@ -26,7 +26,7 @@
 
                 <div class="card-body">
 
-                @if($ujian->count() != 0) 
+                @if($ujian->count() != 0)
                 <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center" >
                             <tr>
@@ -68,9 +68,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
-                    <div >{{$ujian->links()}}</div>
-                
+
+                    <div >{{$ujian->onEachSide(4)->links()}}</div>
+
                     @else
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong> Belum ada ujian yang di buat. Silahkan buat ujian baru!</strong>
@@ -79,7 +79,7 @@
                             </button>
                         </div>
                     @endif
-                
+
                 </div>
             </div>
         </div>

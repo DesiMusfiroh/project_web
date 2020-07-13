@@ -53,7 +53,7 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
-                                    <a  href="{{route('exportSoal',$item->id)}}">   
+                                    <a  href="{{route('exportSoal',$item->id)}}" title="Cetak Soal PDF">
                                     <button type="button" class="btn btn-info btn-sm">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>

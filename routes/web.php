@@ -28,6 +28,7 @@ Route::get('profil/edit', 'ProfilController@edit');
 Route::patch('profil/update', 'ProfilController@update');
 
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
+//Route::get('question/server_side',[ 'uses' =>'QuestionController@indexDataTables', 'as' => 'questions.data',] );
 Route::get('question/export/{id}','DocumentController@exportSoal')->name('exportSoal');
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru

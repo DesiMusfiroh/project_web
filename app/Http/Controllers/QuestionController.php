@@ -7,8 +7,11 @@ use App\User;
 use App\SoalSatuan;
 use App\Essay;
 use App\Pilgan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Alert;
+use DataTables;
+
 
 class QuestionController extends Controller
 {
@@ -23,6 +26,12 @@ class QuestionController extends Controller
         $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
         return view('question.index',compact(['paketsoal']));
     }
+
+    // public function indexDataTables(){
+    //   $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
+    //   // return DataTables::of($paketsoal)->make(true);
+    //   return DataTable::eloquent($paketsoal)->toJson();
+    // }
 
     public function create()
     {
@@ -64,7 +73,7 @@ class QuestionController extends Controller
         }
 
     }
-    
+
     public function essay_store(Request $request)
     {
         $this->validate($request,[
