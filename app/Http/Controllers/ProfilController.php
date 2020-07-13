@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profil;
 use Illuminate\Http\Request;
+use Alert;
 
 class ProfilController extends Controller
 {

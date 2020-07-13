@@ -8,6 +8,7 @@ use App\SoalSatuan;
 use App\Essay;
 use App\Pilgan;
 use Illuminate\Http\Request;
+use Alert;
 
 class QuestionController extends Controller
 {
@@ -148,7 +149,7 @@ class QuestionController extends Controller
         ];
         SoalSatuan::whereId($essay->soal_satuan_id)->update($update_poin);
 
-        return redirect()->back()->with('sukses','Soal berhasil diupdate');
+        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
     }
 
     public function update_soal_satuan_pilgan(Request $request, $paket_soal_id){

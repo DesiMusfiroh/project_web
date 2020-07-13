@@ -11,6 +11,7 @@ use App\User;
 use Str;
 use Auth;
 use Illuminate\Http\Request;
+use Alert;
 
 class ExamController extends Controller
 {
@@ -76,7 +77,7 @@ class ExamController extends Controller
         ]);
         $ujian = Ujian::find($id);
         $ujian->update($request->all());
-        return redirect()->route('getExam')->with('sukses','Berhasil update ujian');
+        return redirect()->route('getExam')->with('success', 'Perubahan berhasil di simpan');
     }
 
     public function openMyExam($id){
@@ -122,7 +123,7 @@ class ExamController extends Controller
             $peserta->ujian_id = $id;
             $peserta->nilai = null;
             $peserta->save();
-            return redirect()->route('home');
+            return redirect()->route('home')->withSuccess('Berhasil mengikuti ujian baru');
         }
     }
 
