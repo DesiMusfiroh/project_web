@@ -1,16 +1,25 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="container">
-    <div class="alert alert-success mb-4" role="alert">
-        <h5 class="alert-heading"> <strong> Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx! </strong></h5>
-        <p> <img src="/images/LiveEx.png" alt="" width="60px;">  adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung. </p>
-        <hr>
-            
-            Sudah punya kode akses untuk ujian?
-            <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">  Klik disini</a>
-        
+@if(session('pesan'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{session('pesan')}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+@endif
+<div class="alert alert-success " role="alert">
+  <h4 class="alert-heading">Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx!</h4>
+  <p>LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </p>
+  <hr>
+    <p>
+    Sudah punya kode akses untuk ujian?
+    <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary">  Klik disini</a>
+    <p>
+  </div>
+
+
 
 @if($peserta->count() != 0)
 
@@ -18,7 +27,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header"  style="border-radius:20px 20px 0px 0px; ">
-                <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong> 
+                <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong>
             </div>
             <div class="card-body">
                     <table class="table table-striped table-bordered table-sm">
