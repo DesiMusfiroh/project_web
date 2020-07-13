@@ -19,6 +19,8 @@
     <div class="card" style="border-radius:20px;  box-shadow:  5px 5px 10px rgba(48, 10, 64, 0.5);">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background-color: #EDE5E5; ">
             <strong style="font-size:18px;"> Paket Soal : {{$paket_soal->judul}}  </strong>
+
+
         </div>
         <div class="card-body">
             <div class="container">
@@ -35,8 +37,7 @@
                                     id="create"
                                     data-paket_soal_id = "{{ $paket_soal_id }}"
                                     style="box-shadow: 3px 2px 5px grey;"> Pilihan Ganda</button>
-
-                        </div>
+                                   </div>
                     </div>
                     <hr>
 

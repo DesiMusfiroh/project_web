@@ -64,7 +64,7 @@ class QuestionController extends Controller
         }
 
     }
-
+    
     public function essay_store(Request $request)
     {
         $this->validate($request,[

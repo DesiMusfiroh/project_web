@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" style="background: #EDE5E5; ">
+                <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
                     <div class="row">
                         <div class="col-md-6">
                             <strong style="font-size:18px">  Ujian </strong>
@@ -68,6 +68,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
+                    <div >{{$ujian->links()}}</div>
+                
                     @else
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong> Belum ada ujian yang di buat. Silahkan buat ujian baru!</strong>
@@ -76,6 +79,7 @@
                             </button>
                         </div>
                     @endif
+                
                 </div>
             </div>
         </div>

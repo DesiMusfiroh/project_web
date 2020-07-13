@@ -5,7 +5,7 @@
     <div class="row  justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" style="background: #EDE5E5; ">
+                <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
                     <div class="row">
                         <div class="col-md-6">
                             <strong style="font-size:18px"> Paket Soal </strong>
@@ -51,6 +51,11 @@
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">
                                         <button type="button" class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit fa-sm"></i>
+                                        </button>
+                                    </a>
+                                    <a  href="#">   
+                                    <button type="button" class="btn btn-info btn-sm">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
                                     <a href="">

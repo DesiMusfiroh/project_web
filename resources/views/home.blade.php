@@ -26,7 +26,7 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" style=" background: #EDE5E5;">
+            <div class="card-header"  style="border-radius:20px 20px 0px 0px; ">
                 <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong>
             </div>
             <div class="card-body">
@@ -130,7 +130,5 @@
     </div>
   </div>
 </div>
-
-
-
+</div>
 @endsection

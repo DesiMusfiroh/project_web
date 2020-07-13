@@ -164,7 +164,7 @@ const hitung_mundur = setInterval(function() {
     const detik = Math.floor(selisih % (1000 * 60 ) / 1000 );
 
     const teks = document.getElementById('teks');
-    teks.innerHTML = 'Ujian akan di mulai dalam : ' + hari + ' hari ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi ';
+    teks.innerHTML = '<strong> Ujian akan di mulai dalam : ' + hari + ' hari ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi !</strong> ';
     $("#start").hide();
 
     if( selisih < 0 ) {

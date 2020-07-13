@@ -32,6 +32,11 @@ Route::get('question_create','QuestionController@create'); // route untuk tampil
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
 Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
+//cetak
+//Route::get('exams/downloadhasil','DocumentController@downloadHasil');
+// Route::post('store','DocumentController@store');
+// Route::post('question/createdocument','DocumentController@index');
+Route::get('hasilpdf/{id}','DocumentController@generatePDF')->name('hasil_pdf');
 
 //update
 Route::patch('question_create_soal_satuan/{paket_soal_id}/updateessay','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id'])->name('updateSoalSatuan');
@@ -50,7 +55,7 @@ Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
 Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
 Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
-
+Route::get('/copy_kode_ujian','ExamController@copy_kode');
 //Route untuk masuk ke ujian miliknya sendiri
 Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
 
