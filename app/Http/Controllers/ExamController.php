@@ -52,11 +52,19 @@ class ExamController extends Controller
     public function edit($id)
     {
         // $ujian = Ujian::where('id',$id)->get();
-        $ujian = Ujian::find($id);
-        $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
-        $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
-        $paket_soal=PaketSoal::all();
-        return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
+        $ownuser = Ujian::where('id',$id)->value('user_id');
+
+        if (auth()->user()->id === $ownuser) {
+          $ujian = Ujian::find($id);
+          $paket_soal_id = Ujian::where('id',$id)->value('paket_soal_id');
+          $paketsoal = PaketSoal::where('id',$paket_soal_id)->get();
+          $paket_soal=PaketSoal::where('user_id',auth()->user()->id)->get();
+          return view('exams.edit',[ 'paketsoal' => $paketsoal ], compact('ujian','paket_soal'));
+        }else {
+          $error = "Tidak bisa mengakses halaman";
+          return view('error',compact(['error']));
+        }
+
     }
 
     public function update(Request $request, $id)
