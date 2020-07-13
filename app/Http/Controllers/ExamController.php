@@ -122,12 +122,14 @@ class ExamController extends Controller
             }
             $peserta->ujian_id = $id;
             $peserta->nilai = null;
-            if (Ujian::where('kode_ujian',$request->kode_akses)->where('user_id',auth()->user()->id)->exists()) {
+            if (Peserta::where('ujian_id',$id)->where('user_id',auth()->user()->id)->exists()) {
               return redirect()->back()->with('pesan','Kamu sudah tergabung di ujian ini');
             }else {
               $peserta->save();
               return redirect()->route('home')->withSuccess('Berhasil mengikuti ujian baru');
             }
+
+
 
         }
     }
