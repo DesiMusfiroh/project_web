@@ -60,7 +60,7 @@ Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
 Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
-Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
+Route::get('/exam/delete/{id}','ExamController@delete',['$id'=>'id'])->name('deleteExam');
 Route::get('/copy_kode_ujian','ExamController@copy_kode');
 Route::get('/roomexam','ExamController@room_exam')->name('roomExam');
 Route::get('run/exam','ExamController@run_exam');
