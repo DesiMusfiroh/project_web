@@ -8,7 +8,7 @@
                   <div class="row">
                     <div class="col-md-8"><strong style="font-size: 18px;">{{$ujian->nama_ujian}}</strong> </div>
                     <div class="col-md-4 text-right">
-                        <a  href="{{route('downloadHasil',$ujian->id)}}"  target="_blank">   
+                        <a  href="{{route('downloadHasil',$ujian->id)}}"  target="_blank">
                           <button type="button" class="btn btn-sm btn-info">
                               <i class="fa fa-download" aria-hidden="true"></i> Download Rekap Nilai
                           </button>
@@ -48,7 +48,7 @@
                           </tr>
                         </table>
                       </div>
-                      
+
                       <div class="col-md-4">
                         <?php if ($ujian->status == 0) { ?>
                           <div class="alert alert-warning alert-sm mt-0 pt-0 pb-0 text-center"><strong>Ujian belum dilaksanakan !</strong></div>
@@ -60,13 +60,13 @@
                         ?>
                         <div class="row text-right">
                           <div class="col-sm-9 offset-md-3">
-                            <strong>Kode Akses Ujian :</strong> 
+                            <strong>Kode Akses Ujian :</strong>
                             <div class="input-group mb-3">
                               <input type="text" class="form-control" value="{{$ujian->kode_ujian}}" id="kode_ujian" style="background:#f0f5c1" readonly />
                               <div class="input-group-append">
-                                <a href="/copy_kode_ujian"> <button type="button" class="btn btn-warning" onclick="copy_text()">Salin</button> </a>       
-                              </div> 
-                            </div> 
+                                <a href="/copy_kode_ujian"> <button type="button" class="btn btn-warning" onclick="copy_text()">Salin</button> </a>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -74,7 +74,7 @@
                   </div>
 
                   <div class="text-center"><h5><strong >Peserta Ujian</strong></h5></div>
-                  
+
                   @if ($ujian->peserta->count() != 0)
                   <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
@@ -90,7 +90,7 @@
                             <tr>
                               <td class="text-center">{{$loop->iteration}}</td>
                               <td class="text-center">{{$item->user->name}}</td>
-                              <td class="text-center">{{$item->nilai}}</td>
+                              <td class="text-center">{{$item->total_nilai()}}</td>
                               <td class="text-center">
                                   <a href="{{route('koreksi',$item->id)}}">
                                     @if ($item->nilai !== null)
