@@ -57,37 +57,30 @@ class DocumentController extends Controller
     }
 
     public function exportSoal($id){
-      // $paket_soal = PaketSoal::where('id',$id)->get();
-      // foreach ($paket_soal as $item) {
-      //     $paket_soal_id = $item->id;
-      // }
-      //
-      //
-      // $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->get();
-      //
-      // dd($soal_satuan_id[]);
-      // $pilgan = Pilgan::where('soal_satuan_id',$soal_satuan->id)->get();
-      // $essay = Essay::where('soal_satuan_id',$soal_satuan->id)->get();
-      // $institusi   = Profil::where('user_id',auth()->user()->id)->value('institusi');
-      // $total_poin = SoalSatuan::where('paket_soal_id',$id)->sum('poin');
-      // dd($pilgan,$essay);
+      
       $institusi   = Profil::where('user_id',auth()->user()->id)->value('institusi');
       $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->get();
-      $total_poin = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->sum('poin');
+     
       $soal_pilgan = SoalSatuan::where('jenis','Pilihan Ganda')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
       $soal_essay = SoalSatuan::where('jenis','Essay')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
       $paket_soal = PaketSoal::find($id);
       //$paket_soal_id = $paket_soal->id;
 
 
-      $pdf = PDF::loadView('question/exportsoal',compact(['institusi','soal_satuan','paket_soal','soal_pilgan','soal_essay','total_poin']));
+      $pdf = PDF::loadView('question/exportsoal',compact(['institusi','soal_satuan','paket_soal','soal_pilgan','soal_essay']));
       return $pdf->stream();
-
-
-
-
-      // dd($paketsoal);
     }
+    public function exportJawaban($id){
+      
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$id)->orderBy('id','asc')->get();
+        $soal_pilgan = SoalSatuan::where('jenis','Pilihan Ganda')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
+        $soal_essay = SoalSatuan::where('jenis','Essay')->where('paket_soal_id',$id)->orderBy('id','asc')->get();
+        
+        $paket_soal = PaketSoal::find($id);
+        
+        $pdf = PDF::loadView('question/exportjawaban',compact(['soal_satuan','paket_soal','soal_pilgan','soal_essay',]));
+        return $pdf->stream();
+      }
 
     /**
      * Show the form for creating a new resource.

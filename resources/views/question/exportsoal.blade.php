@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Download Hasil Ujian</title>
+<title>Download Soal Ujian</title>
 </head>
 <body>        
     <p align="right"> Dibuat pada {{date('d M Y',strtotime($paket_soal->created_at))}} </p>
@@ -24,7 +24,7 @@
 <tr>
 </table>
 <hr>
-
+<center>
 @if($soal_pilgan->count() != 0)
 <table  width="100%">
     <tr>
@@ -64,7 +64,7 @@
 <table>
 </table>
 @endif
-<br/><br/><br/>
+
 @if($soal_essay->count() != 0)
 
   <table width="100%">
@@ -75,7 +75,7 @@
 	<tr>
         <td width="5%"><b>No.</b></td>
 		<td width="85%"><b>Soal Essay</b></td>
-		<td width="10%">&nbsp;</td>
+		<td width="10%"></td>
 	</tr>
     <?php $i = 0; ?>
 	@foreach($soal_essay as $item)
