@@ -31,12 +31,12 @@
 
                 @if($paketsoal->count() != 0)
                     <table class="table table-striped table-bordered table-sm">
-                        <thead class="thead-light text-center">
+                        <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
-                                <th scope="col" style="width:100px">Jumlah Soal </th>
+                                <th scope="col" style="width:130px">Jumlah Soal </th>
                                 <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>

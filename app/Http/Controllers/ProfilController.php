@@ -50,7 +50,7 @@ class ProfilController extends Controller
 
         ]);
         return redirect()->back()
-        ->with('success','Great! Biodata berhasil di simpan');
+        ->with('success','Data Profil berhasil di simpan');
     }
 
     public function show(ProfilController $profilController)
@@ -97,7 +97,7 @@ class ProfilController extends Controller
         Profil::whereId($profil->id)->update($update);
 
         return redirect('/profil')
-       ->with('success','Great! Biodata berhasil di update');
+       ->with('success','Data Profil berhasil di update');
     }
 
     public function destroy(ProfilController $profilController)
