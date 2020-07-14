@@ -153,11 +153,6 @@ for (var key in ujian_data) {
     const sekarang  = new Date().getTime();
     const selisih   = mulai - sekarang;
 
-    const hari  = Math.floor(selisih / (1000 * 60 * 60 *24));
-    const jam   = Math.floor(selisih % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-    const menit = Math.floor(selisih % (1000 * 60 * 60 ) / (1000 * 60 ));
-    const detik = Math.floor(selisih % (1000 * 60 ) / 1000 );
-
     if( selisih <= 0 ) {
         $.ajax({
             url: "{{ url('run/exam') }}",
@@ -174,6 +169,32 @@ for (var key in ujian_data) {
 }
 // ---------------------------------------------------
 
+// ubah status jadi 2 jika ujian telah selesai 
+var ujian_run = <?php echo $run ?>;    
+for (var key in ujian_run) { 
+    var start       = (key, ujian_run[key][5]);
+    var finish      = (key, ujian_run[key][6]);
+    var ujian_id    = (ujian_run[key][0]);
+
+    const selesai   = new Date(finish).getTime();
+    const sekarang  = new Date().getTime();
+    const selisih   = selesai - sekarang;
+
+    if( selisih < 0 ) {
+        $.ajax({
+            url: "{{ url('stop/exam') }}",
+            type: "GET",
+            dataType: 'json',
+            data: {
+                ujian_id: ujian_id
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    }
+}
+// ---------------------------------------------------
 
 //Pengaturan JS untuk akses kamera user
 var video = document.querySelector("#video-webcam");
