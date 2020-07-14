@@ -54,7 +54,7 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
-                                    <a href="#" class="hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}">
+                                    <a href="#" class="hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}" >
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>
                                         </button>
@@ -88,6 +88,10 @@
 </div>
 <script>
 $('.hapus_ujian').click(function(){
+  // const menghapus = confirm('yakin mau hapus?');
+  // if (menghapus) {
+  //   window.location = "/exam/delete/{{$item->id}}";
+  // }
   var exam_id = $(this).attr('exam_id');
   var exam_nama = $(this).attr('exam_nama');
   swal({
