@@ -7,8 +7,11 @@ use App\User;
 use App\SoalSatuan;
 use App\Essay;
 use App\Pilgan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Alert;
+use DataTables;
+
 
 class QuestionController extends Controller
 {
@@ -23,6 +26,12 @@ class QuestionController extends Controller
         $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
         return view('question.index',compact(['paketsoal']));
     }
+
+    // public function indexDataTables(){
+    //   $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
+    //   // return DataTables::of($paketsoal)->make(true);
+    //   return DataTable::eloquent($paketsoal)->toJson();
+    // }
 
     public function create()
     {
@@ -45,7 +54,7 @@ class QuestionController extends Controller
         $paketsoal->durasi = $request->durasi;
         $paketsoal->save();
         $paket_soal_id = $paketsoal->id;
-        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id])->with('success','Paket soal baru berhasil di buat !');
 
     }
 
@@ -64,7 +73,7 @@ class QuestionController extends Controller
         }
 
     }
-    
+
     public function essay_store(Request $request)
     {
         $this->validate($request,[
@@ -88,7 +97,7 @@ class QuestionController extends Controller
         ]);
         $paket_soal_id = $request->paket_soal_id;
         $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
-        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id])->with('success','Soal berhasil di simpan');;
     }
 
     public function pilgan_store(Request $request)
@@ -124,14 +133,14 @@ class QuestionController extends Controller
         ]);
         $paket_soal_id = $request->paket_soal_id;
         $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','desc')->get();
-        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id]);
+        return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id])->with('success','Soal berhasil di simpan');;
     }
 
     public function delete_soal_satuan($paket_soal_id,$soal_satuan_id){
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
 
         $soal_satuan->delete();
-        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+        return redirect()->back()->with('success','Soal berhasil dihapus');
     }
 
     public function update_soal_satuan_essay(Request $request, $paket_soal_id){
@@ -149,7 +158,7 @@ class QuestionController extends Controller
         ];
         SoalSatuan::whereId($essay->soal_satuan_id)->update($update_poin);
 
-        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+        return redirect()->back()->withSuccess('Soal Essay berhasil di update !');
     }
 
     public function update_soal_satuan_pilgan(Request $request, $paket_soal_id){
@@ -172,16 +181,20 @@ class QuestionController extends Controller
         ];
         SoalSatuan::whereId($pilgan->soal_satuan_id)->update($update_poin);
 
-        return redirect()->back()->with('sukses','Soal berhasil diupdate');
+        return redirect()->back()->with('success','Soal Pilgan berhasil diupdate !');
     }
 
     public function updatePaketSoal(Request $request){
-        $paket_soal = PaketSoal::findorFail($request->id);
-        $update_paket = [
-            'judul' => $request->judul,
-            'durasi' => $request->durasi,
-        ];
-        $paket_soal->update($update_paket);
-        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+        try {
+          $paket_soal = PaketSoal::findorFail($request->id);
+          $update_paket = [
+              'judul' => $request->judul,
+              'durasi' => $request->durasi,
+          ];
+          $paket_soal->update($update_paket);
+          return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('pesan','Pastikan tidak ada kolom yang kosong');
+        }
     }
 }

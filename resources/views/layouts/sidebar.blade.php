@@ -27,7 +27,7 @@
         }
         .card-header {border-radius: 20px 20px 0px 0px; background: #EDE5E5; }
         .card {border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);}
-        
+
         /* #sidebar {
            position:fixed; height:660px
         }
@@ -67,7 +67,7 @@
                         <a href="{{route('roomExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-camera"></i>  Monitoring Ujian </strong></a>
                     </li>
                     <li class="nav-item ">
-                        <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Kelola Soal </strong></a>
+                        <a href="{{route('question')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-comment"></i>  Kelola Paket Soal </strong></a>
                     </li>
                     <li class="nav-item ">
                         <a href="{{route('getExam')}}"><strong style="font-size:16px"> <i class="nav-icon fa fa-thumb-tack"></i> Kelola Ujian</strong></a>
@@ -177,6 +177,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/20.0.0/classic/ckeditor.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
     @yield('ckeditor')

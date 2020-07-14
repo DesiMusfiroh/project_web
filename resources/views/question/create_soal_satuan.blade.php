@@ -127,20 +127,8 @@
                         </button>
                         @endif
                         <a href="#" class="btn btn-sm btn-danger hapus"  style="box-shadow: 3px 2px 5px grey; margin:5px;"> Hapus <i class="fa fa-trash"></i> </a>
-
                     </div>
-
                 </div>
-                <script>
-                    $('.hapus').click(function(){
-                    const menghapus = confirm('Apakah mau dihapus?');
-                    if (menghapus) {
-
-                        window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
-                    }
-                    })
-                </script>
-
                 <hr>
             @endforeach
         </div>
@@ -525,7 +513,22 @@ $(document).ready(function(){
 });
 
 </script>
-
+<script>
+    $('.hapus').click(function(){
+      swal({
+        title: "Yakin?",
+        text: "Menghapus soal ini ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
+        }
+      });
+    });
+</script>
 @stop
 @section('ckeditor')
   <script>

@@ -1,6 +1,14 @@
 @extends('layouts.sidebar')
 
 @section('content')
+@if(session('pesan'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{session('pesan')}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <div class="container">
     <div class="row  justify-content-center">
         <div class="col-md-12">
@@ -23,12 +31,12 @@
 
                 @if($paketsoal->count() != 0)
                     <table class="table table-striped table-bordered table-sm">
-                        <thead class="thead-light text-center">
+                        <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col" style="width:50px">No</th>
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
-                                <th scope="col" style="width:100px">Jumlah Soal </th>
+                                <th scope="col" style="width:130px">Jumlah Soal </th>
                                 <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
@@ -48,7 +56,7 @@
 
                                 <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket" 
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket"
                                     id="update"
                                     data-id_paket_update="{{ $item->id }}"
                                     data-user_id_paket_update="{{ $item->user->id }}"
@@ -62,7 +70,7 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >   
+                                    <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >
                                     <button type="button" class="btn btn-info btn-sm">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
@@ -120,6 +128,9 @@
                                 <div class="form-group col-md-3">
                                     <label for="durasi"> <b> Durasi </b> </label>
                                     <input type="hidden" id="durasi_paket_update" value="">
+                                    @if($errors->has('durasi'))
+                                                <span class="help-block">{{$errors->first('durasi')}}</span>
+                                    @endif
                                     <!-- <input  id="time" class="form-control"  type="time" name="durasi" onchange="ampm(this.value)"  style="border-radius:10px; box-shadow: 3px 0px 5px grey;"> -->
                                     <input  id="time" class="form-control" type="time" name="durasi" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
                                     <span id="display_time"></span>

@@ -24,7 +24,7 @@
                 <div class="card-body">
                   <div class="container">
                     <div class="row">
-                      <div class="col-md-9">
+                      <div class="col-md-8">
                         <table>
                           <tr>
                             <td width="150px">Paket soal</td>
@@ -48,19 +48,27 @@
                           </tr>
                         </table>
                       </div>
-                      <div class="col-md-3">
-                        <strong><p>Kode Akses Ujian :</p></strong> 
-                        <div class="input-group mb-3" >
-                          <input type="text" class="form-control" value="{{$ujian->kode_ujian}}" id="kode_ujian" style="background:#f0f5c1" readonly />
-                          <div class="input-group-append">
-                            <a href="/copy_kode_ujian"> <button type="button" class="btn btn-warning" onclick="copy_text()">Salin</button> </a>
-                         
-                          </div>
-                          
-                        </div>
-                        
-                              
                       
+                      <div class="col-md-4">
+                        <?php if ($ujian->status == 0) { ?>
+                          <div class="alert alert-warning alert-sm mt-0 pt-0 pb-0 text-center"><strong>Ujian belum dilaksanakan !</strong></div>
+                        <?php } elseif ($ujian->status == 1) { ?>
+                          <div class="alert alert-success alert-sm mt-0 pt-0 pb-0 text-center"><strong>Ujian sedang berlangsung !</strong></div>
+                        <?php } elseif ($ujian->status == 2) { ?>
+                          <div class="alert alert-secondary alert-sm mt-0 pt-0 pb-0 text-center"><strong>Ujian telah berakhir !</strong></div>
+                        <?php }
+                        ?>
+                        <div class="row text-right">
+                          <div class="col-sm-9 offset-md-3">
+                            <strong>Kode Akses Ujian :</strong> 
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" value="{{$ujian->kode_ujian}}" id="kode_ujian" style="background:#f0f5c1" readonly />
+                              <div class="input-group-append">
+                                <a href="/copy_kode_ujian"> <button type="button" class="btn btn-warning" onclick="copy_text()">Salin</button> </a>       
+                              </div> 
+                            </div> 
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

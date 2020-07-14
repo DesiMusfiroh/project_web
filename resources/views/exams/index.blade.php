@@ -26,7 +26,7 @@
 
                 <div class="card-body">
 
-                @if($ujian->count() != 0) 
+                @if($ujian->count() != 0)
                 <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center" >
                             <tr>
@@ -53,7 +53,7 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
-                                    <a href="{{route('deleteExam',$item->id)}}">
+                                    <a href="#" class="hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}">
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>
                                         </button>
@@ -68,9 +68,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
-                    <div >{{$ujian->links()}}</div>
-                
+
+                    <div >{{$ujian->onEachSide(4)->links()}}</div>
+
                     @else
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong> Belum ada ujian yang di buat. Silahkan buat ujian baru!</strong>
@@ -79,10 +79,28 @@
                             </button>
                         </div>
                     @endif
-                
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+$('.hapus_ujian').click(function(){
+  var exam_id = $(this).attr('exam_id');
+  var exam_nama = $(this).attr('exam_nama');
+  swal({
+    title: "Yakin?",
+    text: "Menghapus ujian "+exam_nama+ " ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location = "/exam/delete/"+exam_id;
+    }
+  });
+});
+</script>
 @endsection
