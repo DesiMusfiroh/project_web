@@ -1,6 +1,14 @@
 @extends('layouts.sidebar')
 
 @section('content')
+@if(session('pesan'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{session('pesan')}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <div class="container">
     <div class="row  justify-content-center">
         <div class="col-md-12">
@@ -120,6 +128,9 @@
                                 <div class="form-group col-md-3">
                                     <label for="durasi"> <b> Durasi </b> </label>
                                     <input type="hidden" id="durasi_paket_update" value="">
+                                    @if($errors->has('durasi'))
+                                                <span class="help-block">{{$errors->first('durasi')}}</span>
+                                    @endif
                                     <!-- <input  id="time" class="form-control"  type="time" name="durasi" onchange="ampm(this.value)"  style="border-radius:10px; box-shadow: 3px 0px 5px grey;"> -->
                                     <input  id="time" class="form-control" type="time" name="durasi" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
                                     <span id="display_time"></span>

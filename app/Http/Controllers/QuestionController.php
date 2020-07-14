@@ -185,12 +185,16 @@ class QuestionController extends Controller
     }
 
     public function updatePaketSoal(Request $request){
-        $paket_soal = PaketSoal::findorFail($request->id);
-        $update_paket = [
-            'judul' => $request->judul,
-            'durasi' => $request->durasi,
-        ];
-        $paket_soal->update($update_paket);
-        return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+        try {
+          $paket_soal = PaketSoal::findorFail($request->id);
+          $update_paket = [
+              'judul' => $request->judul,
+              'durasi' => $request->durasi,
+          ];
+          $paket_soal->update($update_paket);
+          return redirect()->back()->withSuccess('Perubahan berhasil disimpan');
+        } catch (\Exception $e) {
+          return redirect()->back()->with('pesan','Pastikan tidak ada kolom yang kosong');
+        }
     }
 }
