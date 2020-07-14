@@ -62,7 +62,7 @@
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <a  href="{{route('exportSoal',$item->id)}}" title="Cetak Soal PDF">
+                                    <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >
                                     <button type="button" class="btn btn-info btn-sm">
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
@@ -97,12 +97,12 @@
         <div class="modal-dialog" >
             <div class="modal-content">
                 <div class="modal-header ">
-                    <h5 class="modal-title " id="exampleModalLabel"> Edit Paket Soal</h5>
+                    <h5 class="modal-title " id="exampleModalLabel"> <strong>Edit Paket Soal</strong> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/questionupdate/{id}" method="post">
+                <form action="/question/update" method="post">
 
                     @csrf
                     @method('PATCH')
@@ -112,17 +112,21 @@
                             <input type="hidden" name="id" id="id_paket_update" value="">
                             <input type="hidden" name="user_id" id="user_id_paket_update" value="">
 
-                    <div class="form-row mb-0 mt-0 pt-0">
-                    <div class="form-group col-md-9">
-                        <label for="judul"><b> Judul  : </b></label>
-                        <input type="text" class="form-control" id="judul_paket_update" name="judul" placeholder="Nama paket soal" style="border-radius:10px;  box-shadow: 3px 0px 5px grey;">
+                            <div class="form-row mb-0 mt-0 pt-0">
+                                <div class="form-group col-md-9">
+                                    <label for="judul"><b> Judul  : </b></label>
+                                    <input type="text" class="form-control" id="judul_paket" value="" name="judul" placeholder="Nama paket soal" style="border-radius:10px;  box-shadow: 3px 0px 5px grey;">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="durasi"> <b> Durasi </b> </label>
+                                    <input type="hidden" id="durasi_paket_update" value="">
+                                    <!-- <input  id="time" class="form-control"  type="time" name="durasi" onchange="ampm(this.value)"  style="border-radius:10px; box-shadow: 3px 0px 5px grey;"> -->
+                                    <input  id="time" class="form-control" type="time" name="durasi" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
+                                    <span id="display_time"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label for="durasi"> <b> Durasi </b> </label>
-                        <input  id="time" type="time" name="durasi" onchange="ampm(this.value)"  style="border-radius:10px; box-shadow: 3px 0px 5px grey;">
-                        <span id="display_time"></span>
-                    </div>
-                </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -133,35 +137,39 @@
         </div>
     </div>
 <!-- Penutup Create Modal -->
-<script>
+<!-- <script>
 function ampm(time) {
+    console.log(time);
+    if (time.value !== "") {
+        var hours = time.split(":")[0];
+        var minutes = time.split(":")[1];
+        var suffix = hours >= 12 ? "pm" : "am";
+        hours = hours % 12 || 12;
+        hours = hours < 10 ? "0" + hours : hours;
 
-console.log(time);
-if (time.value !== "") {
-  var hours = time.split(":")[0];
-  var minutes = time.split(":")[1];
-  var suffix = hours >= 12 ? "pm" : "am";
-  hours = hours % 12 || 12;
-  hours = hours < 10 ? "0" + hours : hours;
-
-  var displayTime = hours + ":" + minutes + " " + suffix;
-  document.getElementById("display_time").innerHTML = displayTime;
+        var displayTime = hours + ":" + minutes + " " + suffix;
+        document.getElementById("display_time").innerHTML = displayTime;
+    }
 }
-
-}
-</script>
+</script> -->
 <!--edit essay-->
 <script type="text/javascript">
 $(document).ready(function(){
     $(document).on('click','#update', function(){
-    var id_paket_update                     = $(this).data('id_paket_update');
-    var user_id_paket_update                = $(this).data('user_id_paket_update');
-    var judul_paket_update                  = $(this).data('judul_paket_update');
-    var durasi_paket_update                = $(this).data('durasi_paket_update');
-    $('#id_paket_update ').val(id_paket_update );
-    $('#user_id_paket_update').val(user_id_paket_update);
-    $('#judul_paket_update ').val(judul_paket_update );
-    $('#durasi_paket_update').val(durasi_paket_update );
+        var id_paket_update        = $(this).data('id_paket_update');
+        var user_id_paket_update   = $(this).data('user_id_paket_update');
+        var judul_paket_update     = $(this).data('judul_paket_update');
+        var durasi_paket_update    = $(this).data('durasi_paket_update');
+        $('#id_paket_update ').val(id_paket_update );
+        $('#user_id_paket_update').val(user_id_paket_update);
+        $('#judul_paket').val(judul_paket_update );
+        $('#durasi_paket_update').val(durasi_paket_update );
+
+        var durasi_awal = document.getElementById("durasi_paket_update").value;
+
+        // var timeControl = document.querySelector('input[type="time"]');
+        // timeControl.value = durasi_awal.toISOString().substring(7, 16);
+        console.log(durasi_awal);
     });
 
 });

@@ -170,27 +170,27 @@ class ExamController extends Controller
         }
     }
 
-    public function runExam($id)
-    {
-        $ujian = Ujian::find($id);
-        $paket_soal_id = $ujian->paket_soal_id;
-        $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
+    // public function runExam($id)
+    // {
+    //     $ujian = Ujian::find($id);
+    //     $paket_soal_id = $ujian->paket_soal_id;
+    //     $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
+    //     $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();
 
-        date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
-        $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
+    //     date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
+    //     $waktu_mulai = date('F d, Y H:i:s', strtotime($ujian->waktu_mulai)); // mengubah bentuk string waktu mulai untuk digunakan pada date di js
 
-        $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
-        $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
-        $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
+    //     $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
+    //     $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
+    //     $durasi_detik =  date('s', strtotime($ujian->paket_soal->durasi));
 
-        // waktu selesai = waktu mulai + durasi
-        $selesai = date_create($ujian->waktu_mulai);
-        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
-        $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
+    //     // waktu selesai = waktu mulai + durasi
+    //     $selesai = date_create($ujian->waktu_mulai);
+    //     date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
+    //     $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
-        return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
-    }
+    //     return view('exams.run',['soal_satuan' => $soal_satuan, 'ujian' => $ujian ], compact('paket_soal_id','waktu_mulai','waktu_selesai'));
+    // }
 
     public function finishExam($id){
         $peserta = Peserta::find($id);
@@ -203,5 +203,30 @@ class ExamController extends Controller
 
     public function copy_kode(){
         return redirect()->back()->with('success','Kode akses ujian berhasil di salin !');
+    }
+
+    public function room_exam() {
+        $ujian_aktif = Ujian::where('user_id',Auth::user()->id)->where('status',null)->get();
+
+        $array[] = ['id','paket_soal_id','nama_ujian', 'waktu_mulai','status'];
+        foreach($ujian_aktif as $key =>$value) {
+            $array[++$key] = [
+                $value->id, 
+                $value->paket_soal_id, 
+                $value->nama_ujian, 
+                $value->waktu_mulai, 
+                $value->status
+            ];
+        }
+        return view('exams.room',compact('ujian_aktif'))->with('tabel',json_encode($array));
+    }
+    public function run_exam() {
+
+        $update_status_ujian = [
+            'status' => "run"
+        ];
+        $posts = Ujian::where('id',$request->ujian_id)->update($update_status_ujian);
+
+        return response()->json($posts);
     }
 }

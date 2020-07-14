@@ -28,7 +28,7 @@ Route::get('profil/edit', 'ProfilController@edit');
 Route::patch('profil/update', 'ProfilController@update');
 
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
-Route::patch('question/{id}','QuestionController@updatePaketSoal')->name('questionupdate'); //route untuk update paket soal
+Route::patch('question/update','QuestionController@updatePaketSoal'); //route untuk update paket soal
 Route::get('question/export/{id}','DocumentController@exportSoal')->name('exportSoal');
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
@@ -59,6 +59,10 @@ Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
 Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
 Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 Route::get('/copy_kode_ujian','ExamController@copy_kode');
+Route::get('/roomexam','ExamController@room_exam')->name('roomExam');
+Route::get('run/exam','ExamController@run_exam');
+
+
 //Route untuk masuk ke ujian miliknya sendiri
 Route::get('/exam/{id}/open','ExamController@openMyExam')->name('openMyExam');
 //cetak hasil ujian
