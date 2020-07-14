@@ -58,7 +58,7 @@
 <!-- penutup fullscreen  -->
 <script>
 $("#fullscreenExam").hide();
-$(".tombol_monitoring").hide();
+// $(".tombol_monitoring").hide();
 
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen() {

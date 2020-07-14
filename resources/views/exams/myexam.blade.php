@@ -4,9 +4,19 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header text-center"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
-                  <strong style="font-size: 18px;">{{$ujian->nama_ujian}}</strong>
+                <div class="card-header"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
+                  <div class="row">
+                    <div class="col-md-8"><strong style="font-size: 18px;">{{$ujian->nama_ujian}}</strong> </div>
+                    <div class="col-md-4 text-right">
+                        <a  href="{{route('downloadHasil',$ujian->id)}}"  target="_blank">   
+                          <button type="button" class="btn btn-sm btn-info">
+                              <i class="fa fa-download" aria-hidden="true"></i> Download Rekap Nilai
+                          </button>
+                        </a>
+                    </div>
+                  </div>
                 </div>
+
                 <?php
                   $durasi_jam   =  date('H', strtotime($ujian->paket_soal->durasi));
                   $durasi_menit =  date('i', strtotime($ujian->paket_soal->durasi));
@@ -44,13 +54,19 @@
                           <input type="text" class="form-control" value="{{$ujian->kode_ujian}}" id="kode_ujian" style="background:#f0f5c1" readonly />
                           <div class="input-group-append">
                             <a href="/copy_kode_ujian"> <button type="button" class="btn btn-warning" onclick="copy_text()">Salin</button> </a>
+                         
                           </div>
+                          
                         </div>
+                        
+                              
+                      
                       </div>
                     </div>
                   </div>
 
                   <div class="text-center"><h5><strong >Peserta Ujian</strong></h5></div>
+                  
                   @if ($ujian->peserta->count() != 0)
                   <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">

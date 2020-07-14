@@ -11,12 +11,12 @@
             <div class="card">
                 <div class="card-header text-center"  style="border-radius: 20px 20px 0px 0px; background: #EDE5E5;">
                     <strong style="font-size:18px"> Hasil Ujian </strong>
-                    
+
                 </div>
 
                 <div class="card-body">
 
-                @if($peserta->count() != 0) 
+                @if($peserta->count() != 0)
                 <table class="table table-striped table-bordered table-sm" >
                         <thead class="thead-dark text-center">
                             <tr>
@@ -43,12 +43,13 @@
                                             <i class="fa fa-eye fa-sm"></i> Detail
                                         </button>
                                     </a>
-                                   
+
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div>{{$peserta->links()}}</div>
                     @else
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong> Belum ada ujian yang di telah dikerjakan. </strong>
