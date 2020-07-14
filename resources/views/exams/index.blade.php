@@ -39,10 +39,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0; ?>
+                            <?php $i=1; ?>
                             @foreach ($ujian as $item)
                             <tr>
-                                <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
+                                <td scope="row" class="text-center">{{$ujian ->perPage()*($ujian->currentPage()-1)+$i}}</td>
+                                <?php $i++; ?>
                                 <td >{{$item->nama_ujian}}</td>
                                 <td class="text-center">{{ $item->paket_soal->judul }} </td>
                                 <td class="text-center">{{ $item->kode_ujian }} </td>

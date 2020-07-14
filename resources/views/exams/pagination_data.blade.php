@@ -3,10 +3,11 @@
         <div class="card" style=" border-radius: 0px 0px 20px 20px;">
           <div class="card-header" style=" background: #EDE5E5; border-radius: 0px 0px 0px 0px;">Soal Ujian</div>
           <div class="card-body " >
-            <?php $i=0; ?>
+            <?php $i=1; ?>
             @foreach($soal_satuan as $item)
                 <div class=" container row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
+                    <div class="col-md-3"><h6>Soal No.  {{$soal_satuan ->perPage()*($soal_satuan->currentPage()-1)+$i}} </h6></div>
+                    <?php $i++; ?>
                     <div class="col-md-8 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                 </div>
                 <div class="container">
@@ -24,13 +25,13 @@
                     <tr>
                         <td><p>{{$item->pilgan->pertanyaan}} </p> </td>
                     </tr>
-                    <tr>  
+                    <tr>
                         <td>
                           <input type="radio" class="pilihan" name="pilihan" value="A" > A . {{$item->pilgan->pil_a}}  <br>
                           <input type="radio" class="pilihan" name="pilihan" value="B" > B . {{$item->pilgan->pil_b}}  <br>
                           <input type="radio" class="pilihan" name="pilihan" value="C" > C . {{$item->pilgan->pil_c}}  <br>
                           <input type="radio" class="pilihan" name="pilihan" value="D" > D . {{$item->pilgan->pil_d}}  <br>
-                          <input type="radio" class="pilihan" name="pilihan" value="E" > E . {{$item->pilgan->pil_e}}  <br>                     
+                          <input type="radio" class="pilihan" name="pilihan" value="E" > E . {{$item->pilgan->pil_e}}  <br>
                         </td>
                     </tr>
                     <input type="hidden" id="pilgan_id" value="{{$item->pilgan->id}}">
@@ -81,7 +82,7 @@ $("#jawaban_essay").change(function(){
         type: "GET",
         dataType: 'json',
         data: {
-            jawab_essay: jawab_essay, 
+            jawab_essay: jawab_essay,
             essay_id: essay_id,
             peserta_id: peserta_id,
             user_id: user_id,
@@ -108,14 +109,14 @@ $('input[type=radio][name="pilihan"]').click(function() {
         var status = "T";
     } else {
         var score  = 0;
-        var status = "F"; 
+        var status = "F";
     }
     $.ajax({
         url: "{{ url('store/pilgan_jawab') }}",
         type: "GET",
         dataType: 'json',
         data: {
-            jawab_pilgan: jawab_pilgan, 
+            jawab_pilgan: jawab_pilgan,
             pilgan_id: pilgan_id,
             peserta_id: peserta_id,
             user_id: user_id,
