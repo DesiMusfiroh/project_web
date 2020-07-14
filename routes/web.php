@@ -61,6 +61,7 @@ Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
 Route::get('/copy_kode_ujian','ExamController@copy_kode');
 Route::get('/roomexam','ExamController@room_exam')->name('roomExam');
 Route::get('run/exam','ExamController@run_exam');
+Route::get('stop/exam','ExamController@stop_exam');
 
 
 //Route untuk masuk ke ujian miliknya sendiri
