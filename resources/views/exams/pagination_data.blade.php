@@ -5,17 +5,18 @@
           <div class="card-body " >
             <?php $i=1; ?>
             @foreach($soal_satuan as $item)
-                <div class=" container row">
-                    <div class="col-md-3"><h6>Soal No.  {{$soal_satuan ->perPage()*($soal_satuan->currentPage()-1)+$i}} </h6></div>
-                    <?php $i++; ?>
+
+                <div class=" container row" >
+                    <div class="col-md-3"><h6>Soal No. {{$soal_satuan ->perPage()*($soal_satuan->currentPage()-1)+$i}}   </h6></div>
                     <div class="col-md-8 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                 </div>
-                <div class="container">
+                <div class="container" >
                 <table >
                 @if($item->jenis == "Essay")
                     <b> Pertanyaan </b> :
-                        {{$item->essay->pertanyaan}}
+                        {!!$item->essay->pertanyaan!!}
                     <div class="mt-2">
+                    <b> Jawaban : </b>
                       <textarea class="form-control" name="jawab" id="jawaban_essay" cols="30" rows="3" ></textarea>
                       <input type="hidden" id="essay_id" value="{{$item->essay->id}}">
                       <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
@@ -23,7 +24,7 @@
 
                 @elseif($item->jenis == "Pilihan Ganda")
                     <tr>
-                        <td><p>{{$item->pilgan->pertanyaan}} </p> </td>
+                        <td><b> Pertanyaan </b> :<br/> <p>{!!$item->pilgan->pertanyaan!!} </p> </td>
                     </tr>
                     <tr>
                         <td>
@@ -45,7 +46,7 @@
                 <hr>
             @endforeach
 
-            {!! $soal_satuan->links() !!}
+
 
           </div>
         </div>
@@ -56,8 +57,8 @@
           <div class="card-header"  style=" background: #EDE5E5;  border-radius: 0px 0px 0px 0px;">Navigasi</div>
           <div class="card-body">
             <div class="row ">
-              <div class="col-12 text-center ">
-
+              <div class="col-12 text-center " style=" overflow: Auto;">
+              {!! $soal_satuan->links() !!}
               </div>
             </div>
           </div>

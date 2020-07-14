@@ -181,7 +181,7 @@ class ExamController extends Controller
         $ujian = Ujian::where('id',$peserta->ujian_id)->first();
         $paket_soal_id = $ujian->paket_soal_id;
         $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->inRandomOrder()->paginate(1);
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->paginate(1);
         if($request->ajax())
         {
             return view('exams.pagination_data', ['soal_satuan' => $soal_satuan, 'ujian' => $ujian, 'peserta' => $peserta ], compact('paket_soal_id'))->render();

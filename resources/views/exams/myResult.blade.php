@@ -31,17 +31,17 @@
 <br/>
 
 @if ($ujian->peserta->count() != 0)
-<table rules="rows" width="100%">
+<table rules="all" width="100%">
 	<tr>
-        <td width="10%"><b>No.</b></td>
-        <td width="70%"><b>Nama Peserta</b></td>
+        <td align="center" width="10%"><b>No.</b></td>
+        <td width="70%"><b >  &nbsp; Nama Peserta</b></td>
         <th width="20%">Nilai</th>
     </tr>
     @foreach($ujian->peserta as $item)
 	<tr>
 
-		<td">{{$loop->iteration}}</td>
-        <td >{{$item->user->name}}</td>
+		<td align="center">{{$loop->iteration}}</td>
+        <td > &nbsp; {{$item->user->name}}</td>
         <td  align="center">{{$item->nilai}}</td>
 
     </tr>
