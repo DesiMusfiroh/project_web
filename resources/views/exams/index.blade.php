@@ -53,10 +53,10 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
-                                    <a href="{{route('deleteExam',$item->id)}}">
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                    <a href="#" class="btn btn-danger btn-sm hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}">
+                                        <!-- <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>
-                                        </button>
+                                        </button> -->
                                     </a>
                                     <a href="{{route('openMyExam',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm">
@@ -85,4 +85,22 @@
         </div>
     </div>
 </div>
+<script>
+$('.hapus_ujian').click(function(){
+  var exam_id = $(this).attr('exam_id');
+  var exam_nama = $(this).attr('exam_nama');
+  swal({
+    title: "Yakin?",
+    text: "Menghapus ujian "+exam_nama+ " ?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location = "/exam/delete/"+exam_id;
+    }
+  });
+});
+</script>
 @endsection
