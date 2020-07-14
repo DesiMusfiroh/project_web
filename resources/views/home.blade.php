@@ -50,27 +50,34 @@
                                 <td class="text-center">{{$item->ujian->paket_soal->durasi}} </td>
                                 <td class="text-center">
                                     <?php
-                                        $waktu_sekarang = date('Y-m-d H:i:s');
-                                        $waktu_mulai    =$item->ujian->waktu_mulai;
-                                        $durasi = $item->ujian->paket_soal->durasi;
+                                    if ($item->ujian->status == 0) {
+                                        echo "ujian segera dimulai";
+                                    } elseif ($item->ujian->status == 1) {
+                                        echo "ujian sedang berlangsung";
+                                    } elseif ($item->ujian->status == 2) {
+                                        echo "ujian telah berakhir";
+                                    }
+                                        // $waktu_sekarang = date('Y-m-d H:i:s');
+                                        // $waktu_mulai    =$item->ujian->waktu_mulai;
+                                        // $durasi = $item->ujian->paket_soal->durasi;
 
-                                        $durasi_jam   =  date('H', strtotime($durasi));
-                                        $durasi_menit =  date('i', strtotime($durasi));
-                                        $durasi_detik =  date('s', strtotime($durasi));
+                                        // $durasi_jam   =  date('H', strtotime($durasi));
+                                        // $durasi_menit =  date('i', strtotime($durasi));
+                                        // $durasi_detik =  date('s', strtotime($durasi));
 
-                                        $selesai = date_create($waktu_mulai);
-                                        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
-                                        $waktu_selesai  = date_format($selesai, 'Y-m-d H:i:s');
+                                        // $selesai = date_create($waktu_mulai);
+                                        // date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
+                                        // $waktu_selesai  = date_format($selesai, 'Y-m-d H:i:s');
 
-                                        if (strtotime($waktu_sekarang) < strtotime($waktu_mulai)) {
-                                            echo "segera dimulai";
-                                        }
-                                        elseif (strtotime($waktu_sekarang) > strtotime($waktu_selesai)) {
-                                            echo "ujian telah berakhir";
-                                        }
-                                        elseif (strtotime($waktu_sekarang) >= strtotime($waktu_mulai) && strtotime($waktu_sekarang) <= strtotime($waktu_selesai)) {
-                                            echo "ujian sedang berlangsung";
-                                        }
+                                        // if (strtotime($waktu_sekarang) < strtotime($waktu_mulai)) {
+                                        //     echo "segera dimulai";
+                                        // }
+                                        // elseif (strtotime($waktu_sekarang) > strtotime($waktu_selesai)) {
+                                        //     echo "ujian telah berakhir";
+                                        // }
+                                        // elseif (strtotime($waktu_sekarang) >= strtotime($waktu_mulai) && strtotime($waktu_sekarang) <= strtotime($waktu_selesai)) {
+                                        //     echo "ujian sedang berlangsung";
+                                        // }
                                     ?>
                                 </td>
                                 <td class="text-center"><a href="{{route('waitExam',$item->id)}}">
