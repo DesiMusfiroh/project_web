@@ -140,7 +140,7 @@ class QuestionController extends Controller
         $soal_satuan = SoalSatuan::find($soal_satuan_id);
 
         $soal_satuan->delete();
-        return redirect()->back()->with('sukses','Soal berhasil dihapus');
+        return redirect()->back()->with('success','Soal berhasil dihapus');
     }
 
     public function update_soal_satuan_essay(Request $request, $paket_soal_id){

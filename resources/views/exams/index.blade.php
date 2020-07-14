@@ -53,10 +53,10 @@
                                             <i class="fa fa-edit fa-sm"></i>
                                         </button>
                                     </a>
-                                    <a href="#" class="btn btn-danger btn-sm hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}">
-                                        <!-- <button type="button" class="btn btn-danger btn-sm">
+                                    <a href="#" class="hapus_ujian" exam_id="{{$item->id}}" exam_nama="{{$item->nama_ujian}}">
+                                        <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>
-                                        </button> -->
+                                        </button>
                                     </a>
                                     <a href="{{route('openMyExam',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm">
