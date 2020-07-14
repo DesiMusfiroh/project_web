@@ -48,7 +48,7 @@
 
                                 <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
-                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket" 
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket"
                                     id="update"
                                     data-id_paket_update="{{ $item->id }}"
                                     data-user_id_paket_update="{{ $item->user->id }}"
