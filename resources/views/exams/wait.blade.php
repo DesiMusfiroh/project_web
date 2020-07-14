@@ -3,7 +3,12 @@
 @section('content')
 <style>
 :fullscreen {
-  background-color:#a7ebc9;
+  background:linear-gradient(360deg, rgba(247, 253, 251, 0.85) -4.38%, rgba(118, 235, 179, 0.85) 19.69%, rgba(14, 239, 185, 0.85) 98.54%);
+}
+.head_exam {
+  background: linear-gradient(180deg, rgba(17, 0, 23, 0.96) -83.9%, rgba(44, 5, 60, 0.96) -2.49%, #5E2575 54.53%, #BEA2CF 111.53%);
+  border-radius: 20px 20px 0px 0px;
+  border: none;
 }
 video{
     background: #ccc;
@@ -63,10 +68,10 @@ video{
 
     <div class="row">
       <div class="col-md-12">
-        <div class="card pt-3 pl-5 pr-5 pb-3">
-          <h4 style="font-family:Chelsea Market;">{{ $ujian->paket_soal->judul }}</h4>
-          <h6>Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </h6>
-          <div id="teks_durasi"></div>
+        <div class="card pt-3 pl-5 pr-5 pb-3 head_exam">
+          <div class="text-center"> <h4 style="color:white;"> <strong>{{ $ujian->nama_ujian }}</strong></h4> </div> 
+          <h6  style="color:#6fedae;"> <strong> Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </strong> </h6>
+          <div style="color:#6fedae; font-weight:bold;" id="teks_durasi"></div>
         </div>
       </div>
     </div>
