@@ -21,12 +21,14 @@ Auth::routes(['verify' => true]);
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('/logout','HomeController@logout')->name('logout');
-// route profil
+
+// ROUTE PROFIL -----------------------------------------------------------------------------------------
 Route::get('profil','ProfilController@index');
 Route::post('profil/store','ProfilController@store')->name('storeProfil');
 Route::get('profil/edit', 'ProfilController@edit');
 Route::patch('profil/update', 'ProfilController@update');
 
+// ROUTE QUESTION -----------------------------------------------------------------------------------------
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
 Route::patch('question/update','QuestionController@updatePaketSoal'); //route untuk update paket soal
 Route::get('question/export/{id}','DocumentController@exportSoal')->name('exportSoal');
@@ -35,23 +37,24 @@ Route::post('question_store','QuestionController@store')->name('paketSoalStore')
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
 Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 //cetak
-//Route::get('exams/downloadhasil','DocumentController@downloadHasil');
+// Route::get('exams/downloadhasil','DocumentController@downloadHasil');
 // Route::post('store','DocumentController@store');
 // Route::post('question/createdocument','DocumentController@index');
-//Export hasil ujian
+// Export hasil ujian
 Route::get('hasilpdf/{id}','DocumentController@generatePDF')->name('hasil_pdf');
 
-//update
+// update question
 Route::patch('question_create_soal_satuan/{paket_soal_id}/updateessay','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id'])->name('updateSoalSatuan');
 Route::patch('question_create_soal_satuan/{paket_soal_id}/updatepil','QuestionController@update_soal_satuan_pilgan', ['$paket_soal_id' =>'paket_soal_id'])->name('updateSoalSatuanPil');
 
-//essay
+// essay
 Route::post('question_store/essay_store','QuestionController@essay_store')->name('storeSingleQuestionEssay');
-//pilgan
+// pilgan
 Route::post('question_store/pilgan_store','QuestionController@pilgan_store')->name('storeSingleQuestionPilgan');
 
 //Route::get('/question/{id}','QuestionController@getSingleQuestion')->name('getSingleQuestion');
 
+// ROUTE EXAM -----------------------------------------------------------------------------------------
 Route::get('/exam','ExamController@index')->name('getExam');
 Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
@@ -62,6 +65,7 @@ Route::get('/copy_kode_ujian','ExamController@copy_kode');
 Route::get('/roomexam','ExamController@room_exam')->name('roomExam');
 Route::get('run/exam','ExamController@run_exam');
 Route::get('stop/exam','ExamController@stop_exam');
+Route::get('fullscreen/room/exam','ExamController@fullscreen_room');
 
 
 //Route untuk masuk ke ujian miliknya sendiri
@@ -85,6 +89,7 @@ Route::patch('/essay_jawab/score/update', 'EssayJawabController@updateScore');
 Route::get('/resultexam','PesertaController@resultIndex')->name('resultExam');
 Route::get('/resultdetail/{id}','PesertaController@resultDetail')->name('resultDetail');
 
+// -----------------------------------------------------------------------------------------
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

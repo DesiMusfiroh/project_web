@@ -3,10 +3,10 @@
         <div class="card" style=" border-radius: 0px 0px 20px 20px;">
           <div class="card-header" style=" background: #EDE5E5; border-radius: 0px 0px 0px 0px;">Soal Ujian</div>
           <div class="card-body " >
-            <?php $i=0; ?>
+            <?php $i = 1 ?>
             @foreach($soal_satuan as $item)
                 <div class=" container row">
-                    <div class="col-md-3"><h6>Soal No.  <?php  $i++;  echo $i; ?> </h6></div>
+                    <div class="col-md-3"><h6>Soal No. {{$soal_satuan ->perPage()*($soal_satuan->currentPage()-1)+$i}}  </h6> </div> <?php $i++ ?>
                     <div class="col-md-8 text-right"><h6>Poin : {{$item->poin}}</h6></div>
                 </div>
                 <div class="container">

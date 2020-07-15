@@ -58,7 +58,7 @@
                         <a href="{{ route('home') }}"><strong style="font-size:16px"> <i class="nav-icon fa fa-home"></i>  Beranda </strong> </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link {{(request()->is('profil')) ? 'active' : ''}} " href="/profil"><strong style="font-size:16px"> <i class="nav-icon fa fa-user"></i>  Profil</strong></a>
+                        <a class="nav-link " href="/profil"><strong style="font-size:16px"> <i class="nav-icon fa fa-user"></i>  Profil</strong></a>
                     </li>
                     <li class="nav-item ">
                     <a type="button"  data-toggle="modal" data-target="#exampleModal" ><strong style="font-size:16px"> <i class="nav-icon fa fa-plus"></i> Ikuti Ujian</strong></a>
