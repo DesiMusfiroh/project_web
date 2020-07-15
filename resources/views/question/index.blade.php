@@ -193,7 +193,7 @@ $(document).ready(function(){
         console.log(durasi_awal);
     });
     $('.hapus').click(function(){
-      
+
       var paket_soal_id = $(this).attr('paket_soal_id');
       var paket_soal_judul = $(this).attr('paket_soal_judul');
       swal({
