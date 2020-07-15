@@ -193,10 +193,7 @@ $(document).ready(function(){
         console.log(durasi_awal);
     });
     $('.hapus').click(function(){
-      // const menghapus = confirm('yakin mau hapus?');
-      // if (menghapus) {
-      //   window.location = "/exam/delete/{{$item->id}}";
-      // }
+      
       var paket_soal_id = $(this).attr('paket_soal_id');
       var paket_soal_judul = $(this).attr('paket_soal_judul');
       swal({
