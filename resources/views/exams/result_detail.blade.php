@@ -26,7 +26,7 @@
                                 <tr> <td> Nomor HP  </td> <td> : </td> <td> - </td> </tr>
                             </table>
                         @endif
-                        
+
                 </div>
             </div>
             </div>
@@ -49,15 +49,15 @@
             <div class="col-md-9"><strong style="font-size:18px">Hasil Ujian Peserta</strong></div>
             <div class="col-md-3 text-right">
             @if($peserta->nilai != null )
-                <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">   
+                <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">
                     <button type="button" class="btn btn-info">
                     <i class="fa fa-download" aria-hidden="true"></i> Download PDF
                     </button>
                 </a>
-            @endif 
+            @endif
             </div>
         </div>
-                                 
+
     </div>
 
     <div class="card-body text-center">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="alert alert-success" role="alert">
-                            Total Poin : {{$total_poin}} 
+                            Total Poin : {{$total_poin}}
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -140,7 +140,23 @@
         </div>
       @else
       <script>
-        alert("Soal sedang di koreksi");
+        $(document).ready(function(){
+          // Swal.fire({
+          //   title: "Yakin?",
+          //   text: "Soal sedang dikoreksi",
+          //   icon: "warning",
+          //   buttons: true,
+          //   dangerMode: false,
+          // })
+          swal({
+            title: "Soal sedang dikoreksi",
+            text: "Anda dapat melihat hasil ujian setelah dikoreksi",
+            icon: "warning",
+            button: "Oke",
+          });
+          //swal("soal sedang dikoreksi");
+        });
+        // Swal.fire('Soal sedang dikoreksi');
       </script>
       <strong>Menunggu di koreksi </strong>
       @endif
