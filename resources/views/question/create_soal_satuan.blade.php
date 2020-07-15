@@ -514,20 +514,7 @@ $(document).ready(function(){
 
 </script>
 <script>
-    $('.hapus').click(function(){
-      swal({
-        title: "Yakin?",
-        text: "Menghapus soal ini ?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.location = "/question_create_soal_satuan/{{$paket_soal_id}}/{{$item->id}}/hapus";
-        }
-      });
-    });
+
 </script>
 @stop
 @section('ckeditor')
