@@ -98,8 +98,12 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card" style="border-radius:0px; height:650px; background: linear-gradient(180deg, rgba(17, 0, 23, 0.96) -83.9%, rgba(44, 5, 60, 0.96) -2.49%, #5E2575 54.53%, #BEA2CF 111.53%);">
-                    <div id="teks_peserta"></div>
+                <div class="card pt-20" style="border-radius:0px; height:650px; background: linear-gradient(180deg, rgba(17, 0, 23, 0.96) -83.9%, rgba(44, 5, 60, 0.96) -2.49%, #5E2575 54.53%, #BEA2CF 111.53%);">
+                    <div class="container">
+                        
+                        <div class="row text-center ml-4 mr-4"  style="font-size:18px; font-weight:bold; color:white;"> <strong>Peserta Ujian</strong> </div> <hr>
+                        <div id="teks_peserta" class="ml-4 mr-4 " style="font-size:16px; font-weight:bold; color:white;"></div>
+                    </div>
                 </div>
             </div>
         </div>
