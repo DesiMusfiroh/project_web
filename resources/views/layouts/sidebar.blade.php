@@ -26,8 +26,8 @@
         }
         .card-header {border-radius: 20px 20px 0px 0px; background: #EDE5E5; }
         .card {border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);}
-
-        /* #sidebar {
+/* 
+        #sidebar {
            position:fixed; height:660px
         }
         #content {
