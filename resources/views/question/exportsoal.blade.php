@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Download Hasil Ujian</title>
+<title>Download Soal Ujian</title>
 </head>
 <body>        
     <p align="right"> Dibuat pada {{date('d M Y',strtotime($paket_soal->created_at))}} </p>
@@ -24,7 +24,7 @@
 <tr>
 </table>
 <hr>
-
+<center>
 @if($soal_pilgan->count() != 0)
 <table  width="100%">
     <tr>
@@ -43,18 +43,18 @@
 
 		<td><?php   $i++;  echo $i; ?></td>
         <td>{!!$item->pilgan->pertanyaan!!}</td>
-        <td> (Poin : {{$item->poin}})</td>
+        <td> (Poin : {!!$item->poin!!})</td>
 
     </tr>
     <tr>
 
 		<td>&nbsp;</td>
         <td>
-            A. {{$item->pilgan->pil_a}}<br/>
-            B. {{$item->pilgan->pil_b}} <br/>
-            C. {{$item->pilgan->pil_c}}<br/>
-            D. {{$item->pilgan->pil_d}} <br/>
-            E. {{$item->pilgan->pil_e}}<br/>
+            A. {!!$item->pilgan->pil_a!!}<br/>
+            B. {!!$item->pilgan->pil_b!!} <br/>
+            C. {!!$item->pilgan->pil_c!!}<br/>
+            D. {!!$item->pilgan->pil_d!!} <br/>
+            E. {!!$item->pilgan->pil_e!!}<br/>
         </td>
         <td>&nbsp;</td>
 	</tr> 
@@ -64,7 +64,7 @@
 <table>
 </table>
 @endif
-<br/><br/><br/>
+
 @if($soal_essay->count() != 0)
 
   <table width="100%">
@@ -75,14 +75,14 @@
 	<tr>
         <td width="5%"><b>No.</b></td>
 		<td width="85%"><b>Soal Essay</b></td>
-		<td width="10%">&nbsp;</td>
+		<td width="10%"></td>
 	</tr>
     <?php $i = 0; ?>
 	@foreach($soal_essay as $item)
 	<tr>
 		<td><?php   $i++;  echo $i; ?></td>
         <td>{!!$item->essay->pertanyaan!!}</td>
-        <td>(Poin : {{$item->poin}})</td>
+        <td>(Poin : {!!$item->poin!!})</td>
     </tr>
     @endforeach
     <tr>

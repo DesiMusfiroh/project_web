@@ -4,10 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title> Hasil Ujian Peserta</title>
 </head>
-<body>     
+<body>
 <?php
  $tgl=date('d-m-Y');
- ?>     
+ ?>
     <p align="right"> Dicetak pada  <?php  echo $tgl; ?> </p>
     <center><h3>Rekapitulasi Nilai <br/>{{$ujian->nama_ujian}} </h3></center>
 
@@ -31,28 +31,28 @@
 <br/>
 
 @if ($ujian->peserta->count() != 0)
-<table rules="rows" width="100%">
+<table rules="all" width="100%">
 	<tr>
-        <td width="10%"><b>No.</b></td>
-        <td width="70%"><b>Nama Peserta</b></td>
+        <td align="center" width="10%"><b>No.</b></td>
+        <td width="70%"><b >  &nbsp; Nama Peserta</b></td>
         <th width="20%">Nilai</th>
     </tr>
     @foreach($ujian->peserta as $item)
 	<tr>
 
-		<td">{{$loop->iteration}}</td>
-        <td >{{$item->user->name}}</td>
-        <td  align="center">{{$item->nilai}}</td>
+		<td align="center">{{$loop->iteration}}</td>
+        <td > &nbsp; {{$item->user->name}}</td>
+        <td  align="center">{{$item->total_nilai()}}</td>
 
     </tr>
   @endforeach
   @else
-                    
+
   (Belum ada peserta yang mengikuti ujian ini !)
-                      
+
   @endif
   </table>
-  
+
 </center>
 
 </body>

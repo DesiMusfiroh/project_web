@@ -23,7 +23,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
+        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->where('isdelete',false)->get();
         return view('question.index',compact(['paketsoal']));
     }
 
@@ -52,6 +52,7 @@ class QuestionController extends Controller
         $paketsoal->user_id = auth()->user()->id;
         $paketsoal->judul = $request->judul;
         $paketsoal->durasi = $request->durasi;
+        $paketsoal->isdelete = false;
         $paketsoal->save();
         $paket_soal_id = $paketsoal->id;
         return redirect()->route('question_create_soal_satuan',['paket_soal_id' => $paket_soal_id])->with('success','Paket soal baru berhasil di buat !');

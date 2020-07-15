@@ -36,7 +36,7 @@
                                 <td >{{$item->ujian->nama_ujian}}</td>
                                 <td class="text-center">{{ $item->ujian->paket_soal->judul }} </td>
                                 <td class="text-center"> {{date("d-m-Y",strtotime($item->ujian->waktu_mulai))}} </td>
-                                <td class="text-center"> @if ($item->nilai !== null) {{ $item->nilai }} @else -@endif </td>
+                                <td class="text-center"> @if ($item->nilai !== null) {{ $item->total_nilai() }} @else -@endif </td>
                                 <td class="text-center">
                                     <a href="{{route('resultDetail',$item->id)}}">
                                         <button type="button" class="btn btn-info btn-sm">

@@ -22,7 +22,7 @@ class ExamController extends Controller
 
     public function index()
     {
-        $ujian = Ujian::where('user_id',auth()->user()->id)->paginate(8);
+        $ujian = Ujian::where('user_id',auth()->user()->id)->where('isdelete',false)->paginate(8);
 
         //  $ujian = Ujian::join('paket_soal',function ($join){
         //   $join->on('users.id','=','paket_soal.user_id')
@@ -45,6 +45,7 @@ class ExamController extends Controller
         $ujian->nama_ujian = $request->nama_ujian;
         $ujian->kode_ujian = Str::random(6);
         $ujian->waktu_mulai = $request->waktu_mulai;
+        $ujian->isdelete = false;
         $ujian->save();
         return redirect()->route('getExam')->with('success',"<p> $request->nama_ujian berhasil di buat ! </p>");
     }
@@ -82,7 +83,21 @@ class ExamController extends Controller
 
     public function delete($id) {
         $ujian = Ujian::find($id);
-        $ujian->delete();
+        Ujian::where('id',$ujian->id)->update([
+          'isdelete' => true,
+        ]);
+
+        //dd($ujian->isdelete);
+        // try {
+        //   $ujian->update([
+        //     'isdelete' => true,
+        //   ]);
+        //   dd($ujian);
+        // } catch (\Exception $e) {
+        //   dd("error");
+        // }
+
+
         return redirect()->route('getExam')->with('success', 'Data ujian berhasil di hapus !');
     }
 
@@ -166,7 +181,7 @@ class ExamController extends Controller
         $ujian = Ujian::where('id',$peserta->ujian_id)->first();
         $paket_soal_id = $ujian->paket_soal_id;
         $paket_soal = PaketSoal::where('id',$paket_soal_id)->get();
-        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->inRandomOrder()->paginate(1);
+        $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->paginate(1);
         if($request->ajax())
         {
             return view('exams.pagination_data', ['soal_satuan' => $soal_satuan, 'ujian' => $ujian, 'peserta' => $peserta ], compact('paket_soal_id'))->render();
@@ -215,9 +230,9 @@ class ExamController extends Controller
 
         // membuat array untuk menyimpan data ujian yang aktif
         $array[] = ['id','paket_soal_id','nama_ujian', 'waktu_mulai','status','start','finish'];
-        foreach($ujian_aktif as $key =>$value) 
+        foreach($ujian_aktif as $key =>$value)
         {
-            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai)); 
+            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai));
             $durasi_jam   =  date('H', strtotime($value->paket_soal->durasi));
             $durasi_menit =  date('i', strtotime($value->paket_soal->durasi));
             $durasi_detik =  date('s', strtotime($value->paket_soal->durasi));
@@ -225,12 +240,12 @@ class ExamController extends Controller
             $selesai = date_create($value->waktu_mulai);
             date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
             $finish = date_format($selesai, 'Y-m-d H:i:s');
-            
+
             $array[++$key] = [
-                $value->id, 
-                $value->paket_soal_id, 
-                $value->nama_ujian, 
-                $value->waktu_mulai, 
+                $value->id,
+                $value->paket_soal_id,
+                $value->nama_ujian,
+                $value->waktu_mulai,
                 $value->status,
                 $start,
                 $finish,
@@ -239,9 +254,9 @@ class ExamController extends Controller
 
         // membuat array untuk menyimpan data ujian run
         $run[] = ['id','paket_soal_id','nama_ujian', 'waktu_mulai','status','start','finish'];
-        foreach($ujian_run as $key =>$value) 
+        foreach($ujian_run as $key =>$value)
         {
-            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai)); 
+            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai));
             $durasi_jam   =  date('H', strtotime($value->paket_soal->durasi));
             $durasi_menit =  date('i', strtotime($value->paket_soal->durasi));
             $durasi_detik =  date('s', strtotime($value->paket_soal->durasi));
@@ -249,12 +264,12 @@ class ExamController extends Controller
             $selesai = date_create($value->waktu_mulai);
             date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
             $finish = date_format($selesai, 'Y-m-d H:i:s');
-            
+
             $run[++$key] = [
-                $value->id, 
-                $value->paket_soal_id, 
-                $value->nama_ujian, 
-                $value->waktu_mulai, 
+                $value->id,
+                $value->paket_soal_id,
+                $value->nama_ujian,
+                $value->waktu_mulai,
                 $value->status,
                 $start,
                 $finish,

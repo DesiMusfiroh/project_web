@@ -37,6 +37,7 @@
                                 <th scope="col" >Judul Paket Soal </th>
                                 <th scope="col" style="width:150px">Durasi </th>
                                 <th scope="col" style="width:130px">Jumlah Soal </th>
+                                <th scope="col" style="width:150px">Download </th>
                                 <th scope="col" style="width:150px">Opsi</th>
                             </tr>
                         </thead>
@@ -56,6 +57,20 @@
 
                                 <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
+                                
+                                <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >
+                                    <button type="button" class="btn btn-info btn-sm">
+                                    <i class="fa fa-download" aria-hidden="true"> Soal</i>
+                                        </button>
+                                    </a>
+                                <a  href="{{route('exportJawaban',$item->id)}}" target="_blank" >
+                                    <button type="button" class="btn btn-secondary btn-sm">
+                                    <i class="fa fa-download" aria-hidden="true"> Kunci</i>
+                                        </button>
+                                    </a>
+                                
+                                </td>
+                                <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket"
                                     id="update"
                                     data-id_paket_update="{{ $item->id }}"
@@ -68,11 +83,6 @@
                                     <a href="{{route('question_create_soal_satuan',$item->id)}}">
                                         <button type="button" class="btn btn-success btn-sm">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </button>
-                                    </a>
-                                    <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >
-                                    <button type="button" class="btn btn-info btn-sm">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
                                     <a href="">

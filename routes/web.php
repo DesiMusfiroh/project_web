@@ -31,7 +31,6 @@ Route::patch('profil/update', 'ProfilController@update');
 // ROUTE QUESTION -----------------------------------------------------------------------------------------
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
 Route::patch('question/update','QuestionController@updatePaketSoal'); //route untuk update paket soal
-Route::get('question/export/{id}','DocumentController@exportSoal')->name('exportSoal');
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
@@ -42,6 +41,10 @@ Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus',
 // Route::post('question/createdocument','DocumentController@index');
 // Export hasil ujian
 Route::get('hasilpdf/{id}','DocumentController@generatePDF')->name('hasil_pdf');
+//Export Soal
+Route::get('question/exportSoal/{id}','DocumentController@exportSoal')->name('exportSoal');
+//Export Kunci
+Route::get('question/exportJawaban/{id}','DocumentController@exportJawaban')->name('exportJawaban');
 
 // update question
 Route::patch('question_create_soal_satuan/{paket_soal_id}/updateessay','QuestionController@update_soal_satuan_essay', ['$paket_soal_id' =>'paket_soal_id'])->name('updateSoalSatuan');
@@ -60,7 +63,7 @@ Route::get('/exam/create','ExamController@create')->name('createExam');
 Route::post('/exam/create/store','ExamController@store')->name('storeExam');
 Route::get('/exam/edit/{id}','ExamController@edit')->name('editExam');
 Route::patch('/exam/update/{id}','ExamController@update')->name('updateExam');
-Route::get('/exam/delete/{id}','ExamController@delete')->name('deleteExam');
+Route::get('/exam/delete/{id}','ExamController@delete',['$id'=>'id'])->name('deleteExam');
 Route::get('/copy_kode_ujian','ExamController@copy_kode');
 Route::get('/roomexam','ExamController@room_exam')->name('roomExam');
 Route::get('run/exam','ExamController@run_exam');
