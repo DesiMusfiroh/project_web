@@ -88,10 +88,6 @@
 </div>
 <script>
 $('.hapus_ujian').click(function(){
-  // const menghapus = confirm('yakin mau hapus?');
-  // if (menghapus) {
-  //   window.location = "/exam/delete/{{$item->id}}";
-  // }
   var exam_id = $(this).attr('exam_id');
   var exam_nama = $(this).attr('exam_nama');
   swal({
