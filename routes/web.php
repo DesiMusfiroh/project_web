@@ -35,7 +35,7 @@ Route::get('question/delete/{id}','QuestionController@deletePaketSoal')->name('d
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
-Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
+Route::get('question_create_soal_satuan/hapus/{paket_soal_id}/{soal_satuan_id}','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 //cetak
 // Route::get('exams/downloadhasil','DocumentController@downloadHasil');
 // Route::post('store','DocumentController@store');
