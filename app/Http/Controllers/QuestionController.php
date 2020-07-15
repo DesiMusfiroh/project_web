@@ -59,6 +59,15 @@ class QuestionController extends Controller
 
     }
 
+    public function deletePaketSoal($id){
+      $paket_soal = PaketSoal::find($id);
+      PaketSoal::where('id',$paket_soal->id)->update([
+        'isdelete' => true,
+      ]);
+
+      return redirect()->back()->with('success','Berhasil menghapus paket soal');
+    }
+
     // SOAL SATUAN CRUD CONTROLLER
     public function create_soal_satuan($paket_soal_id){
       $ownuser = PaketSoal::where('id',$paket_soal_id)->value('user_id');
