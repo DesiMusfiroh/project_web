@@ -35,7 +35,15 @@
         </div>
         @endforeach
     </div>
+    @else
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> Tidak ada ujian yang perlu di awasi</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     @endif
+
 <hr>
 
     @if($ujian_aktif->count() != 0) 
@@ -57,20 +65,13 @@
         </div>
         @endforeach
     </div>
-    @else
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong> Tidak ada ujian yang perlu di awasi</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     @endif
 
 </div>
 
 <!-- fullscreen monitoring ujian   -->
 <div id="fullscreenExam">
-      <!-- @include('exams.room_fullscreen') -->
+     
       <div class="row"> 
             <div class="card pl-7 pt-7 pt-3 text-center" style="border-radius:0px; height:120px; width:100%; background: linear-gradient(180deg, rgba(247, 253, 251, 0.85) 0%, rgba(39, 182, 130, 0.85) 100%);" >
                 <div class="row">
