@@ -300,69 +300,37 @@ class ExamController extends Controller
     }
 
     public function fullscreen_room(Request $request) {
-        $ujian_room = Ujian::find($request->ujian_id);
-        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',0)->get();
+        // $ujian_room = Ujian::find($request->ujian_id);
+        $nama_ujian     = Ujian::where('id', $request->ujian_id)->value('nama_ujian');
+        $waktu_mulai    = Ujian::where('id', $request->ujian_id)->value('waktu_mulai');
+        $paket_soal_id    = Ujian::where('id', $request->ujian_id)->value('paket_soal_id');
+        $durasi          = PaketSoal::where('id',$paket_soal_id)->value('durasi');
+       
+        date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
+        $durasi_jam   =  date('H', strtotime($durasi));
+        $durasi_menit =  date('i', strtotime($durasi));
+        $durasi_detik =  date('s', strtotime($durasi));
+        // waktu selesai = waktu mulai + durasi
+        $selesai = date_create($waktu_mulai);
+        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
+        $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
-        $ujian_aktif = Ujian::where('user_id',Auth::user()->id)->where('status',0)->get();
-        $ujian_run = Ujian::where('user_id',Auth::user()->id)->where('status',1)->get();
-        date_default_timezone_set("Asia/Jakarta");
-
-        // membuat array untuk menyimpan data ujian yang aktif
-        $array[] = ['id','paket_soal_id','nama_ujian', 'waktu_mulai','status','start','finish'];
-        foreach($ujian_aktif as $key =>$value) 
+        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',1)->get();
+        $array_peserta[] = ['nama_peserta'];
+        foreach($peserta as $key =>$value)
         {
-            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai)); 
-            $durasi_jam   =  date('H', strtotime($value->paket_soal->durasi));
-            $durasi_menit =  date('i', strtotime($value->paket_soal->durasi));
-            $durasi_detik =  date('s', strtotime($value->paket_soal->durasi));
-            // waktu selesai = waktu mulai + durasi
-            $selesai = date_create($value->waktu_mulai);
-            date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
-            $finish = date_format($selesai, 'Y-m-d H:i:s');
-            
-            $array[++$key] = [
-                $value->id, 
-                $value->paket_soal_id, 
-                $value->nama_ujian, 
-                $value->waktu_mulai, 
-                $value->status,
-                $start,
-                $finish,
+            $array_peserta[++$key] = [
+                $value->user->name,
             ];
         }
 
-        // membuat array untuk menyimpan data ujian run
-        $run[] = ['id','paket_soal_id','nama_ujian', 'waktu_mulai','status','start','finish'];
-        foreach($ujian_run as $key =>$value) 
-        {
-            $start  = date('F d, Y H:i:s', strtotime($value->waktu_mulai)); 
-            $durasi_jam   =  date('H', strtotime($value->paket_soal->durasi));
-            $durasi_menit =  date('i', strtotime($value->paket_soal->durasi));
-            $durasi_detik =  date('s', strtotime($value->paket_soal->durasi));
-            // waktu selesai = waktu mulai + durasi
-            $selesai = date_create($value->waktu_mulai);
-            date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
-            $finish = date_format($selesai, 'Y-m-d H:i:s');
-            
-            $run[++$key] = [
-                $value->id, 
-                $value->paket_soal_id, 
-                $value->nama_ujian, 
-                $value->waktu_mulai, 
-                $value->status,
-                $start,
-                $finish,
-            ];
-        }
-
-        if($request->ajax())
-        {
-            $ujian_room = Ujian::find($request->ujian_id);
-            $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',0)->get();
-         
-            return view('exams.room_fullscreen',[ 'peserta' => $peserta ],compact('ujian_aktif','ujian_run','ujian_room'))->with('tabel',json_encode($array))->with('run',json_encode($run))->render();
-        }
-        return view('exams.room',compact('ujian_aktif','ujian_run'))->with('tabel',json_encode($array))->with('run',json_encode($run));
-
+        return response()->json(array(
+            'nama_ujian'    => $nama_ujian,
+            'waktu_mulai'   => $waktu_mulai,
+            'durasi'        => $durasi,
+            'waktu_selesai' => $waktu_selesai,
+            'array_peserta' => $array_peserta,
+        ));
     }
+
 }
