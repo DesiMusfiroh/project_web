@@ -67,27 +67,7 @@
 
 <!-- fullscreen monitoring ujian   -->
 <div id="fullscreenExam">
-        <div class="row"> 
-            <div class="card" style="border-radius:0px; height:120px; width:100%; background: linear-gradient(180deg, rgba(247, 253, 251, 0.85) 0%, rgba(39, 182, 130, 0.85) 100%);" >
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-9">
-                <div class="row justify-content-center">
-                    <div class="card mt-4 ml-10 mr-10" style="border-radius:0px; background:black; box-shadow:0px 0px 0px black;">
-                        <video autoplay="true" id="video-webcam" width="600px" height="440px"> </video>
-                    </div>
-                </div>
-                <div class="row">
-                
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="border-radius:0px; height:650px; background: linear-gradient(180deg, rgba(17, 0, 23, 0.96) -83.9%, rgba(44, 5, 60, 0.96) -2.49%, #5E2575 54.53%, #BEA2CF 111.53%);">
-                    
-                </div>
-            </div>
-        </div>
+      @include('exams.room_fullscreen')
 </div>
 <!-- penutup fullscreen  -->
 
@@ -99,6 +79,20 @@ $("#fullscreenExam").hide();
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen() {
     
+    // mengirim data id ujian yang dipilih untuk monitoring
+    var ujian_id    = $(this).data('ujian_id');
+    $.ajax({
+        url: "{{ url('fullscreen/room/exam') }}",
+        type: "GET",
+        dataType: 'json',
+        data: {
+            ujian_id: ujian_id
+        },
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
     $("#fullscreenExam").show();
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
@@ -214,26 +208,9 @@ function videoError(e) {
 }
 
 
-
-// // Objek hanya bisa di buka melalui console
-// console.log(obj);
-// console.log(obj.waktu_mulai);
-  // ujian.forEach(function() {
-//       var waktu_mulai = 
-//       if (waktu_mulai == waktu_sekarang) {
-//           ajax. update status run
-//           munculkan tombol monitoring
-//       }
-//   })
-
-
-
 // tombol monitoring di klik, fullscreen tampil. bawa data ujian id ke kontroller. balikin detail ujian 
 // hitung durasi
 // kalo duraasi habis, update status ujian jadi finish
-
-
-
     // var options         = {  year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hour24:true, minute: 'numeric', second: 'numeric' };
     // var d               = new Date().toLocaleString("en-US",options, {timeZone: "Asia/Jakarta"});
     // var jam             = parseInt(d.toISOString().substr(11,2)) + 7 ;

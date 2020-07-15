@@ -57,7 +57,7 @@
                     <td>{!!$item->pilgan->pertanyaan!!}</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>&nbsp;</td>
                     <td>
                             A. {!!$item->pilgan->pil_a!!}<br/>
                             B. {!!$item->pilgan->pil_b!!} <br/>
@@ -85,15 +85,15 @@
             @endif
             <br/>
                 <br/>
-                    <br/>
-            @if($essay_jawab->count() != 0))
+                   
+            @if($essay_jawab->count() != 0)
             <table width="100%">
 	            <tr>
                     <td width="5%"><b>No.</b></td>
-		            <td ><b>Soal Essay</b></td>
+		            <td width="95%"><b>Soal Essay</b></td>
 	            </tr>
                 <tr>
-                    <td colspan="2">&nbsp;</td>
+                    <td colspan="2"></td>
 	            </tr>
             <?php $i = 0; ?>
 	        @foreach($essay_jawab as $item)
@@ -102,15 +102,16 @@
                 <td>{!!$item->essay->pertanyaan!!}</td>
             </tr>
             <tr>
-            <td></td>
-                <td>Jawaban Anda : {{$item->jawab}} <b>(poin :  {!!$item->score!!}) <b></td>
+                <td></td>
+                <td>Jawaban Anda : {!!$item->jawab!!} <b>(poin :  {!!$item->score!!}) <b></td>
 	        </tr>
             <tr>
-                <td>&nbsp;</td>
-                <td><b>Kunci :  {!!$item->essay->jawaban!!} </b></td>
+                <td></td>
+                <td><b>Kunci :</b> {!!$item->essay->jawaban!!} </td>
 	        </tr>
-        </table>
+       
         @endforeach 
+        </table>
             @else
                 <table>
                 </table>

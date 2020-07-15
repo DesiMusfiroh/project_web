@@ -43,18 +43,18 @@
 
 		<td><?php   $i++;  echo $i; ?></td>
         <td>{!!$item->pilgan->pertanyaan!!}</td>
-        <td> (Poin : {{$item->poin}})</td>
+        <td> (Poin : {!!$item->poin!!})</td>
 
     </tr>
     <tr>
 
 		<td>&nbsp;</td>
         <td>
-            A. {{$item->pilgan->pil_a}}<br/>
-            B. {{$item->pilgan->pil_b}} <br/>
-            C. {{$item->pilgan->pil_c}}<br/>
-            D. {{$item->pilgan->pil_d}} <br/>
-            E. {{$item->pilgan->pil_e}}<br/>
+            A. {!!$item->pilgan->pil_a!!}<br/>
+            B. {!!$item->pilgan->pil_b!!} <br/>
+            C. {!!$item->pilgan->pil_c!!}<br/>
+            D. {!!$item->pilgan->pil_d!!} <br/>
+            E. {!!$item->pilgan->pil_e!!}<br/>
         </td>
         <td>&nbsp;</td>
 	</tr> 
@@ -82,7 +82,7 @@
 	<tr>
 		<td><?php   $i++;  echo $i; ?></td>
         <td>{!!$item->essay->pertanyaan!!}</td>
-        <td>(Poin : {{$item->poin}})</td>
+        <td>(Poin : {!!$item->poin!!})</td>
     </tr>
     @endforeach
     <tr>

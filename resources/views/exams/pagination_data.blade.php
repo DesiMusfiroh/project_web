@@ -5,7 +5,6 @@
           <div class="card-body " >
             <?php $i=1; ?>
             @foreach($soal_satuan as $item)
-
                 <div class=" container row" >
                     <div class="col-md-3"><h6>Soal No. {{$soal_satuan ->perPage()*($soal_satuan->currentPage()-1)+$i}}   </h6></div>
                     <div class="col-md-8 text-right"><h6>Poin : {{$item->poin}}</h6></div>
