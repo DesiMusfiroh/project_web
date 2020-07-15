@@ -31,10 +31,11 @@ Route::patch('profil/update', 'ProfilController@update');
 // ROUTE QUESTION -----------------------------------------------------------------------------------------
 Route::get('question','QuestionController@index')->name('question'); //route untuk halaman utama paket soal
 Route::patch('question/update','QuestionController@updatePaketSoal'); //route untuk update paket soal
+Route::get('question/delete/{id}','QuestionController@deletePaketSoal')->name('deletePaketSoal');
 Route::get('question_create','QuestionController@create'); // route untuk tampilan buat paket soal baru
 Route::post('question_store','QuestionController@store')->name('paketSoalStore'); // route store untuk menyimpan paket soal baru
 Route::get('question_create_soal_satuan/{paket_soal_id}','QuestionController@create_soal_satuan', ['$paket_soal_id' =>'paket_soal_id'])->name('question_create_soal_satuan'); // route untuk menuju ke kelola soal satuan
-Route::get('question_create_soal_satuan/{paket_soal_id}/{soal_satuan_id}/hapus','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
+Route::get('question_create_soal_satuan/hapus/{paket_soal_id}/{soal_satuan_id}','QuestionController@delete_soal_satuan', ['$paket_soal_id' =>'paket_soal_id','$soal_satuan_id'=>'soal_satuan_id'])->name('deleteSoalSatuan');
 //cetak
 // Route::get('exams/downloadhasil','DocumentController@downloadHasil');
 // Route::post('store','DocumentController@store');
