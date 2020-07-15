@@ -20,7 +20,7 @@
                         <div class="card-body" >
                                 @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>{{ session('success') }}</strong> 
+                                    <strong>{{ session('success') }}</strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -154,7 +154,7 @@
                                             <span class="help-block">{{$errors->first('no_hp')}}</span>
                                             @endif
                                         </div>
-                                       
+
                                         <div class="form-group col-md-6">
                                             <label for="jk"> <b> Jenis Kelamin : </b> </label>
                                             <input type="text" class="form-control" id="jk" name="jk" style="border-radius:10px; box-shadow: 3px 0px 5px grey;">

@@ -288,6 +288,7 @@ class ExamController extends Controller
 
         return response()->json($posts);
     }
+
     public function stop_exam(Request $request) {
 
         $update_status_ujian = [
@@ -297,4 +298,39 @@ class ExamController extends Controller
 
         return response()->json($posts);
     }
+
+    public function fullscreen_room(Request $request) {
+        // $ujian_room = Ujian::find($request->ujian_id);
+        $nama_ujian     = Ujian::where('id', $request->ujian_id)->value('nama_ujian');
+        $waktu_mulai    = Ujian::where('id', $request->ujian_id)->value('waktu_mulai');
+        $paket_soal_id    = Ujian::where('id', $request->ujian_id)->value('paket_soal_id');
+        $durasi          = PaketSoal::where('id',$paket_soal_id)->value('durasi');
+       
+        date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
+        $durasi_jam   =  date('H', strtotime($durasi));
+        $durasi_menit =  date('i', strtotime($durasi));
+        $durasi_detik =  date('s', strtotime($durasi));
+        // waktu selesai = waktu mulai + durasi
+        $selesai = date_create($waktu_mulai);
+        date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
+        $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
+
+        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',1)->get();
+        $array_peserta[] = ['nama_peserta'];
+        foreach($peserta as $key =>$value)
+        {
+            $array_peserta[++$key] = [
+                $value->user->name,
+            ];
+        }
+
+        return response()->json(array(
+            'nama_ujian'    => $nama_ujian,
+            'waktu_mulai'   => $waktu_mulai,
+            'durasi'        => $durasi,
+            'waktu_selesai' => $waktu_selesai,
+            'array_peserta' => $array_peserta,
+        ));
+    }
+
 }
