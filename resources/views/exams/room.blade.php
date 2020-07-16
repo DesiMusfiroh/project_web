@@ -87,14 +87,13 @@
         </div>
         <div class="row">
             <div class="col-md-9">
-                <div class="row justify-content-center">
-                    <div class="card mt-4 ml-10 mr-10" style="border-radius:0px; background:black; box-shadow:0px 0px 0px black;">
-                        <video autoplay="true" id="video-webcam" width="600px" height="440px"> </video>
-                    </div>
+                <div  id="cameraall" class="row justify-content-center">
+            <div id="camera2">Capture</div> &nbsp;
+		<div id="camera3">Capture</div> &nbsp;
+		
                 </div>
-                <div class="row">
-  
-
+                <div class="row justify-content-center">
+    
                 </div>
             </div>
             <div class="col-md-3">
@@ -109,15 +108,12 @@
         </div>
 </div>
 <!-- penutup fullscreen  -->
-
+<script src="{asset('/webcam.min.js')}"></script>
 <script>
-
 $("#fullscreenExam").hide();
-
 // Menampilkan fullscreen pengawasan ujian
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen(ujian_id) {
-
     // mengirim data id ujian yang dipilih untuk monitoring
     // var ujian_id    = $(this).data('ujian_id');  // data id ujian belum tertangkap
     // var ujian_id    = $(".ujian_id").val();
@@ -150,44 +146,34 @@ function openFullscreen(ujian_id) {
             $("#waktu_mulai").text(waktu_mulai);
             $("#durasi").text(durasi);
             $("#waktu_selesai").text(waktu_selesai);
-
             // pengaturan JS untuk membuat hitung durasi sisa waktu ujian
             const selesai       = new Date(waktu_selesai).getTime();
             const hitung_durasi = setInterval(function() {
                 const sekarang      = new Date().getTime();
                 const sisa_durasi   = selesai - sekarang;
-
                 const jam   = Math.floor(sisa_durasi % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
                 const menit = Math.floor(sisa_durasi % (1000 * 60 * 60 ) / (1000 * 60 ));
                 const detik = Math.floor(sisa_durasi % (1000 * 60 ) / 1000 );
-
                 const teks_durasi = document.getElementById('teks_durasi');
                 teks_durasi.innerHTML = 'Ujian akan di berakhir dalam : ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi ';
-
                 if( durasi < 0 ) {
                     clearInterval(hitung_durasi);
                     closeFullscreen();
                 }
             }, 1000);
-
             // for (var key in array_data) {
             //     var nama_ujian = (key, array_data[key][1]);
             //     console.log(nama_ujian);
-
             // }
             // var ujian_room_id = data;
             // $("#ujian_room_id").val(ujian_room_id);
         }
     });
-
     $("#fullscreenExam").show();
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
     }
-
-
 }
-
 // menghitung timer
 setInterval(myTimer, 1000);
 function myTimer() {
@@ -196,7 +182,6 @@ function myTimer() {
     var time            = new Date().toString('hh:mm:tt');
     var time_string     = time.substr(16,8);
     var waktu_sekarang  = tanggal + ' ' + time_string;
-
     var ujian = <?php echo $tabel ?>; // mengambil data object array ujian dari controller
     console.log(ujian);
     for (var key in ujian) {
@@ -224,18 +209,15 @@ function myTimer() {
         // ------------------------------------
     }
 }
-
 // hitung selisih waktu, jika sudah masuk waktu mulai maka status berubah jadi 1
 var ujian_data = <?php echo $tabel ?>;    
 for (var key in ujian_data) { 
     var start       = (key, ujian_data[key][5]);
     var finish      = (key, ujian_data[key][6]);
     var ujian_id    = (ujian_data[key][0]);
-
     const mulai     = new Date(start).getTime();
     const sekarang  = new Date().getTime();
     const selisih   = mulai - sekarang;
-
     if( selisih <= 0 ) {
         $.ajax({
             url: "{{ url('run/exam') }}",
@@ -251,18 +233,15 @@ for (var key in ujian_data) {
     }
 }
 // ---------------------------------------------------
-
 // ubah status jadi 2 jika ujian telah selesai 
 var ujian_run = <?php echo $run ?>;    
 for (var key in ujian_run) { 
     var start       = (key, ujian_run[key][5]);
     var finish      = (key, ujian_run[key][6]);
     var ujian_id    = (ujian_run[key][0]);
-
     const selesai   = new Date(finish).getTime();
     const sekarang  = new Date().getTime();
     const selisih   = selesai - sekarang;
-
     if( selisih < 0 ) {
         $.ajax({
             url: "{{ url('stop/exam') }}",
@@ -278,24 +257,27 @@ for (var key in ujian_run) {
     }
 }
 // ---------------------------------------------------
-
 //Pengaturan JS untuk akses kamera user
-var video = document.querySelector("#video-webcam");
-navigator.getUserMedia   =  navigator.getUserMedia || 
-                            navigator.webkitGetUserMedia || 
-                            navigator.mozGetUserMedia || 
-                            navigator.msGetUserMedia || 
-                            navigator.oGetUserMedia;
-if (navigator.getUserMedia) {
-    navigator.getUserMedia({ video: true }, handleVideo, videoError);
-}
-function handleVideo(stream) {
-    video.srcObject = stream;
-}
-function videoError(e) {
-    alert("Izinkan menggunakan webcam untuk demo!")
-}
+//Pengaturan JS untuk akses kamera user
 
+
+// konfigursi webcam
+		
+		// konfigursi webcam 2
+        Webcam.set({
+            width: 320,
+            height: 240,
+            
+        });
+        Webcam.attach( '#camera2' );
+		
+		// konfigursi webcam 3
+        Webcam.set({
+            width: 320,
+            height: 240,
+           
+        });
+        Webcam.attach( '#camera3' );
 // keluar dari fullscreen
 function closeFullscreen() {
     if (document.exitFullscreen) {
@@ -303,7 +285,6 @@ function closeFullscreen() {
         $("#fullscreenExam").hide();
     }
 }
-
 // tombol monitoring di klik, fullscreen tampil. bawa data ujian id ke kontroller. balikin detail ujian 
 // hitung durasi
 // kalo duraasi habis, update status ujian jadi finish

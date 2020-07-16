@@ -104,11 +104,9 @@ video{
 
 
 <script>
-
 $("#fullscreenExam").hide();
 $("#text").hide();
 $("#start").hide();
-
 var elem = document.querySelector("#fullscreenExam");
 function openFullscreen() {
     $("#fullscreenExam").show();
@@ -116,27 +114,21 @@ function openFullscreen() {
         elem.requestFullscreen();
     }
     const waktu_selesai = new Date('<?php echo $waktu_selesai ?>').getTime();
-
     const hitung_durasi = setInterval(function() {
         const sekarang = new Date().getTime();
         const durasi = waktu_selesai - sekarang;
-
         const jam = Math.floor(durasi % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
         const menit = Math.floor(durasi % (1000 * 60 * 60 ) / (1000 * 60 ));
         const detik = Math.floor(durasi % (1000 * 60 ) / 1000 );
-
         const teks_durasi = document.getElementById('teks_durasi');
         teks_durasi.innerHTML = 'Ujian akan di berakhir dalam : ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi ';
-
         if( durasi < 0 ) {
             clearInterval(hitung_durasi);
             teks_durasi.innerHTML = 'Ujian telah berakhir';
             closeFullscreen();
         }
     }, 1000);
-
     // alert("ini fullscreen");
-
     // $(elem).mouseleave(function(){
     //   // const keluar = confirm("jika anda keluar dari window, ujian akan berakhir");
     //   //
@@ -149,9 +141,7 @@ function openFullscreen() {
     //   alert("Hayoooo jangan nyontek ya. jangan kemana mana");
     //   closeFullscreen();
     // });
-
 }
-
 function closeFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -165,23 +155,18 @@ $('#fullscreenExam').mouseleave(function(){
   window.location = "/finishexam/"+peserta_id;
 });
 // --------------------------------------------------------------------------
-
 // pengaturan JS untuk hitung waktu mulai ujian
 const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();
-
 const hitung_mundur = setInterval(function() {
     const waktu_sekarang = new Date().getTime();
     const selisih = waktu_mulai - waktu_sekarang;
-
     const hari = Math.floor(selisih / (1000 * 60 * 60 *24));
     const jam = Math.floor(selisih % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
     const menit = Math.floor(selisih % (1000 * 60 * 60 ) / (1000 * 60 ));
     const detik = Math.floor(selisih % (1000 * 60 ) / 1000 );
-
     const teks = document.getElementById('teks');
     teks.innerHTML = '<strong> Ujian akan di mulai dalam : ' + hari + ' hari ' + jam + ' jam ' + menit + ' menit ' + detik + ' detik lagi !</strong> ';
     $("#start").hide();
-
     if( selisih < 0 ) {
         clearInterval(hitung_mundur);
         teks.innerHTML = 'Ujian Dapat di mulai';
@@ -189,34 +174,25 @@ const hitung_mundur = setInterval(function() {
     }
 }, 1000);
 // --------------------------------------------------------------------------
-
-
 //Pengaturan JS untuk akses kamera user
     // seleksi elemen video
     var video = document.querySelector("#video-webcam");
-
     // minta izin user
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
     // jika user memberikan izin
     if (navigator.getUserMedia) {
         // jalankan fungsi handleVideo, dan videoError jika izin ditolak
         navigator.getUserMedia({ video: true }, handleVideo, videoError);
     }
-
     // fungsi ini akan dieksekusi jika  izin telah diberikan
     function handleVideo(stream) {
         video.srcObject = stream;
     }
-
     // fungsi ini akan dieksekusi kalau user menolak izin
     function videoError(e) {
         // do something
         alert("Izinkan menggunakan webcam untuk demo!")
     }
-
-
-
 // Pengaturan JS untuk Pagination
 $(document).ready(function(){
     $(document).on('click', '.pagination a',function(event){
@@ -241,6 +217,5 @@ $(document).ready(function(){
     }
 });
 // ------------------------------------------------------------
-
 </script>
 @endsection

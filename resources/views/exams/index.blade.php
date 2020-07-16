@@ -88,7 +88,6 @@
 </div>
 <script>
 $('.hapus_ujian').click(function(){
-
   var exam_id = $(this).attr('exam_id');
   var exam_nama = $(this).attr('exam_nama');
   swal({
