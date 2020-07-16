@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+@media screen and (max-width: 1000px) {
+   #mulai-ujian {max-width:100%;}
+}
 :fullscreen {
   background:linear-gradient(360deg, rgba(247, 253, 251, 0.85) -4.38%, rgba(118, 235, 179, 0.85) 19.69%, rgba(14, 239, 185, 0.85) 98.54%);
 }
@@ -42,7 +45,7 @@ video{
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
-        <button class="btn btn-success" onclick="openFullscreen();" style="width:400px; box-shadow: 3px 2px 5px grey;">Mulai Ujian</button>
+        <button class="btn btn-success" id="mulai-ujian" onclick="openFullscreen();" style="width:400px; box-shadow: 3px 2px 5px grey;">Mulai Ujian</button>
     </div>
 </div>
 </div>

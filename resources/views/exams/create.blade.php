@@ -1,6 +1,13 @@
 @extends('layouts.sidebar')
 @section('content')
-<div class="container row justify-content-center">
+<style>
+@media screen and (max-width: 1000px) {
+   .input-waktu{width:120%;}
+   .input-data{width:140%;}
+}
+</style>
+<div class="container ">
+<div class="row justify-content-center">
 <div class="col-md-10">
     <div class="card ">
         <div class="card-header pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px; background: #EDE5E5; ">
@@ -16,7 +23,7 @@
                   <div class="col-md-3 offset-md-1">
                     <label for=""> <strong> Nama Ujian</strong></label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8 input-data">
                     <input type="text" name="nama_ujian" value="" class="form-control" placeholder="nama ujian">
                   </div>
                 </div>
@@ -24,7 +31,7 @@
                   <div class="col-md-3 offset-md-1">
                     <label for=""> <strong>Pilih Paket Soal</strong> </label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8 input-waktu">
                     <select class="form-control" name="paket_soal_id">
                       <option disabled selected>Pilih ...</option>
                       @foreach($paketsoal as $item)
@@ -37,7 +44,7 @@
                   <div class="col-md-3 offset-md-1">
                     <label for=""> <strong>Waktu Mulai</strong> </label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8 input-waktu">
                     <input type="datetime-local"  class="form-control" name="waktu_mulai" value="" id="jam">
                   </div>
                 </div>
@@ -50,6 +57,7 @@
 
         </div>
     </div>
+</div>
 </div>
 </div>
 @endsection

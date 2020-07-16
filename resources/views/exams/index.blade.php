@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="card-body">
-
+                <div class="table-inside">
                 @if($ujian->count() != 0)
                 <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center" >
@@ -80,7 +80,7 @@
                             </button>
                         </div>
                     @endif
-
+                    </div>
                 </div>
             </div>
         </div>
