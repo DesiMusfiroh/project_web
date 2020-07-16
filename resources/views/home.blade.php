@@ -28,6 +28,7 @@
                 <strong style="font-size:18px;">Ujian yang akan dikerjakan</strong>
             </div>
             <div class="card-body">
+                <div class="table-inside">
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
                             <tr>
@@ -90,6 +91,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                     <div class="ml-1">
                       {{$peserta->links()}}
                     </div>

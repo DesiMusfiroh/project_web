@@ -19,6 +19,16 @@
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <style>
+        @media screen and (max-width: 1000px) {
+           .card{
+               margin-bottom: 20px;
+           }
+           .table-inside {
+                overflow-y:auto;
+                overflow-x:scroll;
+            }
+      
+        }
         .nav-icon{
             width:30px;
             color: #82e8b5;

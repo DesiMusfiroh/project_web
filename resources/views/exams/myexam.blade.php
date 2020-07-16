@@ -1,5 +1,12 @@
 @extends('layouts/sidebar')
 @section('content')
+<style>
+@media screen and (max-width: 1000px) {
+    #td-paket-soal{width:100px;} 
+    .status-ujian{margin-top:20px;}
+    .card-header{text-align:center;}
+}
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -27,7 +34,7 @@
                       <div class="col-md-8">
                         <table>
                           <tr>
-                            <td width="150px">Paket soal</td>
+                            <td width="150px" id="td-paket-soal">Paket soal</td>
                             <td width="10px">:</td>
                             <th>{{$ujian->paket_soal->judul}}</th>
                           </tr>
@@ -49,7 +56,7 @@
                         </table>
                       </div>
 
-                      <div class="col-md-4">
+                      <div class="col-md-4 status-ujian">
                         <?php if ($ujian->status == 0) { ?>
                           <div class="alert alert-warning alert-sm mt-0 pt-0 pb-0 text-center"><strong>Ujian belum dilaksanakan !</strong></div>
                         <?php } elseif ($ujian->status == 1) { ?>
@@ -76,6 +83,7 @@
                   <div class="text-center"><h5><strong >Peserta Ujian</strong></h5></div>
 
                   @if ($ujian->peserta->count() != 0)
+                  <div class="table-inside">
                   <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
                             <tr>
@@ -108,6 +116,7 @@
                           @endforeach
                         </tbody>
                     </table>
+                    </div>
                   @else
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                       <strong> Belum ada peserta yang mengikuti ujian ini !</strong>

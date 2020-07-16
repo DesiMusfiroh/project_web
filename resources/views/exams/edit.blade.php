@@ -3,7 +3,14 @@
 <?php
 use App\Ujian ; 
 ?>
-<div class="container row justify-content-center">
+<style>
+@media screen and (max-width: 1000px) {
+   .input-waktu{width:120%;}
+   .input-data{width:140%;}
+}
+</style>
+<div class="container ">
+<div class="row justify-content-center">
 <div class="col-md-10">
 
     <div class="card">
@@ -21,7 +28,7 @@ use App\Ujian ;
                   <div class="col-md-3 offset-md-1">
                     <label for=""> <strong> Nama Ujian</strong> </label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8 ">
                     <input type="text" name="nama_ujian" value="{{$ujian->nama_ujian}}" class="form-control" >
                   </div>
                 </div>
@@ -42,16 +49,15 @@ use App\Ujian ;
                   <div class="col-md-3  offset-md-1">
                     <label for="">Waktu mulai</label>
                   </div>
-                  <div class="col-md-8">
+                  <div class="col-md-8 input-waktu">
                     <input type="hidden" id="waktu_awal"  value="{{$ujian->waktu_mulai}}" >
                     <input class="form-control" type="datetime-local" name="waktu_mulai" value = ""  id="waktu_input">
                   </div>
                 </div>
                 <hr>
-                  <div class="row mt-2 offset-md-10">
-                  <button type="submit" class="btn" style="background-color:#7BEDC4; border: none; box-shadow: 3px 3px 3px rgba(119, 52, 171, 0.46);">
-                    Simpan</button>
-                  </div>
+                <div class="row mt-2 offset-md-9">        
+                  <div class="text-right col-md-10"> <button type="submit" class="btn btn-primary" style="box-shadow: 3px 2px 5px grey;"> Simpan </button> </div>
+                </div>
                 
               </form>
             </div>
@@ -60,7 +66,7 @@ use App\Ujian ;
     </div>
 </div>
 </div>
-
+</div>
 <script>
 $(document).ready(function(){
     var waktu_awal = document.getElementById("waktu_awal").value;
