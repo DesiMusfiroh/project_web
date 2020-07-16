@@ -54,6 +54,7 @@ video{
             <li> Ujian dapat di mulai ketika telah memasuki <b>waktu mulai ujian.</b></li>
             <li> <b>Kamera</b> peserta akan selalu aktif selama pengerjaan ujian.</li>
             <li> Tidak diperkenankan keluar dari <b>mode fullscreen</b> jika ujian belum diselesaikan.</li>
+            <li> <b>Jika keluar dari mode Fullscren, Jawaban akan tersimpan, dan ujian tidak bisa diulangi</b> </li>
           </ul>
           <hr>
         </div>
@@ -69,7 +70,7 @@ video{
     <div class="row">
       <div class="col-md-12">
         <div class="card pt-3 pl-5 pr-5 pb-3 head_exam">
-          <div class="text-center"> <h4 style="color:white;"> <strong>{{ $ujian->nama_ujian }}</strong></h4> </div> 
+          <div class="text-center"> <h4 style="color:white;"> <strong>{{ $ujian->nama_ujian }}</strong></h4> </div>
           <h6  style="color:#6fedae;"> <strong> Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </strong> </h6>
           <div style="color:#6fedae; font-weight:bold;" id="teks_durasi"></div>
         </div>
@@ -84,7 +85,7 @@ video{
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
-        <a href="{{route('finishExam',$peserta->id)}}"> <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button> </a> 
+        <a href="{{route('finishExam',$peserta->id)}}"> <button class="btn btn-danger" onclick="closeFullscreen();" peserta_id="{{$peserta->id}}"> Akhiri Ujian </button> </a>
       </div>
     </div>
 
@@ -154,6 +155,12 @@ function closeFullscreen() {
         $("#fullscreenExam").hide();
     }
 }
+
+$('#fullscreenExam').mouseleave(function(){
+  const peserta_id = $(this).attr('peserta_id');
+  closeFullscreen();
+  window.location = "/finishexam/"+peserta_id;
+});
 // --------------------------------------------------------------------------
 
 // pengaturan JS untuk hitung waktu mulai ujian
