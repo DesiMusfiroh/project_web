@@ -45,7 +45,8 @@
                             <?php $i=0; ?>
                             @foreach ($paketsoal as $item)
                             <tr>
-                                <td scope="row" class="text-center"><?php  $i++;  echo $i; ?></td>
+                                <td scope="row" class="text-center">{{$paketsoal ->perPage()*($paketsoal->currentPage()-1)+$i}}</td>
+                                <?php $i++; ?>
                                 <td >{{ $item->judul }}</td>
                                 <td class="text-center">
                                     <?php
@@ -95,6 +96,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{$paketsoal->links()}}
                 @else
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong> Belum ada paket soal yang di buat. Silahkan buat paket soal baru!</strong>

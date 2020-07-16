@@ -23,7 +23,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->where('isdelete',false)->get();
+        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->where('isdelete',false)->paginate(8);
         return view('question.index',compact(['paketsoal']));
     }
 
