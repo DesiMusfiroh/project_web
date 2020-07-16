@@ -2,7 +2,23 @@
 @section('content')
 <style>
 @media screen and (max-width: 1000px) {
-   
+   .card-img{
+     max-width: 50px;
+     max-height: 45px;
+   }
+
+   .namauser,.tekskecil{
+     font-size: 10px;
+     margin-top: 0px;
+   }
+
+   #card-peserta{
+     display: flex;
+     justify-content: center;
+
+   }
+
+
 }
 </style>
 <div class="container">
@@ -19,11 +35,11 @@
                     @endif
                 </div>
                 <div class="col-sm-9">
-                <h5 class="pb-0 mb-0 pt-3 ">{{ $peserta->user->name }} </h5>
+                <h5 class="pb-0 mb-0 pt-3 namauser">{{ $peserta->user->name }} </h5>
                         @if ($institusi !== null)
                             <table>
-                                <tr> <td width="100px"> institusi   </td> <td> : </td> <td> {{$institusi}}  </td> </tr>
-                                <tr> <td> Nomor HP  </td> <td> : </td> <td> {{$no_hp}}  </td> </tr>
+                                <tr> <td width="100px" class="tekskecil"> institusi   </td> <td class="tekskecil"> : </td> <td class="tekskecil"> {{$institusi}}  </td> </tr>
+                                <tr> <td class="tekskecil"> Nomor HP  </td> <td class="tekskecil"> : </td> <td class="tekskecil"> {{$no_hp}}  </td> </tr>
                             </table>
                         @else
                             <table>

@@ -27,7 +27,7 @@
                 overflow-y:auto;
                 overflow-x:scroll;
             }
-      
+
         }
         .nav-icon{
             width:30px;
@@ -36,7 +36,7 @@
         }
         .card-header {border-radius: 20px 20px 0px 0px; background: #EDE5E5; }
         .card {border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);}
-/* 
+/*
         #sidebar {
            position:fixed; height:660px
         }
@@ -63,7 +63,7 @@
                     @endif
 
                 <ul class="list-unstyled components mb-5 ">
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a href="{{ route('home') }}"><strong style="font-size:16px"> <i class="nav-icon fa fa-home"></i>  Beranda </strong> </a>
                     </li>
                     <li class="nav-item ">
