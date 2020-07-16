@@ -35,6 +35,26 @@
                     width: 550px;
                 }
             }
+           
+            @media screen and (max-width: 600px) {
+                .hr-bawah{
+                    width:60%; 
+                    align:auto;
+                }
+                .input-email{
+                    width:100%;
+                    }
+
+                .input-pesan{
+                    width:100%;
+                }
+                .wadah {
+                    align-content:center;
+                }
+
+
+            }
+
 
             html, body {
                 background: url('images/backbiru.png');
@@ -91,44 +111,24 @@
             </div>
         </nav>
 
-        <div class="container justify-content-center">
+        <div class="container justify-content-center wadah">
             <div class="container"style="margin:10px 0px 0px 0px" >
-                <span class="row container justify-content-center " style="color: #244D49; padding:30px 0px 0px 0px; text-shadow: 3px 3px 0px #D7DACC;"><h3> Hubungi Kami </h3></span>
-                    <hr width="20%"/>
-            </div>
-            <div class="container" style="justify-content-center " >
-            <div class="row">
-                <div class="col">
-                &nbsp;
-                </div>
+                <span class="row  justify-content-center " style="color: #244D49; padding:30px 0px 0px 0px; text-shadow: 3px 3px 0px #D7DACC;"><h3> Hubungi Kami </h3></span>
+                    <hr class="hr-bawah "width="20%"/>
+            </div> 
+            <div class="container">
+      <div class="row">
+        <div class="mx-auto p-4 col-md-7">
+          <form>
+            <div class="form-group"> <input type="email" class="form-control" id="" placeholder=" Email" > </div>
+            <div class="form-group"> <textarea class="form-control" id="" rows="3" placeholder="Pesan"></textarea> </div>
+             <button type="submit" class="btn btn-primary btn-block">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
-                <div class="col">
-     
 
-                <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" width="30%">
-                            <small id="emailHelp" class="form-text text-muted">Kami tidak akan memberikan email anda kepada siapapun.</small>
-                </div>
-                <div class="form-group ">
-                    <label for="exampleInputPassword1">Pesan</label>
-                        <textarea class="form-control" id=""> </textarea>
-                </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-                </div>
-                
-                <div class="col">
-                &nbsp;
-                </div>
-            </div>
-            
-            
-
-            </div>
-                
         </div>
            
        
