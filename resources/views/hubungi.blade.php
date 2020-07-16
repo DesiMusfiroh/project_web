@@ -83,7 +83,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/tim">Tim Kami</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="/hubungi">Hubungi Kami</a>
                         </li>
                     </ul>
@@ -91,64 +91,52 @@
             </div>
         </nav>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center" id="kiri">
-                <img src="/images/feattest 1.png" alt="" id="vektor">
+        <div class="container justify-content-center">
+            <div class="container"style="margin:10px 0px 0px 0px" >
+                <span class="row container justify-content-center " style="color: #244D49; padding:30px 0px 0px 0px; text-shadow: 3px 3px 0px #D7DACC;"><h3> Hubungi Kami </h3></span>
+                    <hr width="20%"/>
             </div>
-            <div class="col-md-6" id="kanan">
-                <div class="row" id="keterangan" >
-                    <img src="/images/LiveEx.png" alt="" width="170px" id="logo_keterangan">
-
-                    <h4>Apa Itu LiveEx ? <br> LiveEx adalah website yang dibangun dengan tujuan untuk mempermudah pelaksanaan ujian secara daring dengan fitur live video demi meningkatkan pengawasan dan meminimalisir kecurangan saat ujian berlangsung </h4>
-                </div>
-                <div class="row text-center" id="aksi">
-                @if (Route::has('login'))
-                    <div class="container">
-                        @auth
-
-                            <a href="{{ route('home') }} "> <button> Home </button> </a>
-                        @else
-                            <a href="{{ route('login') }}"><button> Login </button> </a>
-
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"><button> Register </button> </a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-
+            <div class="container" style="justify-content-center " >
+            <div class="row">
+                <div class="col">
+                &nbsp;
                 </div>
 
+                <div class="col">
+     
+
+                <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" width="30%">
+                            <small id="emailHelp" class="form-text text-muted">Kami tidak akan memberikan email anda kepada siapapun.</small>
+                </div>
+                <div class="form-group ">
+                    <label for="exampleInputPassword1">Pesan</label>
+                        <textarea class="form-control" id=""> </textarea>
+                </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+                </div>
+                
+                <div class="col">
+                &nbsp;
+                </div>
             </div>
+            
+            
+
+            </div>
+                
         </div>
+           
+       
+        
+        
+       
 
-        <!-- <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-
-                        <a href="{{ url('/home') }}"> <button> Home </button> </a>
-                    @else
-                        <a href="{{ route('login') }}"><button> Login </button> </a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"><button> Register </button> </a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-
-                </div>
-            </div>
-        </div> -->
-
+       
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -159,4 +147,3 @@
 
     </body>
 </html>
-
