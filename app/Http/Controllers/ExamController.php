@@ -305,7 +305,7 @@ class ExamController extends Controller
         $waktu_mulai    = Ujian::where('id', $request->ujian_id)->value('waktu_mulai');
         $paket_soal_id    = Ujian::where('id', $request->ujian_id)->value('paket_soal_id');
         $durasi          = PaketSoal::where('id',$paket_soal_id)->value('durasi');
-       
+
         date_default_timezone_set("Asia/Jakarta"); // mengatur time zone untuk WIB.
         $durasi_jam   =  date('H', strtotime($durasi));
         $durasi_menit =  date('i', strtotime($durasi));
@@ -315,7 +315,7 @@ class ExamController extends Controller
         date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
         $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
-        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',1)->get();
+        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',0)->get();
         $array_peserta[] = ['nama_peserta'];
         foreach($peserta as $key =>$value)
         {

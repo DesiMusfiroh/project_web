@@ -152,7 +152,19 @@ function closeFullscreen() {
 $('#fullscreenExam').mouseleave(function(){
   const peserta_id = $(this).attr('peserta_id');
   closeFullscreen();
-  window.location = "/finishexam/"+peserta_id;
+  swal({
+    title: "Yakin?",
+    text: "Ketika meninggalkan ujian, anda tidak bisa mengulangi ujian lagi. <b>Tekan cancel untuk kembali ujian </b>",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.location = "/finishexam/"+peserta_id;
+    }
+  });
+
 });
 // --------------------------------------------------------------------------
 // pengaturan JS untuk hitung waktu mulai ujian
