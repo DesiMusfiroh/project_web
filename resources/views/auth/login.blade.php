@@ -25,9 +25,9 @@
 
 </style>
 @section('content')
-<div class="container">
+<div class="container ">
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-5 ">
             <div class="card" style="border-radius:10px" >
                 <div class="card-header" style="font-family: Chelsea Market; font-size:23px; background: #ecdfed 100%; color:#590580; " >{{ __('Login') }}</div>
 

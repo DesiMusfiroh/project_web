@@ -2,6 +2,9 @@
 
 @section('content')
 <style>
+@media screen and (max-width: 1000px) {
+   #mulai-ujian {max-width:100%;}
+}
 :fullscreen {
   background:linear-gradient(360deg, rgba(247, 253, 251, 0.85) -4.38%, rgba(118, 235, 179, 0.85) 19.69%, rgba(14, 239, 185, 0.85) 98.54%);
 }
@@ -42,7 +45,7 @@ video{
     </div>
     <div class="card-footer  text-center " id="start">
         <!-- <a href="{{route('runExam',$ujian->id)}}"><button  class="btn btn-warning">Mulai</button></a> -->
-        <button class="btn btn-success" onclick="openFullscreen();" style="width:400px; box-shadow: 3px 2px 5px grey;">Mulai Ujian</button>
+        <button class="btn btn-success" id="mulai-ujian" onclick="openFullscreen();" style="width:400px; box-shadow: 3px 2px 5px grey;">Mulai Ujian</button>
     </div>
 </div>
 </div>
@@ -54,6 +57,7 @@ video{
             <li> Ujian dapat di mulai ketika telah memasuki <b>waktu mulai ujian.</b></li>
             <li> <b>Kamera</b> peserta akan selalu aktif selama pengerjaan ujian.</li>
             <li> Tidak diperkenankan keluar dari <b>mode fullscreen</b> jika ujian belum diselesaikan.</li>
+            <li> <b>Jika keluar dari mode Fullscren, Jawaban akan tersimpan, dan ujian tidak bisa diulangi</b> </li>
           </ul>
           <hr>
         </div>
@@ -69,7 +73,7 @@ video{
     <div class="row">
       <div class="col-md-12">
         <div class="card pt-3 pl-5 pr-5 pb-3 head_exam">
-          <div class="text-center"> <h4 style="color:white;"> <strong>{{ $ujian->nama_ujian }}</strong></h4> </div> 
+          <div class="text-center"> <h4 style="color:white;"> <strong>{{ $ujian->nama_ujian }}</strong></h4> </div>
           <h6  style="color:#6fedae;"> <strong> Durasi Pengerjaan : {{ $durasi_jam }} jam {{ $durasi_menit }} menit </strong> </h6>
           <div style="color:#6fedae; font-weight:bold;" id="teks_durasi"></div>
         </div>
@@ -84,7 +88,7 @@ video{
     <div class="row">
       <div class="col-md-8"></div>
       <div class="col-md-4">
-        <a href="{{route('finishExam',$peserta->id)}}"> <button class="btn btn-danger" onclick="closeFullscreen();"> Akhiri Ujian </button> </a> 
+        <a href="{{route('finishExam',$peserta->id)}}"> <button class="btn btn-danger" onclick="closeFullscreen();" peserta_id="{{$peserta->id}}"> Akhiri Ujian </button> </a>
       </div>
     </div>
 
@@ -144,6 +148,12 @@ function closeFullscreen() {
         $("#fullscreenExam").hide();
     }
 }
+
+$('#fullscreenExam').mouseleave(function(){
+  const peserta_id = $(this).attr('peserta_id');
+  closeFullscreen();
+  window.location = "/finishexam/"+peserta_id;
+});
 // --------------------------------------------------------------------------
 // pengaturan JS untuk hitung waktu mulai ujian
 const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();

@@ -4,7 +4,7 @@
   	<title>LiveEx</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+    <link rel="icon" type="image/png" href="/images/LiveEx.png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,6 +19,16 @@
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <style>
+        @media screen and (max-width: 1000px) {
+           .card{
+               margin-bottom: 20px;
+           }
+           .table-inside {
+                overflow-y:auto;
+                overflow-x:scroll;
+            }
+      
+        }
         .nav-icon{
             width:30px;
             color: #82e8b5;
@@ -26,8 +36,8 @@
         }
         .card-header {border-radius: 20px 20px 0px 0px; background: #EDE5E5; }
         .card {border-radius:20px;  box-shadow: 5px 5px 10px rgba(48, 10, 64, 0.5);}
-
-        /* #sidebar {
+/* 
+        #sidebar {
            position:fixed; height:660px
         }
         #content {

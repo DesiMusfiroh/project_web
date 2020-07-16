@@ -1,9 +1,14 @@
 @extends('layouts.sidebar')
 @section('content')
+<style>
+@media screen and (max-width: 1000px) {
+   
+}
+</style>
 <div class="container">
 <div class="row mb-4">
     <div class="col-sm-7">
-        <div class="card"  style="height: 120px;">
+        <div class="card" id="card-peserta" style="height: 120px;">
             <div class="card-body pb-2 pt-2">
             <div class="row">
                 <div class="col-sm-3 ">
@@ -26,7 +31,7 @@
                                 <tr> <td> Nomor HP  </td> <td> : </td> <td> - </td> </tr>
                             </table>
                         @endif
-                        
+
                 </div>
             </div>
             </div>
@@ -49,15 +54,15 @@
             <div class="col-md-9"><strong style="font-size:18px">Hasil Ujian Peserta</strong></div>
             <div class="col-md-3 text-right">
             @if($peserta->nilai != null )
-                <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">   
+                <a  href="{{route('hasil_pdf',$peserta->id)}}"  target="_blank">
                     <button type="button" class="btn btn-info">
                     <i class="fa fa-download" aria-hidden="true"></i> Download PDF
                     </button>
                 </a>
-            @endif 
+            @endif
             </div>
         </div>
-                                 
+
     </div>
 
     <div class="card-body text-center">
@@ -72,7 +77,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="alert alert-success" role="alert">
-                            Total Poin : {{$total_poin}} 
+                            Total Poin : {{$total_poin}}
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -84,6 +89,7 @@
                 @endif
             @if ($pilgan_jawab->count() != 0)
             <h5> <strong>Hasil Ujian Pilihan Ganda Peserta</strong> </h5>
+            <div class="table-inside">
             <table class="table table-striped table-bordered table-sm">
                 <thead class="thead-dark text-center">
                     <tr>
@@ -108,10 +114,12 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
             @endif
 
             @if ($essay_jawab->count() != 0)
             <h5> <strong> Hasil Ujian Essay Peserta</strong></h5>
+            <div class="table-inside">
             <table class="table table-striped table-bordered table-sm">
                 <thead class="thead-dark text-center">
                     <tr>
@@ -136,11 +144,28 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
             @endif
         </div>
       @else
       <script>
-        alert("Soal sedang di koreksi");
+        $(document).ready(function(){
+          // Swal.fire({
+          //   title: "Yakin?",
+          //   text: "Soal sedang dikoreksi",
+          //   icon: "warning",
+          //   buttons: true,
+          //   dangerMode: false,
+          // })
+          swal({
+            title: "Soal sedang dikoreksi",
+            text: "Anda dapat melihat hasil ujian setelah dikoreksi",
+            icon: "warning",
+            button: "Oke",
+          });
+          //swal("soal sedang dikoreksi");
+        });
+        // Swal.fire('Soal sedang dikoreksi');
       </script>
       <strong>Menunggu di koreksi </strong>
       @endif

@@ -27,8 +27,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-
+                <div class="card-body ">
+                <div class="table-inside">
                 @if($paketsoal->count() != 0)
                     <table class="table table-striped table-bordered table-sm">
                         <thead class="thead-dark text-center">
@@ -57,7 +57,7 @@
 
                                 <td class="text-center">{{$item->jumlah_soal()}} Soal</td>
                                 <td class="text-center">
-                                
+
                                 <a  href="{{route('exportSoal',$item->id)}}" target="_blank" >
                                     <button type="button" class="btn btn-info btn-sm">
                                     <i class="fa fa-download" aria-hidden="true"> Soal</i>
@@ -68,7 +68,7 @@
                                     <i class="fa fa-download" aria-hidden="true"> Kunci</i>
                                         </button>
                                     </a>
-                                
+
                                 </td>
                                 <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target=".update_modal_paket"
@@ -77,15 +77,15 @@
                                     data-user_id_paket_update="{{ $item->user->id }}"
                                     data-judul_paket_update="{!! $item->judul!!}"
                                     data-durasi_paket_update="{!! $item->durasi !!}"
-                                    >
+                                     title="Ubah paket soal">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                 </button>
-                                    <a href="{{route('question_create_soal_satuan',$item->id)}}">
+                                    <a href="{{route('question_create_soal_satuan',$item->id)}}" title="Tambah soal">
                                         <button type="button" class="btn btn-success btn-sm">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <a href="">
+                                    <a href="#" title="Hapus paket soal" class="hapus" paket_soal_id="{{$item->id}}" paket_soal_judul="{{$item->judul}}">
                                         <button type="button" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash fa-sm"></i>
                                         </button>
@@ -103,6 +103,7 @@
                         </button>
                     </div>
                 @endif
+                </div>
                 </div>
             </div>
         </div>
@@ -192,8 +193,25 @@ $(document).ready(function(){
         // timeControl.value = durasi_awal.toISOString().substring(7, 16);
         console.log(durasi_awal);
     });
+    $('.hapus').click(function(){
 
+      var paket_soal_id = $(this).attr('paket_soal_id');
+      var paket_soal_judul = $(this).attr('paket_soal_judul');
+      swal({
+        title: "Yakin?",
+        text: "Menghapus ujian "+paket_soal_judul+ " ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = 'question/delete/'+paket_soal_id;
+        }
+      });
+    });
 });
+
 </script>
 <!--edit-->
 @endsection

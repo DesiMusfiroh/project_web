@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-md-12">
-    <div class="card" style="border-radius:20px;  box-shadow: 10px 10px 5px rgba(48, 10, 64, 0.5);">
+    <div class="card">
         <div class="card-header  pt-3 pb-2 text-center" style="border-radius: 20px 20px 0px 0px;  background: #EDE5E5;">
             <strong style="font-size: 18px;">Buat Paket Soal baru</strong>
         </div>
