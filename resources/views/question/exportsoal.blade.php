@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>Download Soal Ujian</title>
 </head>
-<body>        
+<body>
     <p align="right"> Dibuat pada {{date('d M Y',strtotime($paket_soal->created_at))}} </p>
     <center><h3>Naskah Soal <br/>{{$paket_soal->judul}} </h3></center>
 
@@ -28,7 +28,7 @@
 @if($soal_pilgan->count() != 0)
 <table  width="100%">
     <tr>
-        <td colspan="3"><h4>I. Berilah tanda silang (X) pada huruf A,B,C,D Atau E di depan jawaban yang paling
+        <td colspan="3"><h4> Berilah tanda silang (X) pada huruf A,B,C,D Atau E di depan jawaban yang paling
             tepat pada soal yang tersedia!</h4>
         </td>
 </tr>
@@ -57,7 +57,7 @@
             E. {!!$item->pilgan->pil_e!!}<br/>
         </td>
         <td>&nbsp;</td>
-	</tr> 
+	</tr>
     @endforeach
   </table>
 @else
@@ -69,7 +69,7 @@
 
   <table width="100%">
   <tr>
-        <td colspan="3"><h4>II. Jawablah pertanyaan berikut dengan benar!</h4>
+        <td colspan="3"><h4> Jawablah pertanyaan berikut dengan benar!</h4>
         </td>
 </tr>
 	<tr>

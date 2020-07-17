@@ -134,22 +134,28 @@ class ExamController extends Controller
 
     public function joinExam(Request $request){
         //Ujian::attempt(['kode_ujian' => $request->kode_akses])
-        if (Ujian::where('kode_ujian',$request->kode_akses)) {
-            $peserta = new Peserta;
-            $peserta->user_id = auth()->user()->id;
-            $idujian = Ujian::where('kode_ujian',$request->kode_akses)->get();
-            foreach ($idujian as $item) {
-                $id = $item->id;
-            }
-            $peserta->ujian_id = $id;
-            $peserta->nilai = null;
-            if (Peserta::where('ujian_id',$id)->where('user_id',auth()->user()->id)->exists()) {
-              return redirect()->route('home')->with('info','Kamu sudah tergabung di ujian ini');
-            }else {
-              $peserta->save();
-              return redirect()->route('home')->withSuccess('Berhasil mengikuti ujian baru');
-            }
+        try {
+          if (Ujian::where('kode_ujian',$request->kode_akses)) {
+              $peserta = new Peserta;
+              $peserta->user_id = auth()->user()->id;
+              $idujian = Ujian::where('kode_ujian',$request->kode_akses)->get();
+              foreach ($idujian as $item) {
+                  $id = $item->id;
+              }
+              $peserta->ujian_id = $id;
+              $peserta->nilai = null;
+              if (Peserta::where('ujian_id',$id)->where('user_id',auth()->user()->id)->exists()) {
+                return redirect()->route('home')->with('info','Kamu sudah tergabung di ujian ini');
+              }else {
+                $peserta->save();
+                return redirect()->route('home')->withSuccess('Berhasil mengikuti ujian baru');
+              }
+          }
+        } catch (\Exception $e) {
+          return redirect()->back()->with('tidakditemukan','Kode tidak ditemukan');
         }
+
+
     }
 
     public function waitExam($id)
@@ -315,7 +321,7 @@ class ExamController extends Controller
         date_add($selesai, date_interval_create_from_date_string("$durasi_jam hours, $durasi_menit minutes, $durasi_detik seconds"));
         $waktu_selesai = date_format($selesai, 'Y-m-d H:i:s');
 
-        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->where('status',0)->get();
+        $peserta    = Peserta::where('ujian_id',$request->ujian_id)->get();
         $array_peserta[] = ['nama_peserta'];
         foreach($peserta as $key =>$value)
         {

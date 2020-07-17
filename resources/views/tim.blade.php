@@ -83,9 +83,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/tim">Tim Kami</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="/hubungi">Hubungi Kami</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

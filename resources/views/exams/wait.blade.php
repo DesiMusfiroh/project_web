@@ -155,6 +155,24 @@ function openFullscreen() {
     //   alert("Hayoooo jangan nyontek ya. jangan kemana mana");
     //   closeFullscreen();
     // });
+
+    $('#fullscreenExam').mouseleave(function(){
+      const peserta_id = $(this).attr('peserta_id');
+      closeFullscreen();
+      swal({
+        title: "Yakin?",
+        text: "Ketika meninggalkan ujian, anda tidak bisa mengulangi ujian lagi.Tekan cancel untuk kembali ujian",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/finishexam/"+peserta_id;
+        }
+      });
+
+    });
 }
 function closeFullscreen() {
     if (document.exitFullscreen) {
@@ -163,23 +181,6 @@ function closeFullscreen() {
     }
 }
 
-$('#fullscreenExam').mouseleave(function(){
-  const peserta_id = $(this).attr('peserta_id');
-  closeFullscreen();
-  swal({
-    title: "Yakin?",
-    text: "Ketika meninggalkan ujian, anda tidak bisa mengulangi ujian lagi. <b>Tekan cancel untuk kembali ujian </b>",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      window.location = "/finishexam/"+peserta_id;
-    }
-  });
-
-});
 // --------------------------------------------------------------------------
 // pengaturan JS untuk hitung waktu mulai ujian
 const waktu_mulai = new Date('<?php echo $waktu_mulai ?>').getTime();

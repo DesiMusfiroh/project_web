@@ -9,6 +9,17 @@
         </button>
     </div>
 @endif
+@if(session('tidakditemukan'))
+  <script>
+    $(document).ready(function(){
+      swal({
+        title: "Oops",
+        text: "Kode ujian tidak ditemukan",
+        icon: "warning",
+      });
+    });
+  </script>
+@endif
 <div class="container">
     <div class="alert alert-success mb-4" role="alert">
         <h5 class="alert-heading"> <strong> Hai  {{ Auth::user()->name }}, Selamat datang di Website LiveEx! </strong></h5>
@@ -16,7 +27,7 @@
     <hr>
         Sudah punya kode akses untuk ujian?
         <a type="button" style="color: #blue" data-toggle="modal" data-target="#exampleModal" class="btn btn-sm btn-primary">  Klik disini</a>
-   
+
     </div>
 
 @if($peserta->count() != 0)

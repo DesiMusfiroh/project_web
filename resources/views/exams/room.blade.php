@@ -140,7 +140,7 @@ function openFullscreen(ujian_id) {
             ujian_id: ujian_id
         },
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             array_data = Object.values(data);
 
             var nama_ujian = array_data[0];
@@ -148,7 +148,7 @@ function openFullscreen(ujian_id) {
             var durasi = array_data[2];
             var waktu_selesai = array_data[3];
             var array_peserta = array_data[4];
-            console.log(array_peserta);
+            // console.log(array_peserta);
             // mengambil setiap value peserta dari array peserta
             for (var key in array_peserta) {
                 var peserta = (array_peserta[key]);
