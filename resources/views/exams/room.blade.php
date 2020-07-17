@@ -1,9 +1,19 @@
 @extends('layouts.sidebar')
 @section('content')
 <style>
+
+@media screen and (max-width: 1000px) {
+  video{
+    width: 200px;
+    height: 170px;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+}
 :fullscreen {
   background-color:black;
 }
+
 </style>
 @if(session('sukses'))
   <div class="alert alert-success" role="alert">
@@ -80,7 +90,7 @@
                         <h5><strong><span id="teks_durasi"></span></strong></h5>
                     </div>
                     <div class="col-md-2">
-                        <div class="mr-5" style="text-align:right; vertical-align:top;"><button class="btn btn-danger" style="font-size:15px;" onclick="closeFullscreen();"> <span class="fa fa-window-close"></span> <strong>Keluar</strong>  </button> </div>
+                        <div class="mr-5" style="text-align:right; vertical-align:top;" id="buttonclose"><button class="btn btn-danger" style="font-size:15px;" onclick="closeFullscreen();"> <span class="fa fa-window-close"></span> <strong>Keluar</strong>  </button> </div>
                     </div>
                 </div>
             </div>

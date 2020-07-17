@@ -71,7 +71,7 @@
     <body>
         <nav class="navbar navbar-expand-lg "  style="background: #EDE5E5; box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px; color:black;">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="/images/LiveEx.png" alt="" width="80px"></a>
+                <a class="navbar-brand" href="{{route('welcome')}}"><img src="/images/LiveEx.png" alt="" width="80px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,7 +99,7 @@
 
         <div class="row container justify-content-center " style="margin:60px 0px 0px 0px">
                 <div class="col-sm ">
-                        
+
                 <div class="card  bg-transparent "  style="border:0px; width: 18rem; margin:5px; padding:2px;">
                  <img style="border-radius:50%" height="250px" src="{{asset('/images/repaldi.png')}}" class="card-img-top" alt="...">
                 <div class="card-body" style="text-align:center;">
@@ -109,7 +109,7 @@
 
                 </div>
         <div class="col-sm">
-                
+
         <div class="card bg-transparent " style="border:0px; width: 18rem; margin:10px;"  >
                  <img style="border-radius:50%" height="250px" src="{{asset('/images/desi.jpg')}}" class="card-img-top" alt="...">
                 <div class="card-body"  style="text-align:center;">
@@ -119,7 +119,7 @@
 
                 </div>
         <div class="col-sm">
-                
+
         <div class="card bg-transparent " style="border:0px; width: 18rem; margin:10px;"  >
                  <img style="border-radius:50%" height="250px"src="{{asset('/images/krisman.jpg')}}" class="card-img-top" alt="...">
                 <div class="card-body" style="text-align:center;">
@@ -130,11 +130,11 @@
 
                 </div>
         </div>
-           
-       
-        
-        
-                
+
+
+
+
+
         </div>
 
         <!-- <div class="flex-center position-ref full-height">

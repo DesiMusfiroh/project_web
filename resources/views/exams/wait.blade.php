@@ -4,6 +4,18 @@
 <style>
 @media screen and (max-width: 1000px) {
    #mulai-ujian {max-width:100%;}
+   #fullscreenExam{
+     height: 100%;
+     overflow-y: scroll;
+   }
+
+   video{
+       background: #ccc;
+       border: 5px solid grey;
+       margin: auto;
+
+
+   }
 }
 :fullscreen {
   background:linear-gradient(360deg, rgba(247, 253, 251, 0.85) -4.38%, rgba(118, 235, 179, 0.85) 19.69%, rgba(14, 239, 185, 0.85) 98.54%);
@@ -16,9 +28,11 @@
 video{
     background: #ccc;
     border: 5px solid grey;
-    margin-right: 0%;
-    margin-left: 85%
+    margin-right: 10px;
+
 }
+
+
 </style>
 <div class="row">
 <div class="col-md-8">
@@ -93,7 +107,7 @@ video{
     </div>
 
 
-    <div class="container">
+    <div class="container video">
       <div  class="row">
         <video autoplay="true" id="video-webcam" width="160px" height="122px"> </video>
       </div>

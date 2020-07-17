@@ -35,10 +35,10 @@
                     width: 550px;
                 }
             }
-           
+
             @media screen and (max-width: 600px) {
                 .hr-bawah{
-                    width:60%; 
+                    width:60%;
                     align:auto;
                 }
                 .input-email{
@@ -91,7 +91,7 @@
     <body>
         <nav class="navbar navbar-expand-lg "  style="background: #EDE5E5; box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);  font-family: Chelsea Market; font-size:20px; color:black;">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="/images/LiveEx.png" alt="" width="80px"></a>
+                <a class="navbar-brand" href="{{route('welcome')}}"><img src="/images/LiveEx.png" alt="" width="80px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -115,7 +115,7 @@
             <div class="container"style="margin:10px 0px 0px 0px" >
                 <span class="row  justify-content-center " style="color: #244D49; padding:30px 0px 0px 0px; text-shadow: 3px 3px 0px #D7DACC;"><h3> Hubungi Kami </h3></span>
                     <hr class="hr-bawah "width="20%"/>
-            </div> 
+            </div>
             <div class="container">
       <div class="row">
         <div class="mx-auto p-4 col-md-7">
@@ -130,13 +130,13 @@
 
 
         </div>
-           
-       
-        
-        
-       
 
-       
+
+
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
