@@ -70,7 +70,7 @@ class QuestionController extends Controller
 
     // SOAL SATUAN CRUD CONTROLLER
     public function create_soal_satuan($paket_soal_id){
-      $ownuser = PaketSoal::where('id',$paket_soal_id)->value('user_id');
+      $ownuser = PaketSoal::where('id',$paket_soal_id)->where('isdelete',0)->value('user_id');
       //agar dia cuma bisa akses paket soal yg dimilikinya
       if (auth()->user()->id === $ownuser) {
           $soal_satuan = SoalSatuan::where('paket_soal_id',$paket_soal_id)->orderBy('id','asc')->get();

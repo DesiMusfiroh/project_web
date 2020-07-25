@@ -72,8 +72,8 @@
 
                 @foreach ($koreksi_jawaban as $item)
                 <div class="alert alert-success text-left" role="alert">
-                    Pertanyaan : {!!$item->essay->pertanyaan!!} <br>
-                    kunci jawaban : {!!$item->essay->jawaban!!} <br>
+                    Pertanyaan : {!!$item->essay->pertanyaan!!} 
+                    kunci jawaban : {!!$item->essay->jawaban!!} 
                     Jawaban Peserta : {{$item->jawab}}
                     <hr>
                     <div class="row">

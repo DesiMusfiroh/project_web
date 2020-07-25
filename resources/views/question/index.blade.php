@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i=0; ?>
+                            <?php $i=1; ?>
                             @foreach ($paketsoal as $item)
                             <tr>
                                 <td scope="row" class="text-center">{{$paketsoal ->perPage()*($paketsoal->currentPage()-1)+$i}}</td>
@@ -66,7 +66,7 @@
                                     </a>
                                 <a  href="{{route('exportJawaban',$item->id)}}" target="_blank" >
                                     <button type="button" class="btn btn-secondary btn-sm">
-                                    <i class="fa fa-download" aria-hidden="true"> Kunci</i>
+                                    <i class="fa fa-download" aria-hidden="true"> Kunci </i>
                                         </button>
                                     </a>
 

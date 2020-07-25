@@ -33,7 +33,7 @@ class ExamController extends Controller
 
     public function create()
     {
-        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->get();
+        $paketsoal = PaketSoal::where('user_id',auth()->user()->id)->where('isdelete',0)->get();
         return view('exams.create',compact(['paketsoal']));
     }
 
@@ -53,7 +53,7 @@ class ExamController extends Controller
     public function edit($id)
     {
         // $ujian = Ujian::where('id',$id)->get();
-        $ownuser = Ujian::where('id',$id)->value('user_id');
+        $ownuser = Ujian::where('id',$id)->where('isdelete',0)->value('user_id');
 
         if (auth()->user()->id === $ownuser) {
           $ujian = Ujian::find($id);
@@ -230,8 +230,8 @@ class ExamController extends Controller
     }
 
     public function room_exam() {
-        $ujian_aktif = Ujian::where('user_id',Auth::user()->id)->where('status',0)->get();
-        $ujian_run = Ujian::where('user_id',Auth::user()->id)->where('status',1)->get();
+        $ujian_aktif = Ujian::where('user_id',Auth::user()->id)->where('status',0)->where('isdelete',0)->get();
+        $ujian_run = Ujian::where('user_id',Auth::user()->id)->where('status',1)->where('isdelete',0)->get();
         date_default_timezone_set("Asia/Jakarta");
 
         // membuat array untuk menyimpan data ujian yang aktif

@@ -78,8 +78,9 @@ video{
     </div>
   </div>
 </div>
+</div>
 
-
+<div class="row">
 <div id=fullscreenExam >
   <div class="container">
 <br> <br>
@@ -115,7 +116,7 @@ video{
 
   </div>
 </div>
-
+</div>
 
 <script>
 $("#fullscreenExam").hide();

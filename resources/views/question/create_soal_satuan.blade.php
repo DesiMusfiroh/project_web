@@ -501,7 +501,7 @@ $(document).ready(function(){
 <!--edit-->
 
 <script>
-$(document).ready(function(){
+
     $(document).on('click','#create', function(){
         var id              = $(this).data('id');
         var paket_soal_id   = $(this).data('paket_soal_id');
@@ -510,7 +510,7 @@ $(document).ready(function(){
         $('.paket_soal_id').val(paket_soal_id);
 
     });
-});
+
 
 </script>
 <script>
@@ -523,7 +523,7 @@ $(document).ready(function(){
         icon: "warning",
         buttons: true,
         dangerMode: true,
-      })
+      });
       .then((willDelete) => {
         if (willDelete) {
           window.location = "/question_create_soal_satuan/hapus/"+paket_soal_id+"/"+soal_satuan_id;
